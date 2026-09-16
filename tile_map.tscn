@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://biiaq830tnok3"]
 
 [ext_resource type="Texture2D" uid="uid://b540ui8mf67dw" path="res://hexagon-tileset/normal-tiles/CrackedEarth.png" id="1_35kre"]
+[ext_resource type="Script" uid="uid://bfur8gqkkiruq" path="res://scripts/map.gd" id="1_xftlc"]
 [ext_resource type="Script" uid="uid://bullxphso8l12" path="res://area_2d.gd" id="2_03na7"]
 [ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://icon.svg" id="3_xftlc"]
 [ext_resource type="Script" uid="uid://d108cfxreycm2" path="res://firm_info.gd" id="4_03na7"]
@@ -97,6 +98,7 @@ sources/9 = SubResource("TileSetAtlasSource_0hol4")
 size = Vector2(19, 15)
 
 [node name="game" type="Node2D" unique_id=2141197782]
+script = ExtResource("1_xftlc")
 
 [node name="camera" type="Camera2D" parent="." unique_id=1308402294]
 
