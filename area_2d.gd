@@ -16,3 +16,4 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		var firm_info = get_node("../../CanvasLayer/firm_info")
 		firm_info.visible = !firm_info.visible
 #Salut c'est un commit de test 
+#Deuxieme test
