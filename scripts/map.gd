@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Map
 
+@onready var info_label: Label = get_node("CanvasLayer/info/Label")
 const TAILLE_HEX : float = 20.0
 const COULEUR_REMPLISSAGE := Color(0.15, 0.35, 0.55)
 const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
@@ -10,7 +11,7 @@ var rayon_grille : int = 10
 var tableau_hexagonal : Array[Tile] = []
 
 func on_tile_clicked(tile: Tile) -> void:
-	tile.afficher_infos()
+	info_label.text = tile.get_info_text()
 
 func _ready() -> void:
 	tableau_hexagonal = generer_grille_hexagonale(rayon_grille)

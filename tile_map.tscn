@@ -11,7 +11,7 @@ script = ExtResource("1_xftlc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020972732]
 
-[node name="firm_info" type="Panel" parent="CanvasLayer" unique_id=1859642561]
+[node name="info" type="PanelContainer" parent="CanvasLayer" unique_id=673878352]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -22,24 +22,5 @@ offset_top = -47.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="info" type="PanelContainer" parent="CanvasLayer/firm_info" unique_id=673878352]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -94.0
-offset_top = -24.0
-offset_right = -46.0
-offset_bottom = -10.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="button_skill_tree" type="Button" parent="CanvasLayer/firm_info/info" unique_id=1628344484]
+[node name="Label" type="Label" parent="CanvasLayer/info" unique_id=119894826]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/firm_info/info" unique_id=119894826]
-layout_mode = 2
-
-[connection signal="pressed" from="CanvasLayer/firm_info/info/button_skill_tree" to="CanvasLayer/firm_info" method="_on_button_pressed"]
