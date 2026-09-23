@@ -1,10 +1,11 @@
-extends Node
+extends Node2D
+
+var map = Map.new()
+@onready var label_info: Label = get_node("CanvasLayer/info/Label")
 
 func _ready() -> void:
-	var map # Ajouter classe Map + classe Tiles
-	var money = 0
-	# Autres variables à mettre
-
-
+	map.generer_grille_hexagonale(10)
+	add_child(map)
+	
 func _process(delta: float) -> void:
 	pass

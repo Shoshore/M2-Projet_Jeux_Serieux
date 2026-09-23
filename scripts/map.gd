@@ -1,41 +1,69 @@
 extends Node2D
 
+class_name Map
+
+@onready var info_label: Label = get_node("CanvasLayer/info/Label")
 const TAILLE_HEX : float = 20.0
 const COULEUR_REMPLISSAGE := Color(0.15, 0.35, 0.55)
 const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 
 var rayon_grille : int = 10
-var tableau_hexagonal : Array = []
+var tableau_hexagonal : Array[Tile] = []
 
+func on_tile_clicked(tile: Tile) -> void:
+	info_label.text = tile.get_info_text()
 
 func _ready() -> void:
 	tableau_hexagonal = generer_grille_hexagonale(rayon_grille)
 	queue_redraw()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var position_souris := get_local_mouse_position()
+			detecter_clic(position_souris)
+
+
+
+func detecter_clic(position_locale: Vector2) -> void:
+	for tile in tableau_hexagonal:
+		var centre := coordonnees_vers_pixel(
+			tile.coordonnee.x,
+			tile.coordonnee.y
+		)
+
+		var position_dans_tile := position_locale - centre
+
+		if position_dans_tile.length() <= TAILLE_HEX:
+			on_tile_clicked(tile)
+			return
+
 
 # Génère une grille hexagonale régulière
 func generer_grille_hexagonale(rayon : int) -> Array:
-	var tuiles : Array = []
+	var tuiles : Array[Tile] = []
 	
 	for q in range(-rayon, rayon + 1):
 		var r_min : int = max(-rayon, -q - rayon)
 		var r_max : int = min(rayon, -q + rayon)
 		
 		for r in range(r_min, r_max + 1):
-			tuiles.append(Vector2i(q, r))
-	
+			var t = Tile.new()
+			t.initialiser(q, r)
+			add_child(t)
+			tuiles.append(t)
 	return tuiles
 
 
 # Dessine la grille
 func _draw() -> void:
-	for coordonnee in tableau_hexagonal:
-		var q : int = coordonnee.x
-		var r : int = coordonnee.y
+	for tile in tableau_hexagonal:
+		var coord = tile.coordonnee
+		var q : int = coord.x
+		var r : int = coord.y
 		
 		var position_hex : Vector2 = coordonnees_vers_pixel(q, r)
 		dessiner_hexagone(position_hex)
-
 
 # Conversion des coordonnées axiales vers la position à l'écran
 func coordonnees_vers_pixel(q : int, r : int) -> Vector2:
