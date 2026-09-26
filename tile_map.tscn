@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://biiaq830tnok3"]
 
 [ext_resource type="Script" uid="uid://bfur8gqkkiruq" path="res://scripts/map.gd" id="1_xftlc"]
+[ext_resource type="PackedScene" uid="uid://u8f4qpy7vmam" path="res://skillTree.tscn" id="2_1n30v"]
 
 [node name="game" type="Node2D" unique_id=2141197782]
 script = ExtResource("1_xftlc")
@@ -24,3 +25,21 @@ grow_vertical = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/info" unique_id=119894826]
 layout_mode = 2
+
+[node name="SkillTree" parent="CanvasLayer" unique_id=2043676651 instance=ExtResource("2_1n30v")]
+visible = false
+
+[node name="TreeButton" type="Button" parent="CanvasLayer" unique_id=713900226]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -36.0
+offset_right = 119.0
+offset_bottom = -5.0
+grow_vertical = 0
+toggle_mode = true
+text = "Arbre de compérences"
+
+[connection signal="toggled" from="CanvasLayer/TreeButton" to="." method="_on_tree_button_toggled"]
+[connection signal="toggled" from="CanvasLayer/TreeButton" to="CanvasLayer/SkillTree" method="_on_tree_button_toggled"]

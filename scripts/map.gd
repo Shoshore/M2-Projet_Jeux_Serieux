@@ -10,6 +10,8 @@ const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 var rayon_grille : int = 10
 var tableau_hexagonal : Array[Tile] = []
 
+var is_board_clickable = true ;
+
 func on_tile_clicked(tile: Tile) -> void:
 	info_label.text = tile.get_info_text()
 
@@ -19,7 +21,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and (is_board_clickable == true):
 			var position_souris := get_local_mouse_position()
 			detecter_clic(position_souris)
 
@@ -98,3 +100,7 @@ func dessiner_hexagone(centre : Vector2) -> void:
 			COULEUR_CONTOUR,
 			2.0
 		)
+
+
+func _on_tree_button_toggled(toggled_on: bool) -> void:
+	is_board_clickable = !toggled_on
