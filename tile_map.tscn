@@ -7,8 +7,6 @@ script = ExtResource("1_xftlc")
 
 [node name="camera" type="Camera2D" parent="." unique_id=1308402294]
 
-[node name="firm" type="Node2D" parent="." unique_id=1313765549]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020972732]
 
 [node name="info" type="PanelContainer" parent="CanvasLayer" unique_id=673878352]
