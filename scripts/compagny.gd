@@ -2,7 +2,7 @@ extends Node2D
 # TODO :
 # link skill tree and connect his signal
 # link unity + reset their pm
-# try to use sprite when generated on map and make a cool shape on map
+
 class_name compagny
 
 var id: int:
@@ -22,11 +22,12 @@ var _mood_threshold = 0
 
 var _list_unities = []
 
-var _path_sprite: String
+var _couleur_entreprise: Color = Color(0, 0.5, 0.1)
+var _texture: Texture2D
 # var _skill_tree: SkillTree
 
-func init(path_sprite: String, id_unic: int) -> void:
-	_path_sprite = path_sprite
+func init(texture: Texture2D, id_unic: int) -> void:
+	_texture = texture
 	_id = id_unic
 	# push new unit into the list -> need to have the basic unit objet to do this
 	# new skill tree
@@ -40,6 +41,31 @@ func _on_boost_turnover_changed(new_boost: float) -> void:
 
 func _on_boost_mood_changed(new_boost: float) -> void:
 	_boost_mood = new_boost
+
+func _fire_consequence():
+	_mood_gauge = floor(_mood_gauge / 2)
+	_monnay += 2000
+
+enum EmployeeType {
+	DEVELOPER,
+	RESEARCHER,
+	RECRUITER
+}
+
+func fire_employee(type: EmployeeType) -> void:
+	match type:
+		EmployeeType.DEVELOPER:
+			if _number_developer > 0:
+				_number_developer -= 1
+				_fire_consequence()
+		EmployeeType.RESEARCHER:
+			if _number_researcher > 0:
+				_number_researcher -= 1
+				_fire_consequence()
+		EmployeeType.RECRUITER:
+			if _number_recruiter > 0:
+				_number_recruiter -= 1
+				_fire_consequence()
 
 
 func _update_monnay(tour: int) -> void:
@@ -63,6 +89,10 @@ func _update_unit() -> void:
 
 func _update_mood() -> void:
 	_mood_threshold += 3
+	if _mood_gauge < 30:
+		_mood_gauge += 3
+		if _mood_gauge > 30:
+			_mood_gauge = 30
 
 
 func update_end_turn(tour: int) -> void:
