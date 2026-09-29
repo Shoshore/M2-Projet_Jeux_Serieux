@@ -22,6 +22,8 @@ var _mood_threshold = 0
 
 var _list_unities = []
 
+var vision: Vision_component = Vision_component.new(5)
+
 var _couleur_entreprise: Color = Color(0, 0.5, 0.1)
 var _texture: Texture2D
 # var _skill_tree: SkillTree
