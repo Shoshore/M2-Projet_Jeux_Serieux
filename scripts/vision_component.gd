@@ -1,6 +1,7 @@
 class_name Vision_component
+extends RefCounted
 
-var circle_of_sight : int = 3
+var sight_range: int
 
-func _init(sight_range: int) -> void:
-	circle_of_sight = sight_range
+func _init(p_sight_range: int = 1) -> void:
+	sight_range = p_sight_range

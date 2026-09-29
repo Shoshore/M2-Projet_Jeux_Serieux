@@ -22,7 +22,7 @@ var _mood_threshold = 0
 
 var _list_unities = []
 
-var vision: Vision_component = Vision_component.new(5)
+var vision: Vision_component
 
 var _couleur_entreprise: Color = Color(0, 0.5, 0.1)
 var _texture: Texture2D
@@ -31,6 +31,7 @@ var _texture: Texture2D
 func init(texture: Texture2D, id_unic: int) -> void:
 	_texture = texture
 	_id = id_unic
+	vision = Vision_component.new(5)
 	# push new unit into the list -> need to have the basic unit objet to do this
 	# new skill tree
 	# skill_tree.boost_turnover_changed.connect(_on_boost_turnover_changed)
