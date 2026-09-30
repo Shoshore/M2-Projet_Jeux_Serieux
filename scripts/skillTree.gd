@@ -1,15 +1,22 @@
 extends Control
+class_name SkillTree
 
+# Compétences technologies
 @onready var button_tech_1: Button = $HBoxContainer/VBoxContainer/Button
 @onready var button_tech_2: Button = $HBoxContainer/VBoxContainer/Button2
 @onready var button_tech_3: Button = $HBoxContainer/VBoxContainer/Button3
 @onready var button_tech_4: Button = $HBoxContainer/VBoxContainer/Button4
+
+# Compétences humaines
 @onready var button_human_1: Button = $HBoxContainer/VBoxContainer2/Button
 @onready var button_human_2: Button = $HBoxContainer/VBoxContainer2/Button2
 @onready var button_human_3: Button = $HBoxContainer/VBoxContainer2/Button3
 @onready var button_human_4: Button = $HBoxContainer/VBoxContainer2/Button4
+
+# Origine de l'arbre
 @onready var button_origin: Button = $ButtonOrigin
 
+# Bouton de changement vers le plateau/arbre
 @onready var tree_button: Button = $"../TreeButton"
 
 func buttonCenter(button: Control):
@@ -17,23 +24,23 @@ func buttonCenter(button: Control):
 	
 var lineWidth = 3.0
 
-var colorOrigin = Color.WHITE
-var colorTech1 = Color.WHITE
-var colorTech2 = Color.WHITE
-var colorTech3 = Color.WHITE
-var colorHuman1 = Color.WHITE
-var colorHuman2 = Color.WHITE
-var colorHuman3 = Color.WHITE
+var colorLineOrigin = Color.WHITE
+var colorLineTech1 = Color.WHITE
+var colorLineTech2 = Color.WHITE
+var colorLineTech3 = Color.WHITE
+var colorLineHuman1 = Color.WHITE
+var colorLineHuman2 = Color.WHITE
+var colorLineHuman3 = Color.WHITE
 
 func _draw() -> void:
-	draw_line(buttonCenter(button_origin), buttonCenter(button_human_1), colorOrigin, lineWidth)
-	draw_line(buttonCenter(button_origin), buttonCenter(button_tech_1), colorOrigin, lineWidth)
-	draw_line(buttonCenter(button_tech_1), buttonCenter(button_tech_2), colorTech1, lineWidth)
-	draw_line(buttonCenter(button_tech_2), buttonCenter(button_tech_3), colorTech2, lineWidth)
-	draw_line(buttonCenter(button_tech_3), buttonCenter(button_tech_4), colorTech3, lineWidth)
-	draw_line(buttonCenter(button_human_1), buttonCenter(button_human_2), colorHuman1, lineWidth)
-	draw_line(buttonCenter(button_human_2), buttonCenter(button_human_3), colorHuman2, lineWidth)
-	draw_line(buttonCenter(button_human_3), buttonCenter(button_human_4), colorHuman3, lineWidth)
+	draw_line(buttonCenter(button_origin), buttonCenter(button_human_1), colorLineOrigin, lineWidth)
+	draw_line(buttonCenter(button_origin), buttonCenter(button_tech_1), colorLineOrigin, lineWidth)
+	draw_line(buttonCenter(button_tech_1), buttonCenter(button_tech_2), colorLineTech1, lineWidth)
+	draw_line(buttonCenter(button_tech_2), buttonCenter(button_tech_3), colorLineTech2, lineWidth)
+	draw_line(buttonCenter(button_tech_3), buttonCenter(button_tech_4), colorLineTech3, lineWidth)
+	draw_line(buttonCenter(button_human_1), buttonCenter(button_human_2), colorLineHuman1, lineWidth)
+	draw_line(buttonCenter(button_human_2), buttonCenter(button_human_3), colorLineHuman2, lineWidth)
+	draw_line(buttonCenter(button_human_3), buttonCenter(button_human_4), colorLineHuman3, lineWidth)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,25 +58,25 @@ func _on_button_origin_pressed() -> void:
 	button_human_1.disabled = false ;
 	button_tech_1.disabled = false ;
 	button_origin.disabled = true ;
-	colorOrigin = Color.GOLDENROD
+	colorLineOrigin = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_tech1_pressed() -> void:
 	button_tech_2.disabled = false ;
 	button_tech_1.disabled = true ;
-	colorTech1 = Color.GOLDENROD
+	colorLineTech1 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_tech2_pressed() -> void:
 	button_tech_3.disabled = false ;
 	button_tech_2.disabled = true ;
-	colorTech2 = Color.GOLDENROD
+	colorLineTech2 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_tech3_pressed() -> void:
 	button_tech_4.disabled = false ;
 	button_tech_3.disabled = true ;
-	colorTech3 = Color.GOLDENROD
+	colorLineTech3 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_tech4_pressed() -> void:
@@ -79,19 +86,19 @@ func _on_button_tech4_pressed() -> void:
 func _on_button_human1_pressed() -> void:
 	button_human_2.disabled = false ;
 	button_human_1.disabled = true ;
-	colorHuman1 = Color.GOLDENROD
+	colorLineHuman1 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_human2_pressed() -> void:
 	button_human_3.disabled = false ;
 	button_human_2.disabled = true ;
-	colorHuman2 = Color.GOLDENROD
+	colorLineHuman2 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_human3_pressed() -> void:
 	button_human_4.disabled = false ;
 	button_human_3.disabled = true ;
-	colorHuman3 = Color.GOLDENROD
+	colorLineHuman3 = Color.GOLDENROD
 	queue_redraw()
 
 func _on_button_human4_pressed() -> void:
