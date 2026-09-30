@@ -9,6 +9,9 @@ const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 
 var rayon_grille : int = 10
 var tableau_hexagonal : Array[Tile] = []
+var tiles_by_coord: Dictionary = {}
+
+signal tile_clicked(tile: Tile)
 
 func on_tile_clicked(tile: Tile) -> void:
 	info_label.text = tile.get_info_text()
@@ -35,13 +38,14 @@ func detecter_clic(position_locale: Vector2) -> void:
 		var position_dans_tile := position_locale - centre
 
 		if position_dans_tile.length() <= TAILLE_HEX:
-			on_tile_clicked(tile)
+			tile_clicked.emit(tile)
 			return
 
 
 # Génère une grille hexagonale régulière
 func generer_grille_hexagonale(rayon : int) -> Array:
 	var tuiles : Array[Tile] = []
+	tiles_by_coord.clear()
 	
 	for q in range(-rayon, rayon + 1):
 		var r_min : int = max(-rayon, -q - rayon)
@@ -52,6 +56,7 @@ func generer_grille_hexagonale(rayon : int) -> Array:
 			t.initialiser(q, r)
 			add_child(t)
 			tuiles.append(t)
+			tiles_by_coord[Vector2i(q, r)] = t
 	return tuiles
 
 
@@ -98,3 +103,7 @@ func dessiner_hexagone(centre : Vector2) -> void:
 			COULEUR_CONTOUR,
 			2.0
 		)
+
+
+func get_tile_at(coord: Vector2i) -> Tile:
+	return tiles_by_coord.get(coord)

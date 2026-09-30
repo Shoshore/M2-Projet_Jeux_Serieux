@@ -9,6 +9,8 @@ const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 var coordonnee : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
 var proprietaire : String = "Aucun"
+var occupant: Unit = null
+var building = null
 
 func _ready() -> void:
 	queue_redraw()
