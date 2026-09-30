@@ -3,8 +3,8 @@ extends Node2D
 class_name Tile
 
 const TAILLE_HEX : float = 20.0
-const COULEUR_REMPLISSAGE := Color(0.15, 0.35, 0.55)
-const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
+var COULEUR_REMPLISSAGE := Color(0.15, 0.35, 0.55)
+var COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 
 var coordonnee : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
@@ -16,9 +16,10 @@ func _ready() -> void:
 	queue_redraw()
 
 
-func initialiser(q : int, r : int, ressource_disponible : String = "Rien") -> void:
+func initialiser(q : int, r : int, color : Color = COULEUR_REMPLISSAGE , ressource_disponible : String = "Rien") -> void:
 	coordonnee = Vector2i(q, r)
 	ressource = ressource_disponible
+	COULEUR_REMPLISSAGE = color 
 	queue_redraw()
 
 
@@ -31,7 +32,6 @@ func _draw() -> void:
 			sin(angle)
 		) * TAILLE_HEX
 		points.append(point)
-
 	draw_colored_polygon(points, COULEUR_REMPLISSAGE)
 
 	for i in range(6):

@@ -11,3 +11,5 @@ func _ready() -> void:
 
 func _on_tile_clicked(tile: Tile) -> void:
 	label_info.text = tile.get_info_text()
+	map.set_tile_color(tile, Color.GOLDENROD)
+	

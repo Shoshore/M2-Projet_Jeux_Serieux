@@ -69,6 +69,31 @@ func dessiner_hexagone(centre : Vector2) -> void:
 			2.0
 		)
 
+# Dessine un hexagone centré sur une position
+func dessiner_hexagone_color(centre : Vector2, color : Color) -> void:
+	var points : PackedVector2Array = PackedVector2Array()
+	
+	for i in range(6):
+		var angle : float = deg_to_rad(60.0 * i - 30.0)
+		var point : Vector2 = centre + Vector2(
+			cos(angle),
+			sin(angle)
+		) * TAILLE_HEX
+		
+		points.append(point)
+	
+	# Remplissage
+	draw_colored_polygon(points, color)
+	
+	# Contour
+	for i in range(6):
+		var suivant : int = (i + 1) % 6
+		draw_line(
+			points[i],
+			points[suivant],
+			COULEUR_CONTOUR,
+			2.0
+		)
 
 # Conversion des coordonnées axiales vers la position à l'écran
 func coordonnees_vers_pixel(q : int, r : int) -> Vector2:
@@ -80,8 +105,8 @@ func coordonnees_vers_pixel(q : int, r : int) -> Vector2:
 
 # Dessine la grille
 func _draw() -> void:
-	for coord: Vector2i in tiles_by_coord:
-		dessiner_hexagone(coordonnees_vers_pixel(coord.x, coord.y))
+	for tile: Tile in tiles_by_coord.values():
+		dessiner_hexagone_color(coordonnees_vers_pixel(tile.coordonnee.x, tile.coordonnee.y) , tile.COULEUR_REMPLISSAGE)
 
 
 func pixel_vers_coordonnees(p: Vector2) -> Vector2i:
@@ -134,3 +159,7 @@ func get_free_neighbor(coord: Vector2i) -> Tile:
 		if tile.building == null and tile.occupant == null:
 			return tile
 	return null
+	
+func set_tile_color(t: Tile, c: Color) -> void :
+	t.COULEUR_REMPLISSAGE = c
+	queue_redraw()
