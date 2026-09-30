@@ -10,7 +10,7 @@ var coordonnee : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
 var proprietaire : String = "Aucun"
 var occupant: Unit = null
-var building = null
+var building: Building = null
 
 func _ready() -> void:
 	queue_redraw()
