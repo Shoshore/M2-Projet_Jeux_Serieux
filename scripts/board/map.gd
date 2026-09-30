@@ -9,6 +9,8 @@ const COULEUR_CONTOUR := Color(0.8, 0.9, 1.0)
 var rayon_grille : int = 10
 var tiles_by_coord: Dictionary = {}
 
+var is_board_clickable = true;
+
 const DIRECTIONS_HEX: Array[Vector2i] = [
 	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1),
 	Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, 1),
@@ -22,7 +24,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and is_board_clickable:
 			var position_souris := get_local_mouse_position()
 			detecter_clic(position_souris)
 

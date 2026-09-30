@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://u8f4qpy7vmam"]
 
-[ext_resource type="Script" uid="uid://d2a84rk7meb41" path="res://scripts/skillTree.gd" id="1_iv0no"]
+[ext_resource type="Script" uid="uid://d2a84rk7meb41" path="res://scripts/building/skillTree.gd" id="1_iv0no"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3jsf"]
 bg_color = Color(0.14293295, 0, 0.7612819, 1)

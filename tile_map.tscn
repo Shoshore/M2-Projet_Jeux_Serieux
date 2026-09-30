@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://biiaq830tnok3"]
 
 [ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/gameManager.gd" id="1_7yhko"]
-[ext_resource type="Script" uid="uid://bfur8gqkkiruq" path="res://scripts/map.gd" id="1_xftlc"]
 [ext_resource type="PackedScene" uid="uid://u8f4qpy7vmam" path="res://skillTree.tscn" id="2_1n30v"]
 
 [node name="game" type="Node2D" unique_id=2141197782]
