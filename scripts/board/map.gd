@@ -39,6 +39,7 @@ func generer_grille_hexagonale(rayon : int) -> void:
 		
 		for r in range(r_min, r_max + 1):
 			var t = Tile.new()
+			t.position = coordonnees_vers_pixel(q, r)
 			t.initialiser(q, r)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
@@ -108,8 +109,18 @@ func coordonnees_vers_pixel(q : int, r : int) -> Vector2:
 # Dessine la grille
 func _draw() -> void:
 	for tile: Tile in tiles_by_coord.values():
+		var build = tile.building
+		var unit = tile.occupant
+		if build:
+			set_tile_color(tile, build.own_color)
+		elif unit:
+			set_tile_color(tile, unit.own_color)
+		else:
+			set_tile_color(tile, Color(0.15, 0.35, 0.55))
 		dessiner_hexagone_color(coordonnees_vers_pixel(tile.coordonnee.x, tile.coordonnee.y) , tile.COULEUR_REMPLISSAGE)
 
+func refresh() -> void:
+	queue_redraw()
 
 func pixel_vers_coordonnees(p: Vector2) -> Vector2i:
 	var q: float = (sqrt(3.0) / 3.0 * p.x - 1.0 / 3.0 * p.y) / TAILLE_HEX
@@ -161,7 +172,8 @@ func get_free_neighbor(coord: Vector2i) -> Tile:
 		if tile.building == null and tile.occupant == null:
 			return tile
 	return null
-	
-func set_tile_color(t: Tile, c: Color) -> void :
+
+
+func set_tile_color(t: Tile, c: Color) -> void:
 	t.COULEUR_REMPLISSAGE = c
-	queue_redraw()
+	t.queue_redraw()

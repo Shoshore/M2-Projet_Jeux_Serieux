@@ -1,6 +1,3 @@
-# TODO :
-# link skill tree and connect his signal
-
 extends Building
 class_name Compagny
 
@@ -17,9 +14,8 @@ var _mood_threshold = 0
 
 var _list_unities: Array[Unit]
 
-# var _skill_tree: SkillTree
+var _skill_tree: SkillTree
 var _next_unit_id: int = 0
-
 
 func _find_tile_create_unit() -> Tile:
 	return _map.get_free_neighbor(position.position)
@@ -52,8 +48,8 @@ func create_unit(type: Create_unit_type) -> void:
 	tile.occupant = unit
 
 
-func _init(id_unic: int, position: Vector2i, map: Map) -> void:
-	super(id_unic, position, 5, map)
+func _init(id_unic: int, position_: Vector2i, map: Map, color_: Color = Color.AQUA) -> void:
+	super(id_unic, position_, 5, map, color_)
 	create_unit(Create_unit_type.RECRUITER)
 	# new skill tree
 	# skill_tree.boost_turnover_changed.connect(_on_boost_turnover_changed)
@@ -68,6 +64,7 @@ func _on_boost_mood_changed(new_boost: float) -> void:
 	_boost_mood = new_boost
 
 func _fire_consequence():
+	@warning_ignore("integer_division")
 	_mood_gauge = floor(_mood_gauge / 2)
 	_monnay += 2000
 
@@ -94,7 +91,7 @@ func fire_unit(unit: Unit) -> void:
 		tile.occupant = null
 
 
-func fire_employee(type: Employ_type, id: int = -1) -> void:
+func fire_employee(type: Employ_type, id_: int = -1) -> void:
 	match type:
 		Employ_type.DEVELOPER:
 			if _number_developer > 0:
@@ -107,11 +104,12 @@ func fire_employee(type: Employ_type, id: int = -1) -> void:
 		Employ_type.RECRUITER:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
-				fire_unit(_find_unit_by_id(id))
+				fire_unit(_find_unit_by_id(id_))
 
 
 func _update_monnay(tour: int) -> void:
 	# pay
+	@warning_ignore("integer_division")
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
 	var total_payroll = pay_rise * (230 * _number_developer + 205 * _number_researcher + 165 * _number_recruiter)
 	var energy_cost = 40 * (_number_developer + _number_researcher + _number_recruiter)
@@ -141,3 +139,14 @@ func update_end_turn(tour: int) -> void:
 	_update_monnay(tour)
 	_update_unit()
 	_update_mood()
+
+
+func display() -> void:
+	print("nb dev :", _number_developer)
+	print("nb researcher :", _number_researcher)
+	print("nb recruiter :", _number_recruiter)
+	print("monnay: ", _monnay)
+	print("boost turnover: ", _boost_turnover)
+	print("mood gauge: ", _mood_gauge)
+	print("boost mood: ", _boost_mood)
+	print("mood threshold : ", _mood_threshold)

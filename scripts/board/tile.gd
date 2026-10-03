@@ -16,13 +16,6 @@ func _ready() -> void:
 	queue_redraw()
 
 
-func initialiser(q : int, r : int, color : Color = COULEUR_REMPLISSAGE , ressource_disponible : String = "Rien") -> void:
-	coordonnee = Vector2i(q, r)
-	ressource = ressource_disponible
-	COULEUR_REMPLISSAGE = color 
-	queue_redraw()
-
-
 func _draw() -> void:
 	var points : PackedVector2Array = PackedVector2Array()
 	for i in range(6):
@@ -38,6 +31,10 @@ func _draw() -> void:
 		var suivant : int = (i + 1) % 6
 		draw_line(points[i], points[suivant], COULEUR_CONTOUR, 2.0)
 
+func initialiser(q : int, r : int, color : Color = COULEUR_REMPLISSAGE, ressource_disponible : String = "Rien") -> void:
+	coordonnee = Vector2i(q, r)
+	ressource = ressource_disponible
+	COULEUR_REMPLISSAGE = color
 
 func contient_point(point_local : Vector2) -> bool:
 	return point_local.length() <= TAILLE_HEX

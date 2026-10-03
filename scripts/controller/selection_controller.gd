@@ -29,3 +29,5 @@ func on_tile_clicked(tile: Tile) -> void:
 		if from_tile != null:
 			from_tile.occupant = null
 		tile.occupant = selected_unit
+	selected_unit = null
+	map.refresh()
