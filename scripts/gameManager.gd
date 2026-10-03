@@ -11,7 +11,6 @@ func _ready() -> void:
 	map.tile_clicked.connect(_on_tile_clicked)
 
 func _on_tile_clicked(tile: Tile) -> void:
-	print(tile.occupant)
 	label_info.text = tile.get_info_text()
 
 

@@ -14,8 +14,12 @@ func _get_current_tile(unit: Unit) -> Tile:
 
 
 func on_tile_clicked(tile: Tile) -> void:
-	if tile.occupant != null:
-		selected_unit = tile.occupant
+	var unit = tile.occupant
+	if  unit != null:
+		if unit == selected_unit:
+			selected_unit = null
+		else:
+			selected_unit = tile.occupant
 		return
 	
 	if selected_unit == null:
