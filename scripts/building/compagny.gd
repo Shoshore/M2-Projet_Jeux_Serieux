@@ -3,7 +3,7 @@ class_name Compagny
 
 var _number_developer = 1
 var _number_researcher = 1
-var _number_recruiter = 1
+var _number_recruiter = 0
 
 var _monnay = 100
 var _boost_turnover = 1
@@ -46,25 +46,15 @@ func create_unit(type: Create_unit_type) -> void:
 
 	_list_unities.push_back(unit)
 	tile.occupant = unit
+	tile.reload_visual()
 
 
-func _init(id_unic: int, position_: Vector2i, map: Map, color_: Color = Color.AQUA) -> void:
-	super(id_unic, position_, 5, map, color_)
+func _init(id_unic: int, position_: Vector2i, map: Map) -> void:
+	super(id_unic, position_, 5, map)
+	texture = Visuels.COMPAGNY
 	create_unit(Create_unit_type.RECRUITER)
-	# new skill tree
-	# skill_tree.boost_turnover_changed.connect(_on_boost_turnover_changed)
-	# skill_tree.boost_mood_changed.connect(_on_boost_mood_changed)
-
-
-func _on_boost_turnover_changed(new_boost: float) -> void:
-	_boost_turnover = new_boost
-
-
-func _on_boost_mood_changed(new_boost: float) -> void:
-	_boost_mood = new_boost
 
 func _fire_consequence():
-	@warning_ignore("integer_division")
 	_mood_gauge = floor(_mood_gauge / 2)
 	_monnay += 2000
 
@@ -109,7 +99,6 @@ func fire_employee(type: Employ_type, id_: int = -1) -> void:
 
 func _update_monnay(tour: int) -> void:
 	# pay
-	@warning_ignore("integer_division")
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
 	var total_payroll = pay_rise * (230 * _number_developer + 205 * _number_researcher + 165 * _number_recruiter)
 	var energy_cost = 40 * (_number_developer + _number_researcher + _number_recruiter)
@@ -150,3 +139,4 @@ func display() -> void:
 	print("mood gauge: ", _mood_gauge)
 	print("boost mood: ", _boost_mood)
 	print("mood threshold : ", _mood_threshold)
+	print("---------------")

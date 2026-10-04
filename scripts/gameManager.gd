@@ -12,6 +12,9 @@ func _ready() -> void:
 
 func _on_tile_clicked(tile: Tile) -> void:
 	label_info.text = tile.get_info_text()
+	var build = tile.building
+	if build:
+		build.display()
 
 
 func _on_tree_button_toggled(toggled_on: bool) -> void:
@@ -21,4 +24,4 @@ func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
 	tile.building = Compagny.new(0, origin, map)
-	# map.set_tile_color(tile, tile.building.own_color)
+	tile.reload_visual()

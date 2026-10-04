@@ -12,14 +12,13 @@ var compagny_id: int:
 	get: return _compagny_id
 var _compagny_id: int
 
-var own_color: Color
+var texture: Texture2D = null
 
-func _init(compagny_id: int, id: int, spawn_point: Vector2i, max_movement: int, vision_range: int, color: Color = Color.ORANGE_RED) -> void:
+func _init(compagny_id: int, id: int, spawn_point: Vector2i, max_movement: int, vision_range: int) -> void:
 	_compagny_id = compagny_id
 	_id = id
 	vision = Vision_component.new(vision_range)
 	movement = Movement_component.new(max_movement, Position_component.new(spawn_point))
-	own_color = color
 
 func update_end_turn() -> void:
 	movement.update_end_turn()
