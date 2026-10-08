@@ -7,6 +7,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and isPressed:
 		global_position -= event.relative
 		
+		
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			isPressed = event.pressed
@@ -16,3 +17,6 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN : 
 			$camera.zoom -= Vector2(0.01,0.01)
 				
+				
+func _process(delta: float) -> void:
+	$"../CanvasLayer2/Control/HBoxContainer/Tour_info/Label".text = " ( " + str(global_position[0]) + " , " + str(global_position[1]) + " ) "  
