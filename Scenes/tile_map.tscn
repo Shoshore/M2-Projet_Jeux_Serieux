@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://biiaq830tnok3"]
 
-[ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/gameManager.gd" id="1_7yhko"]
+[ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/game_loop.gd" id="1_7yhko"]
 [ext_resource type="Script" uid="uid://fjfec22nif3i" path="res://scripts/camera_manager.gd" id="2_1n30v"]
-[ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Ressources.tscn" id="3_03na7"]
-[ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Window_info.tscn" id="4_anah5"]
-[ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Tour_info.tscn" id="4_xftlc"]
+[ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Scenes/Ressources.tscn" id="3_03na7"]
+[ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Scenes/Window_info.tscn" id="4_anah5"]
+[ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
 
 [node name="game" type="Node2D" unique_id=2141197782]
 script = ExtResource("1_7yhko")

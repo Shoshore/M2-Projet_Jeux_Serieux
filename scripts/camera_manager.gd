@@ -19,4 +19,4 @@ func _input(event: InputEvent) -> void:
 				
 				
 func _process(delta: float) -> void:
-	$"../CanvasLayer2/Control/HBoxContainer/Tour_info/Label".text = " ( " + str(global_position[0]) + " , " + str(global_position[1]) + " ) "  
+	$"../CanvasLayer2/Control/HBoxContainer/Tour_info/Label".text = " (" + str(global_position[0]) + " , " + str(global_position[1]) + ") "  
