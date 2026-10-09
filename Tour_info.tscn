@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c2tgprmtfh8kh"]
 
+[ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://assets/icon.svg" id="1_0ejxy"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynmd1"]
 bg_color = Color(1, 0.5882353, 0.3019608, 1)
 
@@ -27,3 +29,4 @@ vertical_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1850541866]
 position = Vector2(1121.1875, 21.499996)
 scale = Vector2(0.041766327, 0.037480056)
+texture = ExtResource("1_0ejxy")
