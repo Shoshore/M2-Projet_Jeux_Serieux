@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://clvd24krlov8t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynmd1"]
+bg_color = Color(0.12993988, 0.8227156, 0.6817287, 1)
+
+[node name="Window_info" type="Control" unique_id=1257898175]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=47410369]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 896.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1.0588765e-06, 0.56657237, 0.5699233, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynmd1")
+text = "Carte du monde / Arbre de compétences"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1850541866]
+position = Vector2(1121.1875, 21.499996)
+scale = Vector2(0.041766327, 0.037480056)

@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://biiaq830tnok3"]
 
-[ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/gameManager.gd" id="1_7yhko"]
-[ext_resource type="PackedScene" uid="uid://u8f4qpy7vmam" path="res://skillTree.tscn" id="2_1n30v"]
+[ext_resource type="Script" uid="uid://bfur8gqkkiruq" path="res://scripts/map.gd" id="1_xftlc"]
+[ext_resource type="Script" uid="uid://fjfec22nif3i" path="res://scripts/camera_manager.gd" id="2_1n30v"]
+[ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Ressources.tscn" id="3_03na7"]
+[ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Window_info.tscn" id="4_anah5"]
+[ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Tour_info.tscn" id="4_xftlc"]
 
 [node name="game" type="Node2D" unique_id=2141197782]
 script = ExtResource("1_7yhko")
 
-[node name="camera" type="Camera2D" parent="." unique_id=1308402294]
+[node name="firm" type="Node2D" parent="." unique_id=1313765549]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020972732]
 
@@ -24,20 +27,30 @@ grow_vertical = 0
 [node name="Label" type="Label" parent="CanvasLayer/info" unique_id=119894826]
 layout_mode = 2
 
-[node name="SkillTree" parent="CanvasLayer" unique_id=2043676651 instance=ExtResource("2_1n30v")]
-visible = false
+[node name="cameraManager" type="Node2D" parent="." unique_id=401334710]
+script = ExtResource("2_1n30v")
 
-[node name="TreeButton" type="Button" parent="CanvasLayer" unique_id=713900226]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -36.0
-offset_right = 119.0
-offset_bottom = -5.0
-grow_vertical = 0
-toggle_mode = true
-text = "Arbre de compérences"
+[node name="camera" type="Camera2D" parent="cameraManager" unique_id=1308402294]
 
-[connection signal="toggled" from="CanvasLayer/TreeButton" to="." method="_on_tree_button_toggled"]
-[connection signal="toggled" from="CanvasLayer/TreeButton" to="CanvasLayer/SkillTree" method="_on_tree_button_toggled"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1684117705]
+
+[node name="Control" type="Control" parent="CanvasLayer2" unique_id=1631286862]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Control" unique_id=1387166470]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="Tour_info" parent="CanvasLayer2/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
+layout_mode = 2
+
+[node name="Window_info" parent="CanvasLayer2/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
+layout_mode = 2
+
+[node name="Ressources" parent="CanvasLayer2/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
+layout_mode = 2
