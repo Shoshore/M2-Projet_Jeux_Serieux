@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cnlc6icyqflob"]
 
-[ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://assets/icon.svg" id="1_0fbet"]
-
+[ext_resource type="Texture2D" uid="uid://5xeinxulsh6i" path="res://assets/bonhomme.png" id="1_cfigb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynmd1"]
 bg_color = Color(0.7950536, 0.6420649, 0.86164916, 1)
@@ -27,6 +26,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1850541866]
-position = Vector2(1125.5, 32.000004)
-scale = Vector2(0.042264752, 0.05103668)
-texture = ExtResource("1_0fbet")
+position = Vector2(1120, 32)
+scale = Vector2(0.13556625, 0.104957744)
+texture = ExtResource("1_cfigb")
