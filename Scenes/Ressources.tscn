@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://cnlc6icyqflob"]
 
-[ext_resource type="Texture2D" uid="uid://5xeinxulsh6i" path="res://assets/bonhomme.png" id="1_uunex"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynmd1"]
 bg_color = Color(0.7950536, 0.6420649, 0.86164916, 1)
 
@@ -21,11 +19,9 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(1.0588765e-06, 0.56657237, 0.5699233, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynmd1")
-text = "TEST D'AFFICHAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1850541866]
 position = Vector2(1120, 32)
 scale = Vector2(0.13556625, 0.104957744)
-texture = ExtResource("1_uunex")

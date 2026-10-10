@@ -1,11 +1,11 @@
-extends Node2D
+extends Area2D
 
 class_name Tile
 
 const HEX_SIZE : float = 20.0
 
 var hex_ground := Polygon2D.new()
-var hex_compagny := Polygon2D.new()
+var hex_company := Polygon2D.new()
 var hex_recruiter := Polygon2D.new()
 var outline := Line2D.new()
 
@@ -18,7 +18,7 @@ var building: Building = null
 func _ready() -> void:
 	var points := hex_vertices(HEX_SIZE)
 
-	for layer: Polygon2D in [hex_ground, hex_compagny, hex_recruiter]:
+	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter]:
 		layer.polygon = points
 		add_child(layer)
 
@@ -28,9 +28,9 @@ func _ready() -> void:
 	outline.default_color = Color(0, 0, 0, 0.35)
 	add_child(outline)
 
-	set_texture_hex(hex_ground, Visuels.GRASS)
-	set_texture_hex(hex_compagny, Visuels.COMPAGNY)
-	set_texture_hex(hex_recruiter, Visuels.RECRUITER)
+	set_texture_hex(hex_ground, Visuals.GRASS)
+	set_texture_hex(hex_company, Visuals.COMPANY)
+	set_texture_hex(hex_recruiter, Visuals.RECRUITER)
 	reload_visual()
 
 static func hex_vertices(radius: float) -> PackedVector2Array:
@@ -64,16 +64,16 @@ func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
 	p.uv = uvs
 	
 func reload_visual() -> void:
-	hex_compagny.visible = building != null
+	hex_company.visible = building != null
 	hex_recruiter.visible = occupant != null
 
 	if building:
-		set_texture_hex(hex_compagny, building.texture)
+		set_texture_hex(hex_company, building.texture)
 	elif occupant:
 		set_texture_hex(hex_recruiter, occupant.texture)
 
 	hex_ground.modulate = Color.WHITE
-	hex_compagny.modulate = Color.WHITE
+	hex_company.modulate = Color.WHITE
 	hex_recruiter.modulate = Color.WHITE
 
 func initialize(q : int, r : int, available_ressource : String = "Rien") -> void:

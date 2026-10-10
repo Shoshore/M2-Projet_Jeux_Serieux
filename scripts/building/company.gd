@@ -1,11 +1,11 @@
 extends Building
-class_name Compagny
+class_name Company
 
 var _number_developer = 1
 var _number_researcher = 1
 var _number_recruiter = 0
 
-var _monnay = 100
+var _funds = 100
 var _boost_turnover = 1
 
 var _mood_gauge = 30
@@ -51,14 +51,14 @@ func create_unit(type: Create_unit_type) -> void:
 
 func _init(id_unic: int, position_: Vector2i, map: Map) -> void:
 	super(id_unic, position_, 5, map)
-	texture = Visuels.COMPAGNY
+	texture = Visuals.COMPANY
 	create_unit(Create_unit_type.RECRUITER)
 
 func _fire_consequence():
 	_mood_gauge = floor(_mood_gauge / 2)
-	_monnay += 2000
+	_funds += 2000
 
-enum Employ_type {
+enum Employee_type {
 	DEVELOPER,
 	RESEARCHER,
 	RECRUITER
@@ -81,23 +81,23 @@ func fire_unit(unit: Unit) -> void:
 		tile.occupant = null
 
 
-func fire_employee(type: Employ_type, id_: int = -1) -> void:
+func fire_employee(type: Employee_type, id_: int = -1) -> void:
 	match type:
-		Employ_type.DEVELOPER:
+		Employee_type.DEVELOPER:
 			if _number_developer > 0:
 				_number_developer -= 1
 				_fire_consequence()
-		Employ_type.RESEARCHER:
+		Employee_type.RESEARCHER:
 			if _number_researcher > 0:
 				_number_researcher -= 1
 				_fire_consequence()
-		Employ_type.RECRUITER:
+		Employee_type.RECRUITER:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
 				fire_unit(_find_unit_by_id(id_))
 
 
-func _update_monnay(tour: int) -> void:
+func _update_funds(tour: int) -> void:
 	# pay
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
 	var total_payroll = pay_rise * (230 * _number_developer + 205 * _number_researcher + 165 * _number_recruiter)
@@ -108,7 +108,7 @@ func _update_monnay(tour: int) -> void:
 	if _mood_threshold > (_mood_gauge * _boost_mood):
 		profit *= 0.4
 
-	_monnay += profit - (energy_cost + total_payroll)
+	_funds += profit - (energy_cost + total_payroll)
 
 
 func _update_unit() -> void:
@@ -125,7 +125,7 @@ func _update_mood() -> void:
 
 
 func update_end_turn(tour: int) -> void:
-	_update_monnay(tour)
+	_update_funds(tour)
 	_update_unit()
 	_update_mood()
 
@@ -134,7 +134,7 @@ func display() -> void:
 	print("nb dev :", _number_developer)
 	print("nb researcher :", _number_researcher)
 	print("nb recruiter :", _number_recruiter)
-	print("monnay: ", _monnay)
+	print("funds: ", _funds)
 	print("boost turnover: ", _boost_turnover)
 	print("mood gauge: ", _mood_gauge)
 	print("boost mood: ", _boost_mood)

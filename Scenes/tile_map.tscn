@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://biiaq830tnok3"]
 
-[ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/game_loop.gd" id="1_7yhko"]
+[ext_resource type="Script" uid="uid://btlanxdhvpouc" path="res://scripts/turn_manager.gd" id="1_rlxc1"]
 [ext_resource type="Script" uid="uid://fjfec22nif3i" path="res://scripts/camera_manager.gd" id="2_1n30v"]
 [ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Scenes/Ressources.tscn" id="3_03na7"]
 [ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Scenes/Window_info.tscn" id="4_anah5"]
 [ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
+[ext_resource type="AudioStream" uid="uid://dmmixpc8wgrje" path="res://Audio/mlrpg3_mario_wahoo.wav" id="6_6mpdi"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u0tgg"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_rlxc1"]
+mesh = SubResource("ArrayMesh_u0tgg")
 
 [node name="game" type="Node2D" unique_id=2141197782]
-script = ExtResource("1_7yhko")
-
-[node name="firm" type="Node2D" parent="." unique_id=1313765549]
+script = ExtResource("1_rlxc1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020972732]
 
@@ -54,3 +58,18 @@ layout_mode = 2
 
 [node name="Ressources" parent="CanvasLayer2/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer2/Control" unique_id=1271260887]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 408.0
+offset_right = 1096.0
+offset_bottom = 544.0
+text = "Fin de tour"
+icon = SubResource("MeshTexture_rlxc1")
+
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="CanvasLayer2/Control/Button" unique_id=2123704296]
+stream = ExtResource("6_6mpdi")
+volume_db = 12.0
+
+[connection signal="pressed" from="CanvasLayer2/Control/Button" to="." method="_on_button_pressed"]

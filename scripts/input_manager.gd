@@ -1,17 +1,5 @@
 extends Node2D
 
-var map := Map.new()
-var selection := Selection_controller.new(map)
-@onready var label_info: Label = get_node("CanvasLayer/info/Label")
-
-var game_length := 30
-
-func _ready() -> void:
-	add_child(map)
-	_map_filling(map)
-
-
-
 
 func _on_tile_clicked(tile: Tile) -> void:
 	label_info.text = tile.get_info_text()
@@ -23,11 +11,6 @@ func _on_tile_clicked(tile: Tile) -> void:
 func _on_tree_button_toggled(toggled_on: bool) -> void:
 	map.is_board_clickable = !toggled_on
 
-func _map_filling(map: Map) -> void:
-	var origin := Vector2i(0, 0)
-	var tile: Tile = map.tiles_by_coord[origin]
-	tile.building = Compagny.new(0, origin, map) #modifier constructeur si nécessaire
-	tile.reload_visual()
 
 
 func detecter_clic(position_locale: Vector2) -> void:
@@ -37,8 +20,10 @@ func detecter_clic(position_locale: Vector2) -> void:
 		_on_tile_clicked(tile)
 		selection.on_tile_clicked(tile)
 
+	
 
-func _input(event: InputEvent) -> void:
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var position_souris := get_local_mouse_position()

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5gjft7fshtbr"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u0tgg"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_olkpn"]
+mesh = SubResource("ArrayMesh_u0tgg")
+
+[node name="End_turn" type="Control" unique_id=1938591337]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="." unique_id=1688851690]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 544.0
+offset_right = 1136.0
+offset_bottom = 616.0
+text = "Fin de tour"
+icon = SubResource("MeshTexture_olkpn")
