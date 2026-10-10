@@ -2,42 +2,42 @@ extends Node2D
 
 class_name Tile
 
-const TAILLE_HEX : float = 20.0
+const HEX_SIZE : float = 20.0
 
 var hex_ground := Polygon2D.new()
 var hex_compagny := Polygon2D.new()
 var hex_recruiter := Polygon2D.new()
-var contour := Line2D.new()
+var outline := Line2D.new()
 
-var coordonnee : Vector2i = Vector2i.ZERO
+var coordinate : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
-var proprietaire : String = "Aucun"
+var ceo : String = "Aucun"
 var occupant: Unit = null
 var building: Building = null
 
 func _ready() -> void:
-	var points := points_hexagone(TAILLE_HEX)
+	var points := hex_vertices(HEX_SIZE)
 
 	for layer: Polygon2D in [hex_ground, hex_compagny, hex_recruiter]:
 		layer.polygon = points
 		add_child(layer)
 
-	contour.points = points
-	contour.closed = true
-	contour.width = 1.0
-	contour.default_color = Color(0, 0, 0, 0.35)
-	add_child(contour)
+	outline.points = points
+	outline.closed = true
+	outline.width = 1.0
+	outline.default_color = Color(0, 0, 0, 0.35)
+	add_child(outline)
 
 	set_texture_hex(hex_ground, Visuels.GRASS)
 	set_texture_hex(hex_compagny, Visuels.COMPAGNY)
 	set_texture_hex(hex_recruiter, Visuels.RECRUITER)
 	reload_visual()
 
-static func points_hexagone(rayon: float) -> PackedVector2Array:
+static func hex_vertices(radius: float) -> PackedVector2Array:
 	var pts := PackedVector2Array()
 	for i in 6:
 		var angle := deg_to_rad(60.0 * i - 30.0)
-		pts.append(Vector2(cos(angle), sin(angle)) * rayon)
+		pts.append(Vector2(cos(angle), sin(angle)) * radius)
 	return pts
 
 
@@ -45,8 +45,8 @@ func set_sprite(s: Sprite2D, tex: Texture2D) -> void:
 	s.texture = tex
 	if tex == null:
 		return
-	var largeur_cible := Map.TAILLE_HEX * sqrt(3.0)
-	s.scale = Vector2.ONE * (largeur_cible / tex.get_width())
+	var targeted_length := Map.HEX_SIZE * sqrt(3.0)
+	s.scale = Vector2.ONE * (targeted_length / tex.get_width())
 
 func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
 	if p.texture == tex:
@@ -54,13 +54,13 @@ func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
 	p.texture = tex
 	if tex == null:
 		return
-	var largeur := TAILLE_HEX * sqrt(3.0)
-	var hauteur := TAILLE_HEX * 2.0
-	var taille_tex := Vector2(tex.get_size())
+	var width := HEX_SIZE * sqrt(3.0)
+	var height := HEX_SIZE * 2.0
+	var texture_size := Vector2(tex.get_size())
 	var uvs := PackedVector2Array()
 	for v in p.polygon:
-		var normalise := Vector2((v.x + largeur / 2.0) / largeur, (v.y + hauteur / 2.0) / hauteur)
-		uvs.append(normalise * taille_tex)  # les UV sont en pixels de texture
+		var normalise := Vector2((v.x + width / 2.0) / width, (v.y + height / 2.0) / height)
+		uvs.append(normalise * texture_size)  
 	p.uv = uvs
 	
 func reload_visual() -> void:
@@ -76,18 +76,15 @@ func reload_visual() -> void:
 	hex_compagny.modulate = Color.WHITE
 	hex_recruiter.modulate = Color.WHITE
 
-func initialiser(q : int, r : int, ressource_disponible : String = "Rien") -> void:
-	coordonnee = Vector2i(q, r)
-	ressource = ressource_disponible
-
-func contient_point(point_local : Vector2) -> bool:
-	return point_local.length() <= TAILLE_HEX
+func initialize(q : int, r : int, available_ressource : String = "Rien") -> void:
+	coordinate = Vector2i(q, r)
+	ressource = available_ressource
 
 func get_info() -> Dictionary:
 	return {
-		"coordonnee": coordonnee,
+		"coordinate": coordinate,
 		"ressource": ressource,
-		"proprietaire": proprietaire
+		"ceo": ceo
 	}
 
 
@@ -96,8 +93,8 @@ func get_info_text() -> String:
 		"Tuile %s\n"
 		+ "Ressource : %s\n"
 		+ "Propriétaire : %s\n"
-	) % [coordonnee, ressource, proprietaire]
+	) % [coordinate, ressource, ceo]
 
 
-func afficher_infos() -> void:
+func display_data() -> void:
 	print(get_info_text())

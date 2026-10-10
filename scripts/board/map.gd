@@ -2,34 +2,34 @@ extends Node2D
 
 class_name Map
 
-const TAILLE_HEX : float = 20.0
+const HEX_SIZE : float = 20.0
 
-var rayon_grille : int = 10
+var grid_size : int = 10
 var tiles_by_coord: Dictionary = {}
 
 
-const DIRECTIONS_HEX: Array[Vector2i] = [
+const NEIGHBORS: Array[Vector2i] = [
 	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1),
 	Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, 1),
 ]
 
 
 func _ready() -> void:
-	generer_grille_hexagonale(rayon_grille)
+	generate_hex_grid(grid_size)
 
 
 # Génère une grille hexagonale régulière
-func generer_grille_hexagonale(rayon : int) -> void:
+func generate_hex_grid(radius : int) -> void:
 	tiles_by_coord.clear()
 	
-	for q in range(-rayon, rayon + 1):
-		var r_min : int = max(-rayon, -q - rayon)
-		var r_max : int = min(rayon, -q + rayon)
+	for q in range(-radius, radius + 1):
+		var r_min : int = max(-radius, -q - radius)
+		var r_max : int = min(radius, -q + radius)
 		
 		for r in range(r_min, r_max + 1):
 			var t = Tile.new()
-			t.position = coordonnees_vers_pixel(q, r)
-			t.initialiser(q, r)
+			t.position = coords_to_pixel(q, r)
+			t.initialize(q, r)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
 	return
@@ -38,15 +38,15 @@ func generer_grille_hexagonale(rayon : int) -> void:
 
 
 # Conversion des coordonnées axiales vers la position à l'écran
-func coordonnees_vers_pixel(q : int, r : int) -> Vector2:
-	var x : float = TAILLE_HEX * sqrt(3.0) * (q + r * 0.5)
-	var y : float = TAILLE_HEX * 1.5 * r
+func coords_to_pixel(q : int, r : int) -> Vector2:
+	var x : float = HEX_SIZE * sqrt(3.0) * (q + r * 0.5)
+	var y : float = HEX_SIZE * 1.5 * r
 	
 	return Vector2(x, y)
 
-func pixel_vers_coordonnees(p: Vector2) -> Vector2i:
-	var q: float = (sqrt(3.0) / 3.0 * p.x - 1.0 / 3.0 * p.y) / TAILLE_HEX
-	var r: float = (2.0 / 3.0 * p.y) / TAILLE_HEX
+func pixel_to_coords(p: Vector2) -> Vector2i:
+	var q: float = (sqrt(3.0) / 3.0 * p.x - 1.0 / 3.0 * p.y) / HEX_SIZE
+	var r: float = (2.0 / 3.0 * p.y) / HEX_SIZE
 	return axial_round(Vector2(q, r))
 
 
@@ -78,7 +78,7 @@ func get_tile_at(coord: Vector2i) -> Tile:
 
 func get_neighbors(coord: Vector2i) -> Array[Tile]:
 	var result: Array[Tile] = []
-	for dir in DIRECTIONS_HEX:
+	for dir in NEIGHBORS:
 		var tile := get_tile_at(coord + dir)
 		if tile != null:
 			result.append(tile)

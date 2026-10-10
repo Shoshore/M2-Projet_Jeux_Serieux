@@ -29,7 +29,7 @@ func on_tile_clicked(tile: Tile) -> void:
 		return
 	
 	var from_tile: Tile = _get_current_tile(selected_unit)
-	if selected_unit.movement.move_to(tile.coordonnee):
+	if selected_unit.movement.move_to(tile.coordinate):
 		if from_tile != null:
 			from_tile.occupant = null
 		tile.occupant = selected_unit

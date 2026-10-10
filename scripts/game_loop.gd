@@ -11,6 +11,8 @@ func _ready() -> void:
 	_map_filling(map)
 
 
+
+
 func _on_tile_clicked(tile: Tile) -> void:
 	label_info.text = tile.get_info_text()
 	var build = tile.building
@@ -29,7 +31,7 @@ func _map_filling(map: Map) -> void:
 
 
 func detecter_clic(position_locale: Vector2) -> void:
-	var coord := map.pixel_vers_coordonnees(position_locale)
+	var coord := map.pixel_to_coords(position_locale)
 	var tile := map.get_tile_at(coord)
 	if tile != null:
 		_on_tile_clicked(tile)

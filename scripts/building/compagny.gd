@@ -38,7 +38,7 @@ func create_unit(type: Create_unit_type) -> void:
 	var unit: Unit
 	match type:
 		Create_unit_type.RECRUITER:
-			unit = Recruiter.new(_id, _generate_unit_id(), tile.coordonnee)
+			unit = Recruiter.new(_id, _generate_unit_id(), tile.coordinate)
 			_number_recruiter += 1
 
 	if unit == null:
