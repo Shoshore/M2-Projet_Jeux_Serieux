@@ -1,5 +1,8 @@
 extends Node
 
+var boardText = "Carte du monde"
+var skillTreeText = "Arbre de compétence"
+
 var map := Map.new()
 var selection := Selection_controller.new(map)
 @onready var label_info: Label = get_node("CanvasLayer/info/Label")
@@ -9,6 +12,12 @@ var current_turn := 1
 
 var company_array : Dictionary[int,Company] = {} # id -> Company
 
+@onready var boardObject: Node2D = $"."
+@onready var skill_tree: SkillTree = $HUD/SkillTree
+@onready var tree_button: Button = $HUD/TreeButton
+@onready var round_button: Button = $HUD/Control/End_turn_button
+@onready var tiles_info: PanelContainer = $CanvasLayer/info
+@onready var window_info_label: Control = $HUD/Control/HBoxContainer/Window_info/Label
 
 func _ready() -> void:
 	add_child(map)
@@ -68,3 +77,19 @@ func _on_input_board_click(position: Vector2) -> void:
 		print("tile")
 	else:
 		print("no tile")
+
+
+func _go_to_skill_tree() -> void:
+	var currentValue = map.is_board_clickable
+	print("État du plateau au moment du clic : ", currentValue)
+	map.is_board_clickable = !currentValue
+	boardObject.visible = !currentValue
+	round_button.visible = !currentValue
+	tiles_info.visible = !currentValue
+	skill_tree.visible = currentValue
+	if(currentValue):
+		tree_button.text = boardText
+		window_info_label.text = skillTreeText
+	else:
+		tree_button.text = skillTreeText
+		window_info_label.text = boardText

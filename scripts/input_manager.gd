@@ -8,6 +8,8 @@ signal camera_is_pressed(is_pressed: bool)
 	#map.is_board_clickable = !toggled_on
 
 # on peux bouger la cam tous en sélectionnant une tuile
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:

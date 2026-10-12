@@ -1,28 +1,30 @@
 extends Control
 class_name SkillTree
 
+
+
 # Compétences technologies
-@onready var button_tech_1: Button = $HBoxContainer/VBoxContainer/Button
-@onready var button_tech_2: Button = $HBoxContainer/VBoxContainer/Button2
-@onready var button_tech_3: Button = $HBoxContainer/VBoxContainer/Button3
-@onready var button_tech_4: Button = $HBoxContainer/VBoxContainer/Button4
+@onready var button_tech_1: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button
+@onready var button_tech_2: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button2
+@onready var button_tech_3: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button3
+@onready var button_tech_4: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button4
 
 # Compétences humaines
-@onready var button_human_1: Button = $HBoxContainer/VBoxContainer2/Button
-@onready var button_human_2: Button = $HBoxContainer/VBoxContainer2/Button2
-@onready var button_human_3: Button = $HBoxContainer/VBoxContainer2/Button3
-@onready var button_human_4: Button = $HBoxContainer/VBoxContainer2/Button4
+@onready var button_human_1: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button
+@onready var button_human_2: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button2
+@onready var button_human_3: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button3
+@onready var button_human_4: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button4
 
 # Origine de l'arbre
-@onready var button_origin: Button = $ButtonOrigin
+@onready var button_origin: Button = $HBoxContainerGlobal/VBoxContainer/HBoxContainer2/ButtonOrigin
 
 # Bouton de changement vers le plateau/arbre
 @onready var tree_button: Button = $"../TreeButton"
 
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
-	
-var lineWidth = 3.0
+
+var lineWidth = 10.0
 
 var colorLineOrigin = Color.WHITE
 var colorLineTech1 = Color.WHITE
@@ -47,8 +49,8 @@ func _ready() -> void:
 	button_origin.text = "Début"
 	resized.connect(queue_redraw)
 	# On redessine les lignes une fois que les boutons sont bien placé
-	$HBoxContainer/VBoxContainer.sort_children.connect(queue_redraw)
-	$HBoxContainer/VBoxContainer2.sort_children.connect(queue_redraw)
+	$HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer.sort_children.connect(queue_redraw)
+	$HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2.sort_children.connect(queue_redraw)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -103,12 +105,3 @@ func _on_button_human3_pressed() -> void:
 
 func _on_button_human4_pressed() -> void:
 	button_human_4.disabled = true ;
-
-
-
-func _on_tree_button_toggled(toggled_on: bool) -> void:
-	visible = toggled_on
-	if(toggled_on):
-		tree_button.text = "Plateau de jeu"
-	else:
-		tree_button.text = "Arbre de compétences"

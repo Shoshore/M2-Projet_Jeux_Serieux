@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btlanxdhvpouc" path="res://scripts/turn_manager.gd" id="1_rlxc1"]
 [ext_resource type="Script" uid="uid://fjfec22nif3i" path="res://scripts/camera_manager.gd" id="2_1n30v"]
 [ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Scenes/Ressources.tscn" id="3_03na7"]
+[ext_resource type="PackedScene" uid="uid://u8f4qpy7vmam" path="res://Scenes/skillTree.tscn" id="3_xsk5a"]
 [ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Scenes/Window_info.tscn" id="4_anah5"]
 [ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
 [ext_resource type="AudioStream" uid="uid://dmmixpc8wgrje" path="res://Audio/mlrpg3_mario_wahoo.wav" id="6_6mpdi"]
@@ -24,8 +25,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -99.0
-offset_top = -47.0
+offset_left = -183.0
+offset_top = -219.0
+offset_right = -8.0
+offset_bottom = -152.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -62,10 +65,10 @@ layout_mode = 2
 
 [node name="End_turn_button" type="Button" parent="HUD/Control" unique_id=1271260887]
 layout_mode = 0
-offset_left = 956.0
-offset_top = 445.0
-offset_right = 1132.0
-offset_bottom = 581.0
+offset_left = 968.0
+offset_top = 504.0
+offset_right = 1144.0
+offset_bottom = 640.0
 text = "Fin de tour"
 icon = SubResource("MeshTexture_rlxc1")
 
@@ -73,10 +76,31 @@ icon = SubResource("MeshTexture_rlxc1")
 stream = ExtResource("6_6mpdi")
 volume_db = 12.0
 
+[node name="TreeButton" type="Button" parent="HUD" unique_id=451374236]
+offset_left = 8.0
+offset_top = 556.0
+offset_right = 183.0
+offset_bottom = 640.0
+text = "Arbre de compétence"
+
+[node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -275.5
+offset_top = 80.0
+offset_right = 275.5
+offset_bottom = 80.0
+grow_vertical = 1
+
 [node name="input_manager" type="Node2D" parent="." unique_id=951359079]
 script = ExtResource("7_xsk5a")
 
 [connection signal="pressed" from="HUD/Control/End_turn_button" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="HUD/TreeButton" to="." method="_go_to_skill_tree"]
+[connection signal="pressed" from="HUD/TreeButton" to="input_manager" method="_on_tree_button_pressed"]
 [connection signal="board_click" from="input_manager" to="." method="_on_input_board_click"]
 [connection signal="camera_is_pressed" from="input_manager" to="cameraManager" method="_on_input_manager_camera_is_pressed"]
 [connection signal="camera_position" from="input_manager" to="cameraManager" method="_on_input_manager_camera_position"]

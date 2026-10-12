@@ -6,6 +6,7 @@ const HEX_SIZE : float = 20.0
 
 var grid_size : int = 10
 var tiles_by_coord: Dictionary = {}
+var is_board_clickable = true
 
 
 const NEIGHBORS: Array[Vector2i] = [

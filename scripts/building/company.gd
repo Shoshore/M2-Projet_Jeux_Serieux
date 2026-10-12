@@ -131,12 +131,12 @@ func update_end_turn(tour: int) -> void:
 
 
 func display() -> void:
-	print("nb dev :", _number_developer)
-	print("nb researcher :", _number_researcher)
-	print("nb recruiter :", _number_recruiter)
-	print("funds: ", _funds)
-	print("boost turnover: ", _boost_turnover)
-	print("mood gauge: ", _mood_gauge)
-	print("boost mood: ", _boost_mood)
+	print("nb dev : ", _number_developer)
+	print("nb researcher : ", _number_researcher)
+	print("nb recruiter : ", _number_recruiter)
+	print("funds : ", _funds)
+	print("boost turnover : ", _boost_turnover)
+	print("mood gauge : ", _mood_gauge)
+	print("boost mood : ", _boost_mood)
 	print("mood threshold : ", _mood_threshold)
-	print("---------------")
+	print("------------------------")
