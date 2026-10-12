@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Map
 
-const HEX_SIZE : float = 20.0
+#const HEX_SIZE : float = 20.0
 
 var grid_size : int = 10
 var tiles_by_coord: Dictionary = {}
@@ -40,14 +40,14 @@ func generate_hex_grid(radius : int) -> void:
 
 # Conversion des coordonnées axiales vers la position à l'écran
 func coords_to_pixel(q : int, r : int) -> Vector2:
-	var x : float = HEX_SIZE * sqrt(3.0) * (q + r * 0.5)
-	var y : float = HEX_SIZE * 1.5 * r
+	var x : float = Global.HEX_SIZE * sqrt(3.0) * (q + r * 0.5)
+	var y : float = Global.HEX_SIZE * 1.5 * r
 	
 	return Vector2(x, y)
 
 func pixel_to_coords(p: Vector2) -> Vector2i:
-	var q: float = (sqrt(3.0) / 3.0 * p.x - 1.0 / 3.0 * p.y) / HEX_SIZE
-	var r: float = (2.0 / 3.0 * p.y) / HEX_SIZE
+	var q: float = (sqrt(3.0) / 3.0 * p.x - 1.0 / 3.0 * p.y) / Global.HEX_SIZE
+	var r: float = (2.0 / 3.0 * p.y) / Global.HEX_SIZE
 	return axial_round(Vector2(q, r))
 
 

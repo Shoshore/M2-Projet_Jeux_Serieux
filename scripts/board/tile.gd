@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Tile
 
-const HEX_SIZE : float = 20.0
+#const HEX_SIZE : float = 20.0
 
 var hex_ground := Polygon2D.new()
 var hex_company := Polygon2D.new()
@@ -16,7 +16,7 @@ var occupant: Unit = null
 var building: Building = null
 
 func _ready() -> void:
-	var points := hex_vertices(HEX_SIZE)
+	var points := hex_vertices(Global.HEX_SIZE)
 
 	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter]:
 		layer.polygon = points
@@ -45,7 +45,7 @@ func set_sprite(s: Sprite2D, tex: Texture2D) -> void:
 	s.texture = tex
 	if tex == null:
 		return
-	var targeted_length := Map.HEX_SIZE * sqrt(3.0)
+	var targeted_length := Global.HEX_SIZE * sqrt(3.0)
 	s.scale = Vector2.ONE * (targeted_length / tex.get_width())
 
 func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
@@ -54,8 +54,8 @@ func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
 	p.texture = tex
 	if tex == null:
 		return
-	var width := HEX_SIZE * sqrt(3.0)
-	var height := HEX_SIZE * 2.0
+	var width := Global.HEX_SIZE * sqrt(3.0)
+	var height := Global.HEX_SIZE * 2.0
 	var texture_size := Vector2(tex.get_size())
 	var uvs := PackedVector2Array()
 	for v in p.polygon:
