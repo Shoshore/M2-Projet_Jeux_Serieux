@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Scenes/Window_info.tscn" id="4_anah5"]
 [ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
 [ext_resource type="AudioStream" uid="uid://dmmixpc8wgrje" path="res://Audio/mlrpg3_mario_wahoo.wav" id="6_6mpdi"]
+[ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/input_manager.gd" id="7_xsk5a"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u0tgg"]
 
@@ -36,40 +37,47 @@ script = ExtResource("2_1n30v")
 
 [node name="camera" type="Camera2D" parent="cameraManager" unique_id=1308402294]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1684117705]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1684117705]
 
-[node name="Control" type="Control" parent="CanvasLayer2" unique_id=1631286862]
+[node name="Control" type="Control" parent="HUD" unique_id=1631286862]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Control" unique_id=1387166470]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control" unique_id=1387166470]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 0
 
-[node name="Tour_info" parent="CanvasLayer2/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
+[node name="Tour_info" parent="HUD/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
 layout_mode = 2
 
-[node name="Window_info" parent="CanvasLayer2/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
+[node name="Window_info" parent="HUD/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
 layout_mode = 2
 
-[node name="Ressources" parent="CanvasLayer2/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
+[node name="Ressources" parent="HUD/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer2/Control" unique_id=1271260887]
+[node name="End_turn_button" type="Button" parent="HUD/Control" unique_id=1271260887]
 layout_mode = 0
-offset_left = 920.0
-offset_top = 408.0
-offset_right = 1096.0
-offset_bottom = 544.0
+offset_left = 956.0
+offset_top = 445.0
+offset_right = 1132.0
+offset_bottom = 581.0
 text = "Fin de tour"
 icon = SubResource("MeshTexture_rlxc1")
 
-[node name="AudioClick" type="AudioStreamPlayer2D" parent="CanvasLayer2/Control/Button" unique_id=2123704296]
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="HUD/Control/End_turn_button" unique_id=2123704296]
 stream = ExtResource("6_6mpdi")
 volume_db = 12.0
 
-[connection signal="pressed" from="CanvasLayer2/Control/Button" to="." method="_on_button_pressed"]
+[node name="input_manager" type="Node2D" parent="." unique_id=951359079]
+script = ExtResource("7_xsk5a")
+
+[connection signal="pressed" from="HUD/Control/End_turn_button" to="." method="_on_end_turn_button_pressed"]
+[connection signal="board_click" from="input_manager" to="." method="_on_input_board_click"]
+[connection signal="camera_is_pressed" from="input_manager" to="cameraManager" method="_on_input_manager_camera_is_pressed"]
+[connection signal="camera_position" from="input_manager" to="cameraManager" method="_on_input_manager_camera_position"]
+[connection signal="camera_zoom" from="input_manager" to="cameraManager" method="_on_input_manager_camera_zoom"]

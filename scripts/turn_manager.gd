@@ -13,7 +13,7 @@ var company_array : Dictionary[int,Company] = {} # id -> Company
 func _ready() -> void:
 	add_child(map)
 	_map_filling(map)
-	$CanvasLayer2/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
 
 	
 func _map_filling(map: Map) -> void:
@@ -25,13 +25,7 @@ func _map_filling(map: Map) -> void:
 	company_array[0] = player_company
 	tile.reload_visual()
 
-#func _process(delta: float) -> void:
-	
 
-
-
-
-	
 # Les datas des entreprises :
 # si t'as ressources -> tu peux faire des trucs dans le skilltree
 # faire des getters, des fonctions de gestions 
@@ -51,9 +45,26 @@ func _update_companies(tour : int) ->void:
 		company_array.get(key).update_end_turn(tour)
 
 
-func _on_button_pressed() -> void:
-	$CanvasLayer2/Control/Button/AudioClick.play()
+func _on_end_turn_button_pressed() -> void:
+	$HUD/Control/End_turn_button/AudioClick.play()
 	current_turn+=1
-	$CanvasLayer2/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
 	_update_companies(current_turn)
-	
+
+
+func _on_tile_clicked(tile: Tile) -> void:
+	label_info.text = tile.get_info_text()
+	var build = tile.building
+	if build:
+		build.display()
+
+
+func _on_input_board_click(position: Vector2) -> void:
+	var coord := map.pixel_to_coords(position)
+	var tile := map.get_tile_at(coord)
+	if tile != null:
+		_on_tile_clicked(tile)
+		selection.on_tile_clicked(tile)
+		print("tile")
+	else:
+		print("no tile")
