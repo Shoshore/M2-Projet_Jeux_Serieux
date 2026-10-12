@@ -69,6 +69,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 
 
 func _on_input_board_click(position: Vector2) -> void:
+	if(!map.is_board_clickable): return
 	var coord := map.pixel_to_coords(position)
 	var tile := map.get_tile_at(coord)
 	if tile != null:
