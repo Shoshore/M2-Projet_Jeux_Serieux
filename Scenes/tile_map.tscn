@@ -43,6 +43,9 @@ script = ExtResource("2_1n30v")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1684117705]
 
+[node name="PauseMenu" parent="HUD" unique_id=749739424 instance=ExtResource("3_bfdkv")]
+mouse_filter = 2
+
 [node name="Control" type="Control" parent="HUD" unique_id=1631286862]
 layout_mode = 3
 anchors_preset = 0
@@ -95,8 +98,6 @@ offset_top = 80.0
 offset_right = 275.5
 offset_bottom = 80.0
 grow_vertical = 1
-
-[node name="PauseMenu" parent="." unique_id=749739424 instance=ExtResource("3_bfdkv")]
 
 [node name="input_manager" type="Node2D" parent="." unique_id=951359079]
 process_mode = 1
