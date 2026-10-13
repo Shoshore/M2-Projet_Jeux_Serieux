@@ -24,21 +24,23 @@ var recrutement_site_array : Dictionary[int, Recruitement_building] = {}
 
 func _ready() -> void:
 	add_child(map)
+	Global.company_ask_map_tile.connect(_compagny_tile_free)
+	Global.company_fire_employee.connect(_delete_unit)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
 
-	
+
 func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
-	var player_company = Company.new(0, origin, 5, map)
-	tile.building = player_company #modifier constructeur si nécessaire
-	company_array[0] = player_company
+	company_array[0] = Company.new(0, origin, 5)
+	company_array[0]._find_tile(Company.Create_unit_type.RECRUITER)
+	tile.building = company_array[0]
 	tile.reload_visual()
+
 	var pos_recruitement := Vector2i(2, -2)
 	var tile_recruitement : Tile = map.tiles_by_coord[pos_recruitement]
-	var recruitement_building := Recruitement_building.new(0, pos_recruitement,
-		map, Recruitement_building.Ressources.DEVELOPPER)
+	var recruitement_building := Recruitement_building.new(0, pos_recruitement, Recruitement_building.Ressources.DEVELOPPER)
 	tile_recruitement.building = recruitement_building
 	recrutement_site_array[0] = recruitement_building
 	tile_recruitement.reload_visual()
@@ -124,3 +126,18 @@ func _go_to_skill_tree() -> void:
 	else:
 		tree_button.text = skillTreeText
 		window_info_label.text = boardText
+
+# ------------
+# signals
+# ------------
+func _compagny_tile_free(id: int) -> void:
+	var current_compagny := company_array[id]
+	var free_tile := map.get_free_neighbor(current_compagny.get_position())
+	current_compagny.create_unit(free_tile)
+
+
+func _delete_unit(position: Vector2i) -> void:
+	var tile := map.get_tile_at(position)
+	if tile != null:
+		tile.occupant = null
+		tile.reload_visual()

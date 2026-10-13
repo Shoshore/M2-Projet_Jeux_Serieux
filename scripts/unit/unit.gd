@@ -4,12 +4,7 @@ class_name Unit
 var vision: Vision_component
 var movement: Movement_component
 
-var id: int:
-	get: return _id
 var _id: int
-
-var compagny_id: int:
-	get: return _compagny_id
 var _compagny_id: int
 
 var texture: Texture2D = null

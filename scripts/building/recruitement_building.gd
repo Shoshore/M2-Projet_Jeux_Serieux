@@ -8,11 +8,11 @@ enum Ressources {
 
 var _ressource : Ressources
 
-func _init(id_unic: int, position_: Vector2i, map: Map, ressource : Ressources) -> void:
-	super(id_unic, position_, map)
+func _init(id_unic: int, position_: Vector2i, ressource : Ressources) -> void:
+	super(id_unic, position_)
 	texture = Visuals.RECRUITEMENT
 	_ressource = ressource
 
 func display():
-	print("Position : ", position.x, position.y)
+	print("Position : ", _position.x, _position.y)
 	print("Ressource : ", _ressource)

@@ -18,12 +18,22 @@ var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
 
-func _find_tile_create_unit() -> Tile:
-	return _map.get_free_neighbor(position.position)
+var _next_unit_type : Create_unit_type
+
+
+func _init(id_unic: int, position_: Vector2i, vision_range: int) -> void:
+	super(id_unic, position_)
+	texture = Visuals.COMPANY
+	vision = Vision_component.new(vision_range)
+
+# -------------------
+# Unit creation 
+# -------------------
 
 enum Create_unit_type {
 	RECRUITER
 }
+
 
 func _generate_unit_id() -> int:
 	var new_id := _next_unit_id
@@ -31,13 +41,12 @@ func _generate_unit_id() -> int:
 	return new_id
 
 
-func create_unit(type: Create_unit_type) -> void:
-	var tile := _find_tile_create_unit()
+func create_unit(tile : Tile) -> void:
 	if tile == null:
 		return
 
 	var unit: Unit
-	match type:
+	match _next_unit_type:
 		Create_unit_type.RECRUITER:
 			unit = Recruiter.new(_id, _generate_unit_id(), tile.coordinate)
 			_number_recruiter += 1
@@ -50,16 +59,19 @@ func create_unit(type: Create_unit_type) -> void:
 	tile.reload_visual()
 
 
-func _init(id_unic: int, position_: Vector2i, vision_range: int, map: Map) -> void:
-	super(id_unic, position_, map)
-	texture = Visuals.COMPANY
-	create_unit(Create_unit_type.RECRUITER)
-	vision = Vision_component.new(vision_range)
+func _find_tile(type: Create_unit_type):
+	_next_unit_type = type
+	Global.company_ask_map_tile.emit(_id)
+	print("test", _id)
+
 
 func _fire_consequence():
 	_mood_gauge = floor(_mood_gauge / 2)
 	_funds += 2000
 
+# -------------------
+# Fire Employee
+# -------------------
 enum Employee_type {
 	DEVELOPER,
 	RESEARCHER,
@@ -68,19 +80,17 @@ enum Employee_type {
 
 func _find_unit_by_id(unit_id: int) -> Unit:
 	for unit in _list_unities:
-		if unit.id == unit_id:
+		if unit._id == unit_id:
 			return unit
 	return null
 
 
-func fire_unit(unit: Unit) -> void:
+func _fire_unit(unit: Unit) -> void:
 	var index := _list_unities.find(unit)
 	if index == -1:
 		return
 	_list_unities.remove_at(index)
-	var tile := _map.get_tile_at(unit.position_component.coord)
-	if tile != null:
-		tile.occupant = null
+	Global.company_fire_employee.emit(unit.movement.position._position)
 
 
 func fire_employee(type: Employee_type, id_: int = -1) -> void:
@@ -96,9 +106,12 @@ func fire_employee(type: Employee_type, id_: int = -1) -> void:
 		Employee_type.RECRUITER:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
-				fire_unit(_find_unit_by_id(id_))
+				_fire_unit(_find_unit_by_id(id_))
 
 
+# -------------------
+# Update
+# -------------------
 func _update_funds(tour: int) -> void:
 	# pay
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
@@ -131,7 +144,9 @@ func update_end_turn(tour: int) -> void:
 	_update_unit()
 	_update_mood()
 
-
+# -------------------
+# Getter
+# -------------------
 func get_funds() -> int:
 	return _funds
 

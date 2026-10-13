@@ -18,11 +18,11 @@ func get_hex_distance(position_1: Vector2i, position_2: Vector2i) -> int:
 	return (abs(a) + abs(a + b) + abs(b)) / 2
 
 func move_to(new_position: Vector2i) -> bool:
-	var distance_cost: int = get_hex_distance(position.position, new_position)
+	var distance_cost: int = get_hex_distance(position._position, new_position)
 	
 	if _current_movement < distance_cost:
 		return false
 	
 	_current_movement -= distance_cost
-	position.position = new_position
+	position._position = new_position
 	return true

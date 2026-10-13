@@ -9,7 +9,7 @@ func _init(p_map: Map) -> void:
 
 
 func _get_current_tile(unit: Unit) -> Tile:
-	return map.get_tile_at(unit.movement.position.position)
+	return map.get_tile_at(unit.movement.position._position)
 
 
 
