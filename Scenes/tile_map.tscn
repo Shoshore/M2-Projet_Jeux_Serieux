@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btlanxdhvpouc" path="res://scripts/turn_manager.gd" id="1_rlxc1"]
 [ext_resource type="Script" uid="uid://fjfec22nif3i" path="res://scripts/camera_manager.gd" id="2_1n30v"]
 [ext_resource type="PackedScene" uid="uid://cnlc6icyqflob" path="res://Scenes/Ressources.tscn" id="3_03na7"]
+[ext_resource type="PackedScene" uid="uid://dtse2n38biuul" path="res://Scenes/pause_menu.tscn" id="3_bfdkv"]
 [ext_resource type="PackedScene" uid="uid://u8f4qpy7vmam" path="res://Scenes/skillTree.tscn" id="3_xsk5a"]
 [ext_resource type="PackedScene" uid="uid://clvd24krlov8t" path="res://Scenes/Window_info.tscn" id="4_anah5"]
 [ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
@@ -95,7 +96,10 @@ offset_right = 275.5
 offset_bottom = 80.0
 grow_vertical = 1
 
+[node name="PauseMenu" parent="." unique_id=749739424 instance=ExtResource("3_bfdkv")]
+
 [node name="input_manager" type="Node2D" parent="." unique_id=951359079]
+process_mode = 1
 script = ExtResource("7_xsk5a")
 
 [connection signal="pressed" from="HUD/Control/End_turn_button" to="." method="_on_end_turn_button_pressed"]
