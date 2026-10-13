@@ -7,8 +7,10 @@ var map := Map.new()
 var selection := Selection_controller.new(map)
 @onready var label_info: Label = get_node("CanvasLayer/info/Label")
 
-var game_length := 30
+const GAME_LENGTH := 30
 var current_turn := 1
+const MAX_STITCH_TURN := 2
+var current_stitch_turn := 0
 
 var company_array : Dictionary[int,Company] = {} # id -> Company
 
@@ -22,7 +24,7 @@ var company_array : Dictionary[int,Company] = {} # id -> Company
 func _ready() -> void:
 	add_child(map)
 	_map_filling(map)
-	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
 
 	
 func _map_filling(map: Map) -> void:
@@ -49,23 +51,43 @@ func _map_filling(map: Map) -> void:
 # Gestion de tours malus :
 # mod tour X -> modifie un truc 
 
-func _update_companies(tour : int) ->void:
+
+func update_result(score : int, turn : int, status : String):
+	Global.game_result.set_score(score)
+	Global.game_result.set_turn(turn)
+	Global.game_result.set_status(status)
+	print("score : ", Global.game_result.get_score(),
+	"\n turn : ", Global.game_result.get_turn(),
+	"\n satus : ", Global.game_result.get_status())
+
+# TODO faire le switch de scène
+func _end_check():
+	if current_turn > GAME_LENGTH:
+		update_result(company_array[0].get_funds(), current_turn - 1, "Victoire")
+	var funds = company_array[0].get_funds()
+	if funds < 0:
+		current_stitch_turn += 1
+		if current_stitch_turn > MAX_STITCH_TURN:
+			update_result(company_array[0].get_funds(), current_turn, "Défaite")
+	else:
+		current_stitch_turn = 0
+
+func _update_companies() ->void:
 	for key in company_array:
-		company_array.get(key).update_end_turn(tour)
+		company_array.get(key).update_end_turn(current_turn)
+		company_array.get(key).display()
 
 
 func _on_end_turn_button_pressed() -> void:
 	$HUD/Control/End_turn_button/AudioClick.play()
-	current_turn+=1
-	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
-	_update_companies(current_turn)
+	current_turn += 1
+	_update_companies()
+	_end_check()
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
 
 
 func _on_tile_clicked(tile: Tile) -> void:
 	label_info.text = tile.get_info_text()
-	var build = tile.building
-	if build:
-		build.display()
 
 
 func _on_input_board_click(position: Vector2) -> void:

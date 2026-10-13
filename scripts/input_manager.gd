@@ -27,9 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion:
 		camera_position.emit(event.relative)
-		
 
-			
 
 
 #CREER UN INPUT MANAGER QUAND TOUT MARCHE POUR RENDRE LE CODE PLUS LISIBLE

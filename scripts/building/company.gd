@@ -1,21 +1,20 @@
 extends Building
 class_name Company
 
-var _number_developer = 1
-var _number_researcher = 1
-var _number_recruiter = 0
+var _number_developer := 1
+var _number_researcher := 1
+var _number_recruiter := 0
 
-var _funds = 100
-var _boost_turnover = 1
+var _funds := 100
+var _boost_turnover := 1
 
-var _mood_gauge = 30
-var _boost_mood = 1
-var _mood_threshold = 0
+var _mood_gauge := 30
+var _boost_mood := 1
+var _mood_threshold := 0
 
 var _list_unities: Array[Unit]
 
-var _skill_tree: SkillTree
-var _next_unit_id: int = 0
+var _next_unit_id := 0
 
 func _find_tile_create_unit() -> Tile:
 	return _map.get_free_neighbor(position.position)
@@ -128,6 +127,10 @@ func update_end_turn(tour: int) -> void:
 	_update_funds(tour)
 	_update_unit()
 	_update_mood()
+
+
+func get_funds() -> int:
+	return _funds
 
 
 func display() -> void:
