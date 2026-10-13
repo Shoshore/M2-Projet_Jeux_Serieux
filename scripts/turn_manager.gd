@@ -13,7 +13,7 @@ var current_turn := 1
 var company_array : Dictionary[int,Company] = {} # id -> Company
 
 @onready var boardObject: Node2D = $"."
-@onready var skill_tree: SkillTree = $HUD/SkillTree
+@onready var skill_tree: Control = $HUD/SkillTree
 @onready var tree_button: Button = $HUD/TreeButton
 @onready var round_button: Button = $HUD/Control/End_turn_button
 @onready var tiles_info: PanelContainer = $CanvasLayer/info
