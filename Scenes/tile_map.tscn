@@ -76,24 +76,24 @@ icon = SubResource("MeshTexture_rlxc1")
 stream = ExtResource("6_6mpdi")
 volume_db = 12.0
 
-[node name="TreeButton" type="Button" parent="HUD" unique_id=451374236]
-offset_left = 8.0
-offset_top = 556.0
-offset_right = 183.0
-offset_bottom = 640.0
-text = "Arbre de compétence"
-
 [node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
-offset_left = -275.5
-offset_top = 80.0
-offset_right = 275.5
-offset_bottom = 80.0
+offset_left = -516.0
+offset_top = 84.0
+offset_right = -516.0
+offset_bottom = 84.0
 grow_vertical = 1
+
+[node name="TreeButton" type="Button" parent="HUD" unique_id=451374236]
+offset_left = 8.0
+offset_top = 556.0
+offset_right = 183.0
+offset_bottom = 640.0
+text = "Arbre de compétence"
 
 [node name="input_manager" type="Node2D" parent="." unique_id=951359079]
 script = ExtResource("7_xsk5a")

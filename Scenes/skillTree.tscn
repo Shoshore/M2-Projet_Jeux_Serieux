@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://u8f4qpy7vmam"]
 
-[ext_resource type="Script" uid="uid://d2a84rk7meb41" path="res://scripts/building/skillTree.gd" id="1_iv0no"]
+[ext_resource type="Script" uid="uid://d2a84rk7meb41" path="res://scripts/skillTree/skillTreeBehaviour.gd" id="1_iv0no"]
+[ext_resource type="Script" uid="uid://b6kvnnf5xrq8l" path="res://scripts/skillTree/skillButton.gd" id="2_rqqkb"]
+[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/og_skill.tres" id="3_ht7w8"]
+[ext_resource type="Resource" uid="uid://dipg0373qmx0" path="res://data/tech_4.tres" id="3_n3py1"]
+[ext_resource type="Resource" uid="uid://dabgal3n1a230" path="res://data/tech_3.tres" id="4_r7jmg"]
+[ext_resource type="Resource" uid="uid://frklswfdexjy" path="res://data/tech_2.tres" id="5_x83wx"]
+[ext_resource type="Resource" uid="uid://6kbmddxm0jae" path="res://data/tech_1.tres" id="6_qt401"]
+[ext_resource type="Resource" uid="uid://4i55ocxfhjo3" path="res://data/human_4.tres" id="7_k86jw"]
+[ext_resource type="Resource" uid="uid://ybwgokd8y4rs" path="res://data/human_3.tres" id="8_pp2iq"]
+[ext_resource type="Resource" uid="uid://0xd7ddf6xy7s" path="res://data/human_2.tres" id="9_ajvxf"]
+[ext_resource type="Resource" uid="uid://4rq6ej6sey2d" path="res://data/human_1.tres" id="10_tk232"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3jsf"]
 bg_color = Color(0.14293295, 0, 0.7612819, 1)
@@ -16,7 +26,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 0, 0, 1)
+border_color = Color(0.057008706, 0.17780721, 0.44021654, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -39,6 +49,8 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 20
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_yt575"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm6f6"]
 bg_color = Color(0.007843138, 0.32156864, 0, 1)
 corner_radius_top_left = 50
@@ -53,7 +65,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 0, 0, 1)
+border_color = Color(0.002605555, 0.25597242, 2.4065375e-08, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -90,7 +102,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 0, 0, 1)
+border_color = Color(0.284583, 0.12710652, 0.28470927, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -125,7 +137,7 @@ script = ExtResource("1_iv0no")
 [node name="HBoxContainerGlobal" type="HBoxContainer" parent="." unique_id=1311361869]
 layout_mode = 0
 offset_right = 550.0
-offset_bottom = 516.0
+offset_bottom = 549.0
 accessibility_region = true
 alignment = 1
 
@@ -150,15 +162,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence technique n°4
-THE GAME
-et bim dans la tronche"
 theme_override_styles/normal = SubResource("StyleBoxFlat_m3jsf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iv0no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e7jyk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vf415")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Tech.4"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("3_n3py1")
 
 [node name="Button3" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=653751283]
 custom_minimum_size = Vector2(100, 100)
@@ -166,13 +178,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence technique n°3"
 theme_override_styles/normal = SubResource("StyleBoxFlat_m3jsf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iv0no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e7jyk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vf415")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Tech.3"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("4_r7jmg")
 
 [node name="Button2" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2137579777]
 custom_minimum_size = Vector2(100, 100)
@@ -180,13 +194,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence technique n°2"
 theme_override_styles/normal = SubResource("StyleBoxFlat_m3jsf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iv0no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e7jyk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vf415")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Tech.2"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("5_x83wx")
 
 [node name="Button" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=245534532]
 custom_minimum_size = Vector2(100, 100)
@@ -194,13 +210,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence technique n°1"
 theme_override_styles/normal = SubResource("StyleBoxFlat_m3jsf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iv0no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e7jyk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vf415")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Tech.1"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("6_qt401")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer" unique_id=2095181004]
 layout_mode = 2
@@ -213,13 +231,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence humaine n°4"
 theme_override_styles/normal = SubResource("StyleBoxFlat_cm6f6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rss7w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06pa4")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_h1blb")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Hum.4"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("7_k86jw")
 
 [node name="Button3" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=794996747]
 custom_minimum_size = Vector2(100, 100)
@@ -227,13 +247,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence humaine n°3"
 theme_override_styles/normal = SubResource("StyleBoxFlat_cm6f6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rss7w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06pa4")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_h1blb")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Hum.3"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("8_pp2iq")
 
 [node name="Button2" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1540005356]
 custom_minimum_size = Vector2(100, 100)
@@ -241,13 +263,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence humaine n°2"
 theme_override_styles/normal = SubResource("StyleBoxFlat_cm6f6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rss7w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06pa4")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_h1blb")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Hum.2"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("9_ajvxf")
 
 [node name="Button" type="Button" parent="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1410334341]
 custom_minimum_size = Vector2(100, 100)
@@ -255,13 +279,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence humaine n°1"
 theme_override_styles/normal = SubResource("StyleBoxFlat_cm6f6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rss7w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06pa4")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_h1blb")
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "Hum.1"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("10_tk232")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainerGlobal/VBoxContainer" unique_id=1248781903]
 layout_mode = 2
@@ -273,21 +299,62 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-tooltip_text = "Compétence initiale
-Et là on peut mettre plein de texte
-Oulala comment c'est génial"
 theme_override_styles/normal = SubResource("StyleBoxFlat_qij4h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kwp53")
 theme_override_styles/hover = SubResource("StyleBoxFlat_okebk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_d8xyf")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
 text = "0"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("3_ht7w8")
 
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button4" to="." method="_on_button_tech4_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button3" to="." method="_on_button_tech3_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button2" to="." method="_on_button_tech2_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_tech1_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button4" to="." method="_on_button_human4_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_human3_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_human2_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_human1_pressed"]
-[connection signal="pressed" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer2/ButtonOrigin" to="." method="_on_button_origin_pressed"]
+[node name="ControlSkillInfos" type="Control" parent="." unique_id=1393273150]
+anchors_preset = 0
+offset_left = 743.0
+offset_right = 1043.0
+offset_bottom = 562.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlSkillInfos" unique_id=2124954942]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="ControlSkillInfos/VBoxContainer" unique_id=1841796585]
+layout_mode = 2
+
+[node name="SkillName" type="Label" parent="ControlSkillInfos/VBoxContainer/PanelContainer" unique_id=1339386443]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+text = "Nom compétence"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="ControlSkillInfos/VBoxContainer" unique_id=539781116]
+custom_minimum_size = Vector2(300, 500)
+custom_maximum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="SkillDescription" type="Label" parent="ControlSkillInfos/VBoxContainer/PanelContainer2" unique_id=270398573]
+layout_mode = 2
+text = "Description compétence"
+horizontal_alignment = 1
+autowrap_mode = 3
+max_lines_visible = 15
+
+[node name="UnlockButton" type="Button" parent="ControlSkillInfos/VBoxContainer" unique_id=1040100931]
+layout_mode = 2
+disabled = true
+text = "Débloquer"
+
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button4" to="." method="_on_button_tech4_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button3" to="." method="_on_button_tech3_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button2" to="." method="_on_button_tech2_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_tech1_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button4" to="." method="_on_button_human4_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_human3_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_human2_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_human1_toggled"]
+[connection signal="toggled" from="HBoxContainerGlobal/VBoxContainer/HBoxContainer2/ButtonOrigin" to="." method="_on_button_origin_toggled"]
+[connection signal="pressed" from="ControlSkillInfos/VBoxContainer/UnlockButton" to="." method="_on_unlock_button_pressed"]
