@@ -1,6 +1,8 @@
 extends Building
 class_name Company
 
+var vision: Vision_component
+
 var _number_developer := 1
 var _number_researcher := 1
 var _number_recruiter := 0
@@ -48,10 +50,11 @@ func create_unit(type: Create_unit_type) -> void:
 	tile.reload_visual()
 
 
-func _init(id_unic: int, position_: Vector2i, map: Map) -> void:
-	super(id_unic, position_, 5, map)
+func _init(id_unic: int, position_: Vector2i, vision_range: int, map: Map) -> void:
+	super(id_unic, position_, map)
 	texture = Visuals.COMPANY
 	create_unit(Create_unit_type.RECRUITER)
+	vision = Vision_component.new(vision_range)
 
 func _fire_consequence():
 	_mood_gauge = floor(_mood_gauge / 2)

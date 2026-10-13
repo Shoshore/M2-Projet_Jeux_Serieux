@@ -12,7 +12,8 @@ var current_turn := 1
 const MAX_STITCH_TURN := 2
 var current_stitch_turn := 0
 
-var company_array : Dictionary[int,Company] = {} # id -> Company
+var company_array : Dictionary[int, Company] = {} # id -> Company
+var recrutement_site_array : Dictionary[int, Recruitement_building] = {}
 
 @onready var boardObject: Node2D = $"."
 @onready var skill_tree: SkillTree = $HUD/SkillTree
@@ -30,11 +31,18 @@ func _ready() -> void:
 func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
-	var player_company = Company.new(0, origin, map)
-	
+	var player_company = Company.new(0, origin, 5, map)
 	tile.building = player_company #modifier constructeur si nécessaire
 	company_array[0] = player_company
 	tile.reload_visual()
+	var pos_recruitement := Vector2i(2, -2)
+	var tile_recruitement : Tile = map.tiles_by_coord[pos_recruitement]
+	var recruitement_building := Recruitement_building.new(0, pos_recruitement,
+		map, Recruitement_building.Ressources.DEVELOPPER)
+	tile_recruitement.building = recruitement_building
+	recrutement_site_array[0] = recruitement_building
+	tile_recruitement.reload_visual()
+
 
 
 # Les datas des entreprises :
