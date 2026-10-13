@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://6kbmddxm0jae"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_v0t54"]
+[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/og_skill.tres" id="2_lgdjj"]
+
+[resource]
+script = ExtResource("1_v0t54")
+id = "tech_1"
+name = "Python"
+description = "Permet de programmer avec une syntaxe simpliste."
+requierment = Array[ExtResource("1_v0t54")]([ExtResource("2_lgdjj")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

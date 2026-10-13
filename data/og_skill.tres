@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dx5l827mtaca2"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_tqcbg"]
+
+[resource]
+script = ExtResource("1_tqcbg")
+id = "origin"
+name = "Origine"
+description = "C'est le début quoi"
+cout = 0
+metadata/_custom_type_script = "uid://jfrest3lsltq"

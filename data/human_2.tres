@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://0xd7ddf6xy7s"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_1w8pp"]
+[ext_resource type="Resource" uid="uid://4rq6ej6sey2d" path="res://data/human_1.tres" id="2_yvdcu"]
+
+[resource]
+script = ExtResource("1_1w8pp")
+id = "human_2"
+name = "Chauffage/Climatisation"
+description = "Pour que les employés travaillent plus efficacement et dans de meilleurs conditions."
+cout = 2
+requierment = Array[ExtResource("1_1w8pp")]([ExtResource("2_yvdcu")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

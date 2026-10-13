@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://ybwgokd8y4rs"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_2q8ia"]
+[ext_resource type="Resource" uid="uid://0xd7ddf6xy7s" path="res://data/human_2.tres" id="2_ilpu7"]
+
+[resource]
+script = ExtResource("1_2q8ia")
+id = "human_3"
+name = "Prime"
+description = "Offre une prime a tous tes employés pour booster leur moral."
+cout = 3
+requierment = Array[ExtResource("1_2q8ia")]([ExtResource("2_ilpu7")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

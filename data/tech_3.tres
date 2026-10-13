@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dabgal3n1a230"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_0uue6"]
+[ext_resource type="Resource" uid="uid://frklswfdexjy" path="res://data/tech_2.tres" id="2_o28dm"]
+
+[resource]
+script = ExtResource("1_0uue6")
+id = "tech_3"
+name = "Godot"
+description = "Mais c'est une mise en abime ou quoi ?"
+cout = 3
+requierment = Array[ExtResource("1_0uue6")]([ExtResource("2_o28dm")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

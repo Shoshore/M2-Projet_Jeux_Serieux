@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dipg0373qmx0"]
+
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_6utt5"]
+[ext_resource type="Resource" uid="uid://dabgal3n1a230" path="res://data/tech_3.tres" id="2_5s4cd"]
+
+[resource]
+script = ExtResource("1_6utt5")
+id = "tech_4"
+name = "Quantique"
+description = "A BAS LA CRYPTOGRAPHIE !!!"
+cout = 4
+requierment = Array[ExtResource("1_6utt5")]([ExtResource("2_5s4cd")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"
