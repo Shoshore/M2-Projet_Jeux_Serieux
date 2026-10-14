@@ -79,7 +79,6 @@ func _on_input_board_click(position: Vector2) -> void:
 	else:
 		print("no tile")
 
-
 func _go_to_skill_tree() -> void:
 	var currentValue = map.is_board_clickable
 	print("État du plateau au moment du clic : ", currentValue)

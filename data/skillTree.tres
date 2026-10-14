@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2kyoyl4n3mnd" path="res://scripts/skillTree/skillTree.gd" id="1_rplw0"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_68cpy"]
-[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/og_skill.tres" id="3_68cpy"]
+[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/origin.tres" id="3_68cpy"]
 [ext_resource type="Resource" uid="uid://6kbmddxm0jae" path="res://data/tech_1.tres" id="4_2t0w1"]
 [ext_resource type="Resource" uid="uid://frklswfdexjy" path="res://data/tech_2.tres" id="5_t00eh"]
 [ext_resource type="Resource" uid="uid://dabgal3n1a230" path="res://data/tech_3.tres" id="6_3jm4y"]

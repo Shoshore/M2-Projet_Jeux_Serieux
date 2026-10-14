@@ -22,4 +22,3 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Global="*uid://bs133ypi5cfrj"
-SkillsDB="*uid://bx5mbvi8y6hue"
