@@ -21,9 +21,8 @@ var _next_unit_id := 0
 var _next_unit_type : Create_unit_type
 
 
-func _init(id_unic: int, position_: Vector2i, vision_range: int) -> void:
-	super(id_unic, position_)
-	texture = Visuals.COMPANY
+func _init(id_unic: int, position: Vector2i, vision_range: int) -> void:
+	super(id_unic, position, Visuals.COMPANY)
 	vision = Vision_component.new(vision_range)
 
 # -------------------
@@ -48,21 +47,20 @@ func create_unit(tile : Tile) -> void:
 	var unit: Unit
 	match _next_unit_type:
 		Create_unit_type.RECRUITER:
-			unit = Recruiter.new(_id, _generate_unit_id(), tile.coordinate)
+			unit = Recruiter.new(id.get_id(), _generate_unit_id(), tile.coordinate)
 			_number_recruiter += 1
 
 	if unit == null:
 		return
 
 	_list_unities.push_back(unit)
-	tile.occupant = unit
+	tile.set_occupant(unit) 
 	tile.reload_visual()
 
 
 func _find_tile(type: Create_unit_type):
 	_next_unit_type = type
-	Global.company_ask_map_tile.emit(_id)
-	print("test", _id)
+	Global.company_ask_map_tile.emit(id.get_id())
 
 
 func _fire_consequence():
@@ -80,7 +78,7 @@ enum Employee_type {
 
 func _find_unit_by_id(unit_id: int) -> Unit:
 	for unit in _list_unities:
-		if unit._id == unit_id:
+		if unit.id.get_id() == unit_id:
 			return unit
 	return null
 
@@ -90,7 +88,7 @@ func _fire_unit(unit: Unit) -> void:
 	if index == -1:
 		return
 	_list_unities.remove_at(index)
-	Global.company_fire_employee.emit(unit.movement.position._position)
+	Global.company_fire_employee.emit(unit.movement.position.get_position())
 
 
 func fire_employee(type: Employee_type, id_: int = -1) -> void:

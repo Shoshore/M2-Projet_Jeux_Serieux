@@ -1,4 +1,4 @@
-class_name Selection_controller
+class_name Selection_manager
 extends RefCounted
 
 var map: Map
@@ -9,29 +9,29 @@ func _init(p_map: Map) -> void:
 
 
 func _get_current_tile(unit: Unit) -> Tile:
-	return map.get_tile_at(unit.movement.position._position)
+	return map.get_tile_at(unit.movement.position.get_position())
 
 
 
 func on_tile_clicked(tile: Tile) -> void:
-	var unit = tile.occupant
+	var unit = tile.get_occupant()
 	if  unit != null:
 		if unit == selected_unit:
 			selected_unit = null
 		else:
-			selected_unit = tile.occupant
+			selected_unit = unit
 		return
 	
 	if selected_unit == null:
 		return
 	
-	if tile.building != null:
+	if tile.get_building() != null:
 		return
 	
 	var from_tile: Tile = _get_current_tile(selected_unit)
 	if selected_unit.movement.move_to(tile.coordinate):
 		if from_tile != null:
-			from_tile.occupant = null
-		tile.occupant = selected_unit
+			from_tile.set_occupant(null)
+		tile.set_occupant(selected_unit)
 	selected_unit = null
 	map.refresh()

@@ -88,7 +88,7 @@ func get_neighbors(coord: Vector2i) -> Array[Tile]:
 
 func get_free_neighbor(coord: Vector2i) -> Tile:
 	for tile in get_neighbors(coord):
-		if tile.building == null and tile.occupant == null:
+		if tile.get_building() == null and tile.get_occupant() == null:
 			return tile
 	return null
 

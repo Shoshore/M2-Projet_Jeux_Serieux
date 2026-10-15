@@ -4,7 +4,7 @@ var boardText = "Carte du monde"
 var skillTreeText = "Arbre de compétence"
 
 var map := Map.new()
-var selection := Selection_controller.new(map)
+var selection_manager := Selection_manager.new(map)
 @onready var label_info: Label = get_node("CanvasLayer/info/Label")
 
 const GAME_LENGTH := 30
@@ -35,13 +35,13 @@ func _map_filling(map: Map) -> void:
 	var tile: Tile = map.tiles_by_coord[origin]
 	company_array[0] = Company.new(0, origin, 5)
 	company_array[0]._find_tile(Company.Create_unit_type.RECRUITER)
-	tile.building = company_array[0]
+	tile.set_building(company_array[0])
 	tile.reload_visual()
 
 	var pos_recruitement := Vector2i(2, -2)
 	var tile_recruitement : Tile = map.tiles_by_coord[pos_recruitement]
 	var recruitement_building := Recruitement_building.new(0, pos_recruitement, Recruitement_building.Ressources.DEVELOPPER)
-	tile_recruitement.building = recruitement_building
+	tile_recruitement.set_building(recruitement_building)
 	recrutement_site_array[0] = recruitement_building
 	tile_recruitement.reload_visual()
 
@@ -106,7 +106,7 @@ func _on_input_board_click(position: Vector2) -> void:
 	var tile := map.get_tile_at(coord)
 	if tile != null:
 		_on_tile_clicked(tile)
-		selection.on_tile_clicked(tile)
+		selection_manager.on_tile_clicked(tile)
 		print("tile")
 	else:
 		print("no tile")
@@ -132,7 +132,7 @@ func _go_to_skill_tree() -> void:
 # ------------
 func _compagny_tile_free(id: int) -> void:
 	var current_compagny := company_array[id]
-	var free_tile := map.get_free_neighbor(current_compagny.get_position())
+	var free_tile := map.get_free_neighbor(current_compagny.position.get_position())
 	current_compagny.create_unit(free_tile)
 
 

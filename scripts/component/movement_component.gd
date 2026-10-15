@@ -24,5 +24,5 @@ func move_to(new_position: Vector2i) -> bool:
 		return false
 	
 	_current_movement -= distance_cost
-	position._position = new_position
+	position.set_position(new_position)
 	return true

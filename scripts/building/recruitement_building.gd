@@ -6,13 +6,16 @@ enum Ressources {
 	RESEARCHER
 }
 
+
 var _ressource : Ressources
 
-func _init(id_unic: int, position_: Vector2i, ressource : Ressources) -> void:
-	super(id_unic, position_)
-	texture = Visuals.RECRUITEMENT
+
+func _init(id_unic: int, position_: Vector2i, ressource: Ressources) -> void:
+	var texture := Visuals.RECRUITEMENT
+	super(id_unic, position_, texture)
 	_ressource = ressource
 
+
 func display():
-	print("Position : ", _position.x, _position.y)
+	print("Position : ", position.get_position())
 	print("Ressource : ", _ressource)
