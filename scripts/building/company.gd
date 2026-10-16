@@ -18,8 +18,6 @@ var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
 
-var _next_unit_type : Create_unit_type
-
 
 func _init(id_unic: int, position: Vector2i, vision_range: int) -> void:
 	super(id_unic, position, Visuals.COMPANY)
@@ -40,12 +38,12 @@ func _generate_unit_id() -> int:
 	return new_id
 
 
-func create_unit(tile : Tile) -> void:
+func create_unit(tile : Tile, next_unite: Create_unit_type) -> void:
 	if tile == null:
 		return
 
 	var unit: Unit
-	match _next_unit_type:
+	match next_unite:
 		Create_unit_type.RECRUITER:
 			unit = Recruiter.new(id.get_id(), _generate_unit_id(), tile.position_.get_position())
 			_number_recruiter += 1
@@ -58,15 +56,6 @@ func create_unit(tile : Tile) -> void:
 	tile.reload_visual()
 
 
-func ark_create_unit(type: Create_unit_type):
-	_next_unit_type = type
-	Global.company_ask_map_tile.emit(id.get_id())
-
-
-func _fire_consequence():
-	_mood_gauge = floor(_mood_gauge / 2)
-	_funds += 2000
-
 # -------------------
 # Fire Employee
 # -------------------
@@ -75,6 +64,12 @@ enum Employee_type {
 	RESEARCHER,
 	RECRUITER
 }
+
+
+func _fire_consequence():
+	_mood_gauge = floor(_mood_gauge / 2)
+	_funds += 2000
+
 
 func _find_unit_by_id(unit_id: int) -> Unit:
 	for unit in _list_unities:

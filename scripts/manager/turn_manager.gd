@@ -24,9 +24,7 @@ var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 
 func _ready() -> void:
 	add_child(map)
-	Global.company_ask_map_tile.connect(_compagny_tile_free)
 	Global.company_fire_employee.connect(_delete_unit)
-	Global.recruitement_ask_map_tile.connect(_recruitement_tile_occuped)
 	Global.recruitement_give_employee.connect(_give_employee)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
@@ -36,8 +34,9 @@ func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
 	company_array[0] = Company.new(0, origin, 5)
-	company_array[0].ark_create_unit(Company.Create_unit_type.RECRUITER)
-	tile.set_building(company_array[0])
+	var current_compagny = company_array[0]
+	current_compagny.create_unit(map.get_free_neighbor(current_compagny.position.get_position()), Company.Create_unit_type.RECRUITER)
+	tile.set_building(current_compagny)
 	tile.reload_visual()
 
 	var pos_recruitement := Vector2i(2, -2)
@@ -46,8 +45,6 @@ func _map_filling(map: Map) -> void:
 	tile_recruitement.set_building(recruitement_building)
 	recrutement_building_array[0] = recruitement_building
 	tile_recruitement.reload_visual()
-
-
 
 # Les datas des entreprises :
 # si t'as ressources -> tu peux faire des trucs dans le skilltree
@@ -92,7 +89,7 @@ func _update_companies() -> void:
 
 func _update_recruitement_building() -> void:
 	for key in recrutement_building_array:
-		recrutement_building_array[0].update_end_turn()
+		recrutement_building_array[0].update_end_turn(map.get_occuped_neighbor(recrutement_building_array[0].position.get_position()))
 
 func _on_end_turn_button_pressed() -> void:
 	$HUD/Control/End_turn_button/AudioClick.play()
@@ -138,23 +135,11 @@ func _go_to_skill_tree() -> void:
 # ------------
 # signals
 # ------------
-func _compagny_tile_free(id: int) -> void:
-	var current_compagny := company_array[id]
-	var free_tile := map.get_free_neighbor(current_compagny.position.get_position())
-	current_compagny.create_unit(free_tile)
-
-
 func _delete_unit(position: Vector2i) -> void:
 	var tile := map.get_tile_at(position)
 	if tile != null:
 		tile.occupant = null
 		tile.reload_visual()
-
-
-func _recruitement_tile_occuped(id: int) -> void:
-	var current_recruitement_building = recrutement_building_array[id]
-	var tiles := map.get_occuped_neighbor(current_recruitement_building.position.get_position())
-	current_recruitement_building.manage_ressources_end_turn(tiles)
 
 
 func _give_employee(id: int, ressource: Recruitement_building.Ressources) -> void:

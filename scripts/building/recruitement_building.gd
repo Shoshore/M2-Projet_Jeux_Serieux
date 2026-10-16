@@ -17,11 +17,7 @@ func _init(id_unic: int, position_: Vector2i, ressource: Ressources) -> void:
 	_ressource = ressource
 
 
-func update_end_turn():
-	Global.recruitement_ask_map_tile.emit(id.get_id())
-
-
-func manage_ressources_end_turn(tiles: Array[Tile]) -> void:
+func update_end_turn(tiles: Array[Tile]) -> void:
 	var new_array_recruiter : Dictionary[Unit, int] = {}
 	for tile in tiles:
 		var occupant = tile.get_occupant() 
