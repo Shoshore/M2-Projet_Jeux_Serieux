@@ -13,7 +13,7 @@ const MAX_STITCH_TURN := 2
 var current_stitch_turn := 0
 
 var company_array : Dictionary[int, Company] = {} # id -> Company
-var recrutement_site_array : Dictionary[int, Recruitement_building] = {}
+var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 
 @onready var boardObject: Node2D = $"."
 @onready var skill_tree: SkillTree = $HUD/SkillTree
@@ -26,6 +26,8 @@ func _ready() -> void:
 	add_child(map)
 	Global.company_ask_map_tile.connect(_compagny_tile_free)
 	Global.company_fire_employee.connect(_delete_unit)
+	Global.recruitement_ask_map_tile.connect(_recruitement_tile_occuped)
+	Global.recruitement_give_employee.connect(_give_employee)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
 
@@ -34,7 +36,7 @@ func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
 	company_array[0] = Company.new(0, origin, 5)
-	company_array[0]._find_tile(Company.Create_unit_type.RECRUITER)
+	company_array[0].ark_create_unit(Company.Create_unit_type.RECRUITER)
 	tile.set_building(company_array[0])
 	tile.reload_visual()
 
@@ -42,7 +44,7 @@ func _map_filling(map: Map) -> void:
 	var tile_recruitement : Tile = map.tiles_by_coord[pos_recruitement]
 	var recruitement_building := Recruitement_building.new(0, pos_recruitement, Recruitement_building.Ressources.DEVELOPPER)
 	tile_recruitement.set_building(recruitement_building)
-	recrutement_site_array[0] = recruitement_building
+	recrutement_building_array[0] = recruitement_building
 	tile_recruitement.reload_visual()
 
 
@@ -82,18 +84,24 @@ func _end_check():
 	else:
 		current_stitch_turn = 0
 
-func _update_companies() ->void:
+func _update_companies() -> void:
 	for key in company_array:
 		company_array.get(key).update_end_turn(current_turn)
 		company_array.get(key).display()
 
 
+func _update_recruitement_building() -> void:
+	for key in recrutement_building_array:
+		recrutement_building_array[0].update_end_turn()
+
 func _on_end_turn_button_pressed() -> void:
 	$HUD/Control/End_turn_button/AudioClick.play()
 	current_turn += 1
 	_update_companies()
+	_update_recruitement_building()
 	_end_check()
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
+	
 
 
 func _on_tile_clicked(tile: Tile) -> void:
@@ -141,3 +149,13 @@ func _delete_unit(position: Vector2i) -> void:
 	if tile != null:
 		tile.occupant = null
 		tile.reload_visual()
+
+
+func _recruitement_tile_occuped(id: int) -> void:
+	var current_recruitement_building = recrutement_building_array[id]
+	var tiles := map.get_occuped_neighbor(current_recruitement_building.position.get_position())
+	current_recruitement_building.manage_ressources_end_turn(tiles)
+
+
+func _give_employee(id: int, ressource: Recruitement_building.Ressources) -> void:
+	company_array[id].set_ressources(ressource)

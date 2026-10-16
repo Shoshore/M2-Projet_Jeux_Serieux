@@ -8,7 +8,7 @@ var outline := Line2D.new()
 
 var texture: Texture_component
 
-var coordinate : Vector2i = Vector2i.ZERO
+var position_ : Position_component
 
 var _occupant: Unit = null
 var _building: Building = null
@@ -71,17 +71,17 @@ func reload_visual() -> void:
 
 
 func initialize(q : int, r : int) -> void:
-	coordinate = Vector2i(q, r)
+	position_ = Position_component.new(Vector2i(q, r))
 
 
 func get_info() -> Dictionary:
 	return {
-		"coordinate": coordinate,
+		"position : ": position_.get_position(),
 	}
 
 
 func get_info_text() -> String:
-	return str(coordinate)
+	return str(position_.get_position())
 
 
 func display_data() -> void:

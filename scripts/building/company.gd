@@ -47,7 +47,7 @@ func create_unit(tile : Tile) -> void:
 	var unit: Unit
 	match _next_unit_type:
 		Create_unit_type.RECRUITER:
-			unit = Recruiter.new(id.get_id(), _generate_unit_id(), tile.coordinate)
+			unit = Recruiter.new(id.get_id(), _generate_unit_id(), tile.position_.get_position())
 			_number_recruiter += 1
 
 	if unit == null:
@@ -58,7 +58,7 @@ func create_unit(tile : Tile) -> void:
 	tile.reload_visual()
 
 
-func _find_tile(type: Create_unit_type):
+func ark_create_unit(type: Create_unit_type):
 	_next_unit_type = type
 	Global.company_ask_map_tile.emit(id.get_id())
 
@@ -159,3 +159,15 @@ func display() -> void:
 	print("boost mood : ", _boost_mood)
 	print("mood threshold : ", _mood_threshold)
 	print("------------------------")
+
+
+# -------------------
+# setter
+# -------------------
+
+func set_ressources(ressource: Recruitement_building.Ressources) -> void:
+	match ressource:
+		Recruitement_building.Ressources.DEVELOPPER:
+			_number_developer += 1
+		Recruitement_building.Ressources.RESEARCHER:
+			_number_researcher += 1

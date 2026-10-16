@@ -36,8 +36,6 @@ func generate_hex_grid(radius : int) -> void:
 	return
 
 
-
-
 # Conversion des coordonnées axiales vers la position à l'écran
 func coords_to_pixel(q : int, r : int) -> Vector2:
 	var x : float = Global.HEX_SIZE * sqrt(3.0) * (q + r * 0.5)
@@ -70,9 +68,13 @@ func axial_round(frac: Vector2) -> Vector2i:
 	return Vector2i(int(rx), int(rz))
 
 
+func refresh() -> void:
+	for tile: Tile in tiles_by_coord.values():
+		tile.reload_visual()
 
-
-
+# ----------------
+# getter
+# ----------------
 func get_tile_at(coord: Vector2i) -> Tile:
 	return tiles_by_coord.get(coord)
 
@@ -93,6 +95,9 @@ func get_free_neighbor(coord: Vector2i) -> Tile:
 	return null
 
 
-func refresh() -> void:
-	for tile: Tile in tiles_by_coord.values():
-		tile.reload_visual()
+func get_occuped_neighbor(coord: Vector2i) -> Array[Tile]:
+	var tiles : Array[Tile] = []
+	for tile in get_neighbors(coord):
+		if tile.get_occupant() != null:
+			tiles.append(tile)
+	return tiles
