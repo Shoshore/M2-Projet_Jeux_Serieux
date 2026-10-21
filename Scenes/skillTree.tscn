@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://0xd7ddf6xy7s" path="res://data/human_2.tres" id="9_ajvxf"]
 [ext_resource type="Resource" uid="uid://4rq6ej6sey2d" path="res://data/human_1.tres" id="10_tk232"]
 [ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://assets/icon.svg" id="12_r7jmg"]
+[ext_resource type="AudioStream" uid="uid://8ien5eum4754" path="res://Audio/unlock_sound.mp3" id="13_x83wx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3jsf"]
 bg_color = Color(0.14293295, 0, 0.7612819, 1)
@@ -365,6 +366,10 @@ max_lines_visible = 15
 layout_mode = 2
 disabled = true
 text = "Débloquer"
+
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton" unique_id=1932686414]
+stream = ExtResource("13_x83wx")
+volume_db = 12.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer2/ButtonOrigin" to="." method="_on_button_origin_mouse_entered"]

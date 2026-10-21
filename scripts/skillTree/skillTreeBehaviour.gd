@@ -18,6 +18,8 @@ var colorLineTech3 = Color.WEB_GRAY
 var colorLineHuman1 = Color.WEB_GRAY
 var colorLineHuman2 = Color.WEB_GRAY
 var colorLineHuman3 = Color.WEB_GRAY
+const lock_text = "Débloquer"
+const unlock_text = "Acquis"
 
 # Compétences technologies
 @onready var button_tech_1: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button
@@ -42,11 +44,10 @@ var colorLineHuman3 = Color.WEB_GRAY
 @onready var skill_icon: TextureRect = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
 @onready var skill_description: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
 @onready var unlock_button: Button = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton
-
+@onready var audio_click: AudioStreamPlayer2D = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton/AudioClick
+# Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
 
 var last_click = ""
-var lock_text = "Débloquer"
-var unlock_text = "Acquis"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -82,6 +83,7 @@ func unlock(s: Skill) -> void:
 	if can_unlock_skill(s):
 		unlocked.append(s.id)
 		unlocked_skill.emit(s)
+		audio_click.play()
 
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
