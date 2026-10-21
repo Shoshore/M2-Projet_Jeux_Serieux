@@ -23,8 +23,9 @@ func _ready() -> void:
 	add_child(map)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
+	skill_tree.unlocked_skill.connect(_on_skill_unlock)
 
-	
+
 func _map_filling(map: Map) -> void:
 	var origin := Vector2i(0, 0)
 	var tile: Tile = map.tiles_by_coord[origin]
@@ -93,3 +94,7 @@ func _go_to_skill_tree() -> void:
 	else:
 		tree_button.text = skillTreeText
 		window_info_label.text = boardText
+
+func _on_skill_unlock(skill: Skill) -> void:
+	var company: Company = company_array[0]
+	company.apply_skill(skill)

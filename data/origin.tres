@@ -1,6 +1,13 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dx5l827mtaca2"]
 
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_rr2cb"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_tqcbg"]
+
+[sub_resource type="Resource" id="Resource_br8ie"]
+script = ExtResource("1_rr2cb")
+variable_name = &"_funds"
+value = 100.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("1_tqcbg")
@@ -8,4 +15,5 @@ id = "origin"
 name = "Origine"
 description = "C'est le début quoi"
 cout = 0
+effects = Array[ExtResource("1_rr2cb")]([SubResource("Resource_br8ie")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"

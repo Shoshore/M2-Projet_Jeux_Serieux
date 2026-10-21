@@ -3,6 +3,9 @@ extends Control
 # Chargement de notre liste de compétence (ressource)
 const TREE: SkillTree = preload("res://data/skillTree.tres") 
 
+# Signal pour appliquer les compétences
+signal unlocked_skill(skill: Skill)
+
 # Pour savoir quelles compétences ont été débloquées par le joueur
 var unlocked: Array[StringName] = []
 
@@ -36,8 +39,10 @@ var colorLineHuman3 = Color.WEB_GRAY
 
 # Affichage des compétences
 @onready var skill_name: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer/SkillName
-@onready var skill_description: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/SkillDescription
+@onready var skill_icon: TextureRect = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
+@onready var skill_description: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
 @onready var unlock_button: Button = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton
+
 
 var last_click = ""
 var lock_text = "Débloquer"
@@ -54,6 +59,7 @@ func _ready() -> void:
 	for button in button_origin.button_group.get_buttons():
 		button.mouse_entered.connect(_on_buttons_entered.bind(button))
 		button.mouse_exited.connect(_on_buttons_exited)
+		button.toggled.connect(_on_skill_button_toggled.bind(button))
 
 
 
@@ -75,6 +81,7 @@ func can_unlock_skill(s: Skill) -> bool :
 func unlock(s: Skill) -> void:
 	if can_unlock_skill(s):
 		unlocked.append(s.id)
+		unlocked_skill.emit(s)
 
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
@@ -89,6 +96,7 @@ func _draw() -> void:
 	draw_line(buttonCenter(button_human_2), buttonCenter(button_human_3), colorLineHuman2, lineWidth)
 	draw_line(buttonCenter(button_human_3), buttonCenter(button_human_4), colorLineHuman3, lineWidth)
 
+# Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
 	skill_name.text = skill.name
 	skill_description.text = skill.description
@@ -98,76 +106,28 @@ func display_skill(skill: Skill) -> void:
 		unlock_button.text = lock_text
 	if can_unlock_skill(skill):
 		unlock_button.disabled = false
+	if skill.icone:
+		skill_icon.visible = true
+		skill_icon.texture = skill.icone
+	else:
+		skill_icon.visible = false
 
+# Réinitialise la fenetre
 func undisplay_skill() -> void:
 	skill_name.text = ""
 	skill_description.text = ""
 	unlock_button.disabled = true
+	skill_icon.visible = false
 
 # Comportement des boutons
-func _on_button_origin_toggled(toggled_on: bool) -> void:
-	last_click = "origin"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
+func _on_skill_button_toggled(toggled_on: bool, button: Button) -> void:
+	last_click = button.skill.id
+	if toggled_on :
+		display_skill(button.skill)
+	else:
 		undisplay_skill()
 
-func _on_button_tech1_toggled(toggled_on: bool) -> void:
-	last_click = "tech_1"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_tech2_toggled(toggled_on: bool) -> void:
-	last_click = "tech_2"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_tech3_toggled(toggled_on: bool) -> void:
-	last_click = "tech_3"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_tech4_toggled(toggled_on: bool) -> void:
-	last_click = "tech_4"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_human1_toggled(toggled_on: bool) -> void:
-	last_click = "human_1"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_human2_toggled(toggled_on: bool) -> void:
-	last_click = "human_2"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_human3_toggled(toggled_on: bool) -> void:
-	last_click = "human_3"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
-func _on_button_human4_toggled(toggled_on: bool) -> void:
-	last_click = "human_4"
-	if toggled_on:
-		display_skill(TREE.get_skill(last_click))
-	else: 
-		undisplay_skill()
-
+# Débloquer une compétence
 func _on_unlock_button_pressed() -> void:
 	var skill = TREE.get_skill(last_click)
 	unlock(skill)
@@ -190,10 +150,7 @@ func _on_unlock_button_pressed() -> void:
 			colorLineHuman3 = Color.GOLDENROD
 	queue_redraw()
 
-func _on_button_origin_mouse_entered() -> void:
-	if last_click == "" :
-		display_skill(TREE.get_skill("origin"))
-
+# Affichage des compétences quand aucune n'est sélectionné
 func _on_buttons_entered(button: Button) -> void:
 	if last_click == "":
 		display_skill(button.skill)
@@ -202,6 +159,7 @@ func _on_buttons_exited() -> void:
 	if last_click == "":
 		undisplay_skill()
 
+# Déselectionne une compétence en cliquant n'importe où ailleurs
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		# Relache le dernier bouton enfoncé

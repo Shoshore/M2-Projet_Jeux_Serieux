@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://6kbmddxm0jae"]
 
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_v0t54"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_xdcf5"]
 [ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/origin.tres" id="2_lgdjj"]
 
 [resource]

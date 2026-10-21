@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://ybwgokd8y4rs" path="res://data/human_3.tres" id="8_pp2iq"]
 [ext_resource type="Resource" uid="uid://0xd7ddf6xy7s" path="res://data/human_2.tres" id="9_ajvxf"]
 [ext_resource type="Resource" uid="uid://4rq6ej6sey2d" path="res://data/human_1.tres" id="10_tk232"]
+[ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://assets/icon.svg" id="12_r7jmg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3jsf"]
 bg_color = Color(0.14293295, 0, 0.7612819, 1)
@@ -341,10 +342,22 @@ custom_maximum_size = Vector2(300, 500)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkillDescription" type="Label" parent="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2" unique_id=270398573]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2" unique_id=2096181753]
 layout_mode = 2
+
+[node name="SkillIcon" type="TextureRect" parent="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=460935640]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("12_r7jmg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SkillDescription" type="Label" parent="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=270398573]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Description compétence"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 max_lines_visible = 15
 
@@ -354,14 +367,5 @@ disabled = true
 text = "Débloquer"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button4" to="." method="_on_button_tech4_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button3" to="." method="_on_button_tech3_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button2" to="." method="_on_button_tech2_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_tech1_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button4" to="." method="_on_button_human4_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_human3_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_human2_toggled"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_human1_toggled"]
 [connection signal="mouse_entered" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer2/ButtonOrigin" to="." method="_on_button_origin_mouse_entered"]
-[connection signal="toggled" from="HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer2/ButtonOrigin" to="." method="_on_button_origin_toggled"]
 [connection signal="pressed" from="HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton" to="." method="_on_unlock_button_pressed"]

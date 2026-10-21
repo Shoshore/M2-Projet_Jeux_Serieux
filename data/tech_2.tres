@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://frklswfdexjy"]
 
+[ext_resource type="Texture2D" uid="uid://b5dloiia0kort" path="res://assets/Git-Icon.png" id="1_ee4im"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="1_u6mql"]
 [ext_resource type="Resource" uid="uid://6kbmddxm0jae" path="res://data/tech_1.tres" id="2_5j3su"]
 
@@ -8,6 +9,7 @@ script = ExtResource("1_u6mql")
 id = "tech_2"
 name = "Git"
 description = "Permet de partager des projets de manière libre et gratuite."
+icone = ExtResource("1_ee4im")
 cout = 2
 requierment = Array[ExtResource("1_u6mql")]([ExtResource("2_5j3su")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"
