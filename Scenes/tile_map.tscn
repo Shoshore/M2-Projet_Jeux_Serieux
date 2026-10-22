@@ -123,7 +123,6 @@ script = ExtResource("7_xsk5a")
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=167875768]
 process_mode = 3
-visible = false
 
 [node name="PauseMenu" parent="PauseMenu" unique_id=749739424 instance=ExtResource("3_bfdkv")]
 offset_top = 8.0
