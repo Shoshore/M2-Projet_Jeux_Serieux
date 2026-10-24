@@ -15,3 +15,8 @@ func display_results() -> void:
 
 	$PanelContainer/VBoxContainer/Turn.text = "Vous avez survécu " + str(turn) + " tours"
 	$PanelContainer/VBoxContainer/Score.text = "Vous avez amassé " + str(score) + " euros"
+
+
+func _on_back_to_menu_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")

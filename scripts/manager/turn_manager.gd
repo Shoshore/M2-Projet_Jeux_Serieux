@@ -7,7 +7,7 @@ var map := Map.new()
 var selection_manager := Selection_manager.new(map)
 @onready var label_info: Label = get_node("CanvasLayer/info/Label")
 
-const GAME_LENGTH := 2
+const GAME_LENGTH := 30
 var current_turn := 1
 const MAX_STITCH_TURN := 2
 var current_stitch_turn := 0

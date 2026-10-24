@@ -28,8 +28,8 @@ func _on_save_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
-	pass # Replace with function body.
-	
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")	
 	
 func _process(float):
 	pause_menu()

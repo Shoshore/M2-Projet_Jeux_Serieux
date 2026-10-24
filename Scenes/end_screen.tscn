@@ -12,9 +12,16 @@ grow_vertical = 2
 script = ExtResource("1_f2mtv")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1496023440]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -648.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=59076807]
 layout_mode = 1
@@ -60,9 +67,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=729286364]
+[node name="BackToMenu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=729286364]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_font_sizes/font_size = 32
 text = "Retourner au menu "
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
