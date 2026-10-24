@@ -7,7 +7,7 @@ var map := Map.new()
 var selection_manager := Selection_manager.new(map)
 @onready var label_info: Label = get_node("CanvasLayer/info/Label")
 
-const GAME_LENGTH := 30
+const GAME_LENGTH := 2
 var current_turn := 1
 const MAX_STITCH_TURN := 2
 var current_stitch_turn := 0
@@ -73,11 +73,13 @@ func update_result(score : int, turn : int, status : String):
 func _end_check():
 	if current_turn > GAME_LENGTH:
 		update_result(company_array[0].get_funds(), current_turn - 1, "Victoire")
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	var funds = company_array[0].get_funds()
 	if funds < 0:
 		current_stitch_turn += 1
 		if current_stitch_turn > MAX_STITCH_TURN:
 			update_result(company_array[0].get_funds(), current_turn, "Défaite")
+			get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	else:
 		current_stitch_turn = 0
 
