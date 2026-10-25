@@ -21,6 +21,7 @@ var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 @onready var round_button: Button = $HUD/Control/End_turn_button
 @onready var tiles_info: PanelContainer = $CanvasLayer/info
 @onready var window_info_label: Control = $HUD/Control/HBoxContainer/Window_info/Label
+@onready var ressources_label: Label = $HUD/Control/HBoxContainer/Ressources/Label
 
 func _ready() -> void:
 	add_child(map)
@@ -28,6 +29,7 @@ func _ready() -> void:
 	Global.recruitement_give_employee.connect(_give_employee)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
+	_update_company_info()
 
 
 func _map_filling(map: Map) -> void:
@@ -46,20 +48,6 @@ func _map_filling(map: Map) -> void:
 	recrutement_building_array[0] = recruitement_building
 	tile_recruitement.reload_visual()
 
-# Les datas des entreprises :
-# si t'as ressources -> tu peux faire des trucs dans le skilltree
-# faire des getters, des fonctions de gestions 
-# L'argent
-# le bonheur 
-# les unités
-# chercheurs/dev
-
-# les positions des sites de recrutements
-# les stackeholders 
-
-# Gestion de tours malus :
-# mod tour X -> modifie un truc 
-
 
 func update_result(score : int, turn : int, status : String):
 	Global.game_result.set_score(score)
@@ -68,6 +56,7 @@ func update_result(score : int, turn : int, status : String):
 	print("score : ", Global.game_result.get_score(),
 	"\n turn : ", Global.game_result.get_turn(),
 	"\n satus : ", Global.game_result.get_status())
+
 
 # TODO faire le switch de scène
 func _end_check():
@@ -83,6 +72,7 @@ func _end_check():
 	else:
 		current_stitch_turn = 0
 
+
 func _update_companies() -> void:
 	for key in company_array:
 		company_array.get(key).update_end_turn(current_turn)
@@ -93,11 +83,13 @@ func _update_recruitement_building() -> void:
 	for key in recrutement_building_array:
 		recrutement_building_array[0].update_end_turn(map.get_occuped_neighbor(recrutement_building_array[0].position.get_position()))
 
+
 func _on_end_turn_button_pressed() -> void:
 	$HUD/Control/End_turn_button/AudioClick.play()
 	current_turn += 1
 	_update_companies()
 	_update_recruitement_building()
+	_update_company_info()
 	_end_check()
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
 	
@@ -146,3 +138,16 @@ func _delete_unit(position: Vector2i) -> void:
 
 func _give_employee(id: int, ressource: Recruitement_building.Ressources) -> void:
 	company_array[id].set_ressources(ressource)
+
+
+func _update_company_info() -> void:
+	var company: Company = company_array[0]
+
+	ressources_label.text = (
+		"Argent: " + str(company.get_funds()) + "\n"
+		+ "Employés: " + str(company.get_number_employees()) + "\n"
+		+ "Developpeurs: " + str(company.get_number_developers()) + "\n"
+		+ "Chercheurs: " + str(company.get_number_researchers()) + "\n"
+		+ "Recruteurs: " + str(company.get_number_recruiters()) + "\n"
+		+ "Bonheur: " + str(company.get_happiness()) + " / 30"
+	)

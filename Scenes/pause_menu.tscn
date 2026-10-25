@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dtse2n38biuul"]
 
 [ext_resource type="Script" uid="uid://brmj1iqaeo0hx" path="res://scripts/pause_menu.gd" id="1_hdmo1"]
-[ext_resource type="Texture2D" uid="uid://ubmwyasbcw2n" path="res://assets/poulet.jpg" id="2_k0w1u"]
 
 [node name="PauseMenu" type="Control" unique_id=749739424]
 process_mode = 3
@@ -21,7 +20,6 @@ anchor_bottom = 1.0
 offset_top = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_k0w1u")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1199393770]
 layout_mode = 1

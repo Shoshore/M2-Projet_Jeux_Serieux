@@ -143,6 +143,24 @@ func update_end_turn(tour: int) -> void:
 func get_funds() -> int:
 	return _funds
 
+func get_number_developers() -> int:
+	return _number_developer
+
+
+func get_number_researchers() -> int:
+	return _number_researcher
+
+
+func get_number_recruiters() -> int:
+	return _number_recruiter
+
+
+func get_number_employees() -> int:
+	return _number_developer + _number_researcher + _number_recruiter
+
+
+func get_happiness() -> int:
+	return _mood_gauge
 
 func display() -> void:
 	print("nb dev : ", _number_developer)

@@ -59,20 +59,20 @@ offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
-[node name="Tour_info" parent="HUD/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
+[node name="Ressources" parent="HUD/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
 custom_minimum_size = Vector2(0, 64)
-propagate_maximum_size = false
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Window_info" parent="HUD/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
 
-[node name="Ressources" parent="HUD/Control/HBoxContainer" unique_id=2002279104 instance=ExtResource("3_03na7")]
+[node name="Tour_info" parent="HUD/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
 custom_minimum_size = Vector2(0, 64)
+propagate_maximum_size = false
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="End_turn_button" type="Button" parent="HUD/Control" unique_id=1271260887]
 layout_mode = 1
