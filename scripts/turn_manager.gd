@@ -31,8 +31,9 @@ func _map_filling(map: Map) -> void:
 	var player_company = Company.new(0, origin, map)
 	
 	tile.building = player_company #modifier constructeur si nécessaire
+	tile.ceo = str(player_company.id)
 	company_array[0] = player_company
-	tile.reload_visual()
+	map.refresh()
 
 
 # Les datas des entreprises :

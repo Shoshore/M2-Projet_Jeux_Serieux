@@ -5,6 +5,7 @@ class_name Map
 #const HEX_SIZE : float = 20.0
 
 var grid_size : int = 10
+var visibility_range: int = 1
 var tiles_by_coord: Dictionary = {}
 var is_board_clickable = true
 
@@ -94,5 +95,16 @@ func get_free_neighbor(coord: Vector2i) -> Tile:
 
 
 func refresh() -> void:
+	var vision := Vision_component.new(visibility_range)
+	var visible_coordinates: Dictionary[Vector2i, bool] = {}
+
 	for tile: Tile in tiles_by_coord.values():
+		if tile.ceo == "Aucun":
+			continue
+		for coord in vision.get_visible_hexes(tile.coordinate):
+			if tiles_by_coord.has(coord):
+				visible_coordinates[coord] = true
+
+	for tile: Tile in tiles_by_coord.values():
+		tile.is_visible_by_fog = visible_coordinates.has(tile.coordinate)
 		tile.reload_visual()

@@ -12,8 +12,11 @@ var outline := Line2D.new()
 var coordinate : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
 var ceo : String = "Aucun"
+var is_visible_by_fog: bool = false
 var occupant: Unit = null
 var building: Building = null
+
+const FOG_MODULATE := Color(0.16, 0.16, 0.2)
 
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
@@ -72,9 +75,11 @@ func reload_visual() -> void:
 	elif occupant:
 		set_texture_hex(hex_recruiter, occupant.texture)
 
-	hex_ground.modulate = Color.WHITE
-	hex_company.modulate = Color.WHITE
-	hex_recruiter.modulate = Color.WHITE
+	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_MODULATE
+	hex_ground.modulate = visibility_modulate
+	hex_company.modulate = visibility_modulate
+	hex_recruiter.modulate = visibility_modulate
+	outline.modulate = visibility_modulate
 
 func initialize(q : int, r : int, available_ressource : String = "Rien") -> void:
 	coordinate = Vector2i(q, r)

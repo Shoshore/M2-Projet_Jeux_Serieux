@@ -46,7 +46,8 @@ func create_unit(type: Create_unit_type) -> void:
 
 	_list_unities.push_back(unit)
 	tile.occupant = unit
-	tile.reload_visual()
+	tile.ceo = str(unit.compagny_id)
+	_map.refresh()
 
 
 func _init(id_unic: int, position_: Vector2i, map: Map) -> void:

@@ -33,5 +33,7 @@ func on_tile_clicked(tile: Tile) -> void:
 		if from_tile != null:
 			from_tile.occupant = null
 		tile.occupant = selected_unit
+		if selected_unit is Recruiter:
+			tile.ceo = str(selected_unit.compagny_id)
 	selected_unit = null
 	map.refresh()
