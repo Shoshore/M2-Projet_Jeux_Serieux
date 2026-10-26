@@ -22,3 +22,4 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Global="*uid://bs133ypi5cfrj"
+Random="*res://scripts/random.gd"

@@ -6,6 +6,7 @@ class_name Map
 
 var grid_size : int = 10
 var visibility_range: int = 1
+var recruitment_site_chance: float = 0.03
 var tiles_by_coord: Dictionary = {}
 var is_board_clickable = true
 
@@ -32,6 +33,7 @@ func generate_hex_grid(radius : int) -> void:
 			var t = Tile.new()
 			t.position = coords_to_pixel(q, r)
 			t.initialize(q, r)
+			t.is_recruitment_site = Random.randf() < clampf(recruitment_site_chance, 0.01, 0.05)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
 	return

@@ -12,6 +12,7 @@ var outline := Line2D.new()
 var coordinate : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
 var ceo : String = "Aucun"
+var is_recruitment_site: bool = false
 var is_visible_by_fog: bool = false
 var occupant: Unit = null
 var building: Building = null
@@ -28,7 +29,7 @@ func _ready() -> void:
 	outline.points = points
 	outline.closed = true
 	outline.width = 1.0
-	outline.default_color = Color(0, 0, 0, 0.35)
+	outline.default_color = Color(0, 0, 0, 0.15)
 	add_child(outline)
 
 	set_texture_hex(hex_ground, Visuals.GRASS)
@@ -76,7 +77,8 @@ func reload_visual() -> void:
 		set_texture_hex(hex_recruiter, occupant.texture)
 
 	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_MODULATE
-	hex_ground.modulate = visibility_modulate
+	var ground_modulate := Color(1.0, 0.1, 0.7) if is_recruitment_site else Color.WHITE
+	hex_ground.modulate = ground_modulate * visibility_modulate
 	hex_company.modulate = visibility_modulate
 	hex_recruiter.modulate = visibility_modulate
 	outline.modulate = visibility_modulate
@@ -89,7 +91,8 @@ func get_info() -> Dictionary:
 	return {
 		"coordinate": coordinate,
 		"ressource": ressource,
-		"ceo": ceo
+		"ceo": ceo,
+		"is_recruitment_site": is_recruitment_site
 	}
 
 
@@ -98,7 +101,8 @@ func get_info_text() -> String:
 		"Tuile %s\n"
 		+ "Ressource : %s\n"
 		+ "Propriétaire : %s\n"
-	) % [coordinate, ressource, ceo]
+		+ "Site de recrutement : %s\n"
+	) % [coordinate, ressource, ceo, "Oui" if is_recruitment_site else "Non"]
 
 
 func display_data() -> void:
