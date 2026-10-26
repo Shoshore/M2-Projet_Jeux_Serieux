@@ -7,6 +7,7 @@ class_name Map
 var grid_size : int = 10
 var visibility_range: int = 1
 var recruitment_site_chance: float = 0.03
+var biome_noise_frequency: float = 0.12
 var tiles_by_coord: Dictionary = {}
 var is_board_clickable = true
 
@@ -24,6 +25,10 @@ func _ready() -> void:
 # Génère une grille hexagonale régulière
 func generate_hex_grid(radius : int) -> void:
 	tiles_by_coord.clear()
+	var biome_noise := FastNoiseLite.new()
+	biome_noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	biome_noise.frequency = biome_noise_frequency
+	biome_noise.seed = Random.randi()
 	
 	for q in range(-radius, radius + 1):
 		var r_min : int = max(-radius, -q - radius)
@@ -33,10 +38,23 @@ func generate_hex_grid(radius : int) -> void:
 			var t = Tile.new()
 			t.position = coords_to_pixel(q, r)
 			t.initialize(q, r)
+			t.biome = _get_biome(biome_noise.get_noise_2d(q, r))
 			t.is_recruitment_site = Random.randf() < clampf(recruitment_site_chance, 0.01, 0.05)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
 	return
+
+
+func _get_biome(noise_value: float) -> Tile.Biome:
+	if noise_value < -0.35:
+		return Tile.Biome.ICE
+	if noise_value < -0.15:
+		return Tile.Biome.SNOW
+	if noise_value < 0.25:
+		return Tile.Biome.GRASS
+	if noise_value < 0.4:
+		return Tile.Biome.SAND
+	return Tile.Biome.RED_SAND
 
 
 

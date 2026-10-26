@@ -7,11 +7,21 @@ class_name Tile
 var hex_ground := Polygon2D.new()
 var hex_company := Polygon2D.new()
 var hex_recruiter := Polygon2D.new()
+var hex_recruitment_site := Polygon2D.new()
 var outline := Line2D.new()
+
+enum Biome {
+	GRASS,
+	SAND,
+	RED_SAND,
+	SNOW,
+	ICE
+}
 
 var coordinate : Vector2i = Vector2i.ZERO
 var ressource : String = "Rien"
 var ceo : String = "Aucun"
+var biome: Biome = Biome.GRASS
 var is_recruitment_site: bool = false
 var is_visible_by_fog: bool = false
 var occupant: Unit = null
@@ -22,7 +32,7 @@ const FOG_MODULATE := Color(0.16, 0.16, 0.2)
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
 
-	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter]:
+	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter, hex_recruitment_site]:
 		layer.polygon = points
 		add_child(layer)
 
@@ -35,6 +45,7 @@ func _ready() -> void:
 	set_texture_hex(hex_ground, Visuals.GRASS)
 	set_texture_hex(hex_company, Visuals.COMPANY)
 	set_texture_hex(hex_recruiter, Visuals.RECRUITER)
+	set_texture_hex(hex_recruitment_site, Visuals.RECRUITING_SITE)
 	reload_visual()
 
 static func hex_vertices(radius: float) -> PackedVector2Array:
@@ -68,8 +79,21 @@ func set_texture_hex(p: Polygon2D, tex: Texture2D) -> void:
 	p.uv = uvs
 	
 func reload_visual() -> void:
+	hex_ground.visible = true
 	hex_company.visible = building != null
 	hex_recruiter.visible = occupant != null
+	hex_recruitment_site.visible = is_recruitment_site
+	match biome:
+		Biome.GRASS:
+			set_texture_hex(hex_ground, Visuals.GRASS)
+		Biome.SAND:
+			set_texture_hex(hex_ground, Visuals.SAND)
+		Biome.RED_SAND:
+			set_texture_hex(hex_ground, Visuals.RED_SAND)
+		Biome.SNOW:
+			set_texture_hex(hex_ground, Visuals.SNOW)
+		Biome.ICE:
+			set_texture_hex(hex_ground, Visuals.ICE)
 
 	if building:
 		set_texture_hex(hex_company, building.texture)
@@ -77,10 +101,10 @@ func reload_visual() -> void:
 		set_texture_hex(hex_recruiter, occupant.texture)
 
 	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_MODULATE
-	var ground_modulate := Color(1.0, 0.1, 0.7) if is_recruitment_site else Color.WHITE
-	hex_ground.modulate = ground_modulate * visibility_modulate
+	hex_ground.modulate = visibility_modulate
 	hex_company.modulate = visibility_modulate
 	hex_recruiter.modulate = visibility_modulate
+	hex_recruitment_site.modulate = visibility_modulate
 	outline.modulate = visibility_modulate
 
 func initialize(q : int, r : int, available_ressource : String = "Rien") -> void:
@@ -92,6 +116,7 @@ func get_info() -> Dictionary:
 		"coordinate": coordinate,
 		"ressource": ressource,
 		"ceo": ceo,
+		"biome": Biome.keys()[biome],
 		"is_recruitment_site": is_recruitment_site
 	}
 
@@ -99,10 +124,11 @@ func get_info() -> Dictionary:
 func get_info_text() -> String:
 	return (
 		"Tuile %s\n"
+		+ "Biome : %s\n"
 		+ "Ressource : %s\n"
 		+ "Propriétaire : %s\n"
 		+ "Site de recrutement : %s\n"
-	) % [coordinate, ressource, ceo, "Oui" if is_recruitment_site else "Non"]
+	) % [coordinate, Biome.keys()[biome], ressource, ceo, "Oui" if is_recruitment_site else "Non"]
 
 
 func display_data() -> void:

@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b35fq6whsv6wn"
-valid=false
+path="res://.godot/imported/red_sand.png-77aa36525a9ca06c6fa1c271b756455f.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/red_sand.png"
+dest_files=["res://.godot/imported/red_sand.png-77aa36525a9ca06c6fa1c271b756455f.ctex"]
 
 [params]
 
