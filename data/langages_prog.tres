@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dr2inym886ca6"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_b21a1"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_ffrip"]
+[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/origin.tres" id="3_ffrip"]
+
+[resource]
+script = ExtResource("2_ffrip")
+id = "langages_prog"
+name = "Langages de programmation"
+description = "- Impératif / Procédural : Le programme décrit une suite d'instructions étape par étape pour modifier l'état des données (C, Python, JavaScript).
+- Orienté Objet (POO) : Le code est organisé autour d'« objets » qui combinent données et actions (C#, C++, Java)
+- Fonctionnel : Le programme repose sur l'évaluation de fonctions mathématiques pures, sans modifier d'états partagés (OCaml)
+- Logique : Fondé sur des faits, des règles et des inférences (Prolog)"
+requierment = Array[ExtResource("2_ffrip")]([ExtResource("3_ffrip")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

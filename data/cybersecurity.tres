@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://cxgj4ihsfx0hc"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_di5km"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_3ubqu"]
+[ext_resource type="Resource" uid="uid://dbpxffe3liskf" path="res://data/reseaux.tres" id="3_3ubqu"]
+
+[resource]
+script = ExtResource("2_3ubqu")
+id = "cybersecurity"
+name = "Cybersécurité"
+description = "Surveiller en permanence les attaques et tester ses propres défenses"
+requierment = Array[ExtResource("2_3ubqu")]([ExtResource("3_3ubqu")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

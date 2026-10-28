@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://kvpm7kewouyc"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_eb4ik"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_cgvwa"]
+[ext_resource type="Resource" uid="uid://ce0xamvrdxon6" path="res://data/fayolism.tres" id="3_cgvwa"]
+
+[resource]
+script = ExtResource("2_cgvwa")
+id = "taylorism"
+name = "Taylorisme"
+description = "Dans un monde où la division du travail est déjà la norme, pour obtenir des conditions propres à fournir le rendement maximum dans le cadre d'une organisation, le taylorisme préconise :
+- une analyse détaillée et rigoureuse — d'où l'accent mis sur le qualificatif de « scientifique » — des modes et techniques de production (gestes, rythmes, cadences, etc.) ;
+- l'établissement de la « meilleure façon » (the one best way) de produire (définition, délimitation et séquençage des tâches) ;
+- la fixation de conditions de rémunération plus objectives et motivantes."
+requierment = Array[ExtResource("2_cgvwa")]([ExtResource("3_cgvwa")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

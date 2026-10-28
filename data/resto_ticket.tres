@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://djuiuvq2edyd6"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_wqb6y"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_w3yis"]
+[ext_resource type="Resource" uid="uid://cw7b5puqsti0q" path="res://data/break_room.tres" id="3_w3yis"]
+
+[resource]
+script = ExtResource("2_w3yis")
+id = "resto_ticket"
+name = "Ticket restaurant"
+description = "Augmente le mood des employés"
+requierment = Array[ExtResource("2_w3yis")]([ExtResource("3_w3yis")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

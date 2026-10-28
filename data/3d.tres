@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c6jblen7l5wn7"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_yn8uq"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_h3qln"]
+[ext_resource type="Resource" uid="uid://dy386mterott5" path="res://data/info_graphics.tres" id="3_h3qln"]
+
+[resource]
+script = ExtResource("2_h3qln")
+id = "3d"
+name = "3D"
+description = "Domaine 3D"
+requierment = Array[ExtResource("2_h3qln")]([ExtResource("3_h3qln")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

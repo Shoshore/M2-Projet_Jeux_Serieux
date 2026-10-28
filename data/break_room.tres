@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://cw7b5puqsti0q"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_52gxm"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_gib2i"]
+[ext_resource type="Resource" uid="uid://coqd4xyccsesm" path="res://data/confort.tres" id="3_gib2i"]
+
+[resource]
+script = ExtResource("2_gib2i")
+id = "break_room"
+name = "Salle de repos"
+description = "ZZZZZZZZZZzzzzzzzzzzzz....."
+requierment = Array[ExtResource("2_gib2i")]([ExtResource("3_gib2i")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

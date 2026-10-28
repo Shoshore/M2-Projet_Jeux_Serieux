@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://w8nmrn6j81o1"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_4ospx"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_h5irr"]
+[ext_resource type="Resource" uid="uid://kvpm7kewouyc" path="res://data/taylorism.tres" id="3_h5irr"]
+
+[resource]
+script = ExtResource("2_h5irr")
+id = "fordism"
+name = "Fordisme"
+description = "Le but de ce développement de l'entreprise est d'accroître la productivité (quantité de pièces produites par ouvrier) et la production de l'entreprise grâce à plusieurs principes :
+
+- la division du travail en une division verticale (séparation entre conception et réalisation) et en une division horizontale (parcellisation des tâches) reprises du taylorisme, et l'apparition de la ligne de montage (et donc du travail à la chaîne) afin de supprimer les temps de trajet entre différentes tâches ;
+- la standardisation permettant de produire en grandes séries, et à des coûts bas, à l'aide de pièces interchangeables ;
+- l'augmentation du salaire des ouvriers (5 dollars / jour contre 2 à 3 auparavant), afin de stimuler la demande de biens et donc d'augmenter la consommation, grâce à la hausse du pouvoir d'achat qui en résulte. Mais cette augmentation des salaires avait officieusement pour but de lutter contre le taux de roulement (démission des ouvriers) devenu de plus en plus élevé avec l'apparition du travail à la chaîne, qui rendait les conditions de vie des ouvriers encore plus difficiles qu'auparavant.
+
+De plus, Henri Ford lui même énonce que si les ouvriers étaient mieux payés, ils seraient « exempts de préoccupation étrangère au travail, et donc plus industrieux, par conséquent, plus productifs »et moins démotivés."
+requierment = Array[ExtResource("2_h5irr")]([ExtResource("3_h5irr")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

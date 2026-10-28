@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bt3bff4yj7h5g"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ul5v0"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_2yh0k"]
+[ext_resource type="Resource" uid="uid://cxgj4ihsfx0hc" path="res://data/cybersecurity.tres" id="3_2yh0k"]
+
+[resource]
+script = ExtResource("2_2yh0k")
+id = "cyber_defense"
+name = "Défense"
+description = "Améliore la défense de votre entreprise."
+requierment = Array[ExtResource("2_2yh0k")]([ExtResource("3_2yh0k")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

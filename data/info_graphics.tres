@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dy386mterott5"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_y10ri"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_ss6r0"]
+[ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="3_ss6r0"]
+
+[resource]
+script = ExtResource("2_ss6r0")
+id = "info_graphics"
+name = "Informatique graphique"
+description = "L’informatique graphique est un domaine en constante évolution de l’informatique, axé sur la modélisation mathématique et la simulation du monde tridimensionnel. Elle combine des principes de physique, de géométrie et de calcul numérique pour atteindre à la fois un réalisme physique et une efficacité computationnelle. Depuis longtemps, l’informatique graphique joue un rôle fondamental dans la création de contenus visuels pour le cinéma, les jeux vidéo et les environnements virtuels."
+requierment = Array[ExtResource("2_ss6r0")]([ExtResource("3_ss6r0")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

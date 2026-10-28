@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://db58cau5feyw1"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_6w0i2"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_kg5qp"]
+[ext_resource type="Resource" uid="uid://w8nmrn6j81o1" path="res://data/fordism.tres" id="3_kg5qp"]
+
+[resource]
+script = ExtResource("2_kg5qp")
+id = "post_fordism"
+name = "Post-Fordisme"
+description = "Le post-fordisme est caractérisé par les attributs suivants s:
+
+- Production en petits lots
+- Économies d'envergure
+- Produits spécialisés et emplois
+- Nouvelles technologies de l'information
+- Accent sur les types de consommateurs contrairement aux précédent accent sur la classe sociale
+- La montée du service et le col blanc
+- La féminisation de la force de travail"
+requierment = Array[ExtResource("2_kg5qp")]([ExtResource("3_kg5qp")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

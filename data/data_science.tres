@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://crkauxe4vjicx"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ih6t1"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_56ouo"]
+[ext_resource type="Resource" uid="uid://c7qamk5vhafe0" path="res://data/database.tres" id="3_56ouo"]
+
+[resource]
+script = ExtResource("2_56ouo")
+id = "data_science"
+name = "Data Science"
+description = "Étudier les données pour prendre de meilleures décisions.
+
+On comprend mieux ses clients et on repère les tendances."
+requierment = Array[ExtResource("2_56ouo")]([ExtResource("3_56ouo")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://ce0xamvrdxon6"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_wbnjf"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_qk3yr"]
+[ext_resource type="Resource" uid="uid://bf7h7ki1jclcw" path="res://data/company_managment.tres" id="3_en13e"]
+
+[resource]
+script = ExtResource("2_qk3yr")
+id = "fayolism"
+name = "Fayolisme"
+description = "Henri Fayol divise l'activité de toute entreprise industrielle ou commerciale en six catégories essentielles :
+- Techniques (production, fabrication, transformation)
+- Commerciales (achats, ventes, échanges)
+- Financières (recherche et gestion optimale des capitaux)
+- De sécurité (protection des biens et des personnes)
+- Comptables (inventaires, bilans, calcul des prix de revient)
+- Administratives (prévoir, organiser, commander, coordonner, contrôler)"
+requierment = Array[ExtResource("2_qk3yr")]([ExtResource("3_en13e")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

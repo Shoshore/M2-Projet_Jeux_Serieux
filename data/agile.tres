@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c5snq8pxddvbd"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_strr3"]
+[ext_resource type="Texture2D" uid="uid://chmpirun0o1kb" path="res://assets/agile.png" id="2_pooy8"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_q102j"]
+[ext_resource type="Resource" uid="uid://bf7h7ki1jclcw" path="res://data/company_managment.tres" id="4_a3awv"]
+
+[resource]
+script = ExtResource("2_q102j")
+id = "agile"
+name = "Méthode AGILE"
+description = "En ingénierie logicielle, les pratiques agiles mettent en avant la collaboration entre des équipes auto-organisées et pluridisciplinaires et leurs clients. Elles s'appuient sur l'utilisation d'un cadre méthodologique léger mais suffisamment centré sur l'humain et la communication. Elles préconisent une planification adaptative, un développement évolutif, une livraison précoce et une amélioration continue, et elles encouragent des réponses flexibles au changement."
+icone = ExtResource("2_pooy8")
+requierment = Array[ExtResource("2_q102j")]([ExtResource("4_a3awv")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

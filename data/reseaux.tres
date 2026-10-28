@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dbpxffe3liskf"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_w7cqe"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_sdg5w"]
+[ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="3_sdg5w"]
+
+[resource]
+script = ExtResource("2_sdg5w")
+id = "reseaux"
+name = "Réseaux"
+description = "Améliore les communications"
+requierment = Array[ExtResource("2_sdg5w")]([ExtResource("3_sdg5w")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"

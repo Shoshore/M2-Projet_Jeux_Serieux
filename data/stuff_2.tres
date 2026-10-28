@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://blkht73d5bgkh"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_pq88x"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_gh337"]
+[ext_resource type="Resource" uid="uid://d0dui00rngd1r" path="res://data/stuff_1.tres" id="3_gh337"]
+
+[resource]
+script = ExtResource("2_gh337")
+id = "stuff_2"
+name = "Amélioration mobilier 2"
+description = "Amélioration mobilier 2"
+requierment = Array[ExtResource("2_gh337")]([ExtResource("3_gh337")])
+metadata/_custom_type_script = "uid://jfrest3lsltq"
