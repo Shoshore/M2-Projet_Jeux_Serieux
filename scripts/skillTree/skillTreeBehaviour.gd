@@ -11,56 +11,43 @@ var unlocked: Array[StringName] = []
 
 # Visuels
 var lineWidth = 10.0
-var colorLineOrigin = Color.WEB_GRAY
-var colorLineTech1 = Color.WEB_GRAY
-var colorLineTech2 = Color.WEB_GRAY
-var colorLineTech3 = Color.WEB_GRAY
-var colorLineHuman1 = Color.WEB_GRAY
-var colorLineHuman2 = Color.WEB_GRAY
-var colorLineHuman3 = Color.WEB_GRAY
+var colorLineLocked = Color.WEB_GRAY
+var colorLineUnlocked = Color.GOLDENROD
 const lock_text = "Débloquer"
 const unlock_text = "Acquis"
 
-# Compétences technologies
-@onready var button_tech_1: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button
-@onready var button_tech_2: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button2
-@onready var button_tech_3: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button3
-@onready var button_tech_4: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer/Button4
-
-# Compétences humaines
-@onready var button_human_1: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button
-@onready var button_human_2: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button2
-@onready var button_human_3: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button3
-@onready var button_human_4: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2/Button4
+# Boutons de l'arbre rangés par id de compétence, rempli dans _ready
+var buttons_by_id: Dictionary[String, Button] = {}
 
 # Origine de l'arbre
-@onready var button_origin: Button = $HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer2/ButtonOrigin
+@onready var button_origin: Button = $HBoxContainer/SkillTree/VBoxContainer/ORIGIN/ButtonOrigin
 
 # Bouton de changement vers le plateau/arbre
 @onready var tree_button: Button = $"../TreeButton"
 
 # Affichage des compétences
-@onready var skill_name: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer/SkillName
-@onready var skill_icon: TextureRect = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
-@onready var skill_description: Label = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
-@onready var unlock_button: Button = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton
-@onready var audio_click: AudioStreamPlayer2D = $HBoxContainer/HBoxContainerInfos/VBoxContainerInfos/UnlockButton/AudioClick
+@onready var skill_name: Label = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
+@onready var skill_icon: TextureRect = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
+@onready var skill_description: Label = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
+@onready var unlock_button: Button = $HBoxContainer/SkillInfos/VBoxContainerInfos/UnlockButton
+@onready var audio_click: AudioStreamPlayer2D = $HBoxContainer/SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
 
+# Dernier bouton sélectionné, si vide aucun bouton sélectionné
 var last_click = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	resized.connect(queue_redraw)
-	# On redessine les lignes une fois que les boutons sont bien placé
-	$HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer.sort_children.connect(queue_redraw)
-	$HBoxContainer/HBoxContainerSkillTree/VBoxContainer/HBoxContainer/VBoxContainer2.sort_children.connect(queue_redraw)
-	
+
 	# Connexion des boutons aux signaux mouse entered/exited
 	for button in button_origin.button_group.get_buttons():
+		buttons_by_id[button.skill.id] = button
 		button.mouse_entered.connect(_on_buttons_entered.bind(button))
 		button.mouse_exited.connect(_on_buttons_exited)
 		button.toggled.connect(_on_skill_button_toggled.bind(button))
+		# On redessine les lignes dès qu'un bouton bouge (placement par les conteneurs)
+		button.item_rect_changed.connect(queue_redraw)
 
 
 
@@ -88,15 +75,16 @@ func unlock(s: Skill) -> void:
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
 
+# Trace une ligne entre chaque bouton et les boutons de ses prérequis.
+# La ligne devient dorée quand le prérequis est débloqué.
 func _draw() -> void:
-	draw_line(buttonCenter(button_origin), buttonCenter(button_human_1), colorLineOrigin, lineWidth)
-	draw_line(buttonCenter(button_origin), buttonCenter(button_tech_1), colorLineOrigin, lineWidth)
-	draw_line(buttonCenter(button_tech_1), buttonCenter(button_tech_2), colorLineTech1, lineWidth)
-	draw_line(buttonCenter(button_tech_2), buttonCenter(button_tech_3), colorLineTech2, lineWidth)
-	draw_line(buttonCenter(button_tech_3), buttonCenter(button_tech_4), colorLineTech3, lineWidth)
-	draw_line(buttonCenter(button_human_1), buttonCenter(button_human_2), colorLineHuman1, lineWidth)
-	draw_line(buttonCenter(button_human_2), buttonCenter(button_human_3), colorLineHuman2, lineWidth)
-	draw_line(buttonCenter(button_human_3), buttonCenter(button_human_4), colorLineHuman3, lineWidth)
+	for button in buttons_by_id.values():
+		for requirement in button.skill.requierment:
+			# Prérequis sans bouton dans la scène (ex : IA) : pas de ligne
+			if requirement.id not in buttons_by_id:
+				continue
+			var color = colorLineUnlocked if requirement.id in unlocked else colorLineLocked
+			draw_line(buttonCenter(buttons_by_id[requirement.id]), buttonCenter(button), color, lineWidth)
 
 # Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
@@ -135,21 +123,7 @@ func _on_unlock_button_pressed() -> void:
 	unlock(skill)
 	unlock_button.disabled = true
 	unlock_button.text = unlock_text
-	match skill.id:
-		"origin":
-			colorLineOrigin = Color.GOLDENROD
-		"tech_1":
-			colorLineTech1 = Color.GOLDENROD
-		"tech_2":
-			colorLineTech2 = Color.GOLDENROD
-		"tech_3":
-			colorLineTech3 = Color.GOLDENROD
-		"human_1":
-			colorLineHuman1 = Color.GOLDENROD
-		"human_2":
-			colorLineHuman2 = Color.GOLDENROD
-		"human_3":
-			colorLineHuman3 = Color.GOLDENROD
+	# _draw() colore en doré les lignes qui partent de la compétence débloquée
 	queue_redraw()
 
 # Affichage des compétences quand aucune n'est sélectionné

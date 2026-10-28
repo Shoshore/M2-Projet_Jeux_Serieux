@@ -5,4 +5,3 @@ extends Button
 func _ready() -> void:
 	if skill:
 		text = skill.name
-		tooltip_text = skill.description
