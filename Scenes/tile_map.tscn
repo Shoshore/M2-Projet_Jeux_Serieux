@@ -42,6 +42,13 @@ script = ExtResource("2_1n30v")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1684117705]
 
+[node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
+visible = false
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 2.0
+offset_bottom = 4.0
+
 [node name="Control" type="Control" parent="HUD" unique_id=1631286862]
 layout_mode = 3
 anchors_preset = 0
@@ -75,13 +82,6 @@ icon = SubResource("MeshTexture_rlxc1")
 [node name="AudioClick" type="AudioStreamPlayer2D" parent="HUD/Control/End_turn_button" unique_id=2123704296]
 stream = ExtResource("6_6mpdi")
 volume_db = 12.0
-
-[node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
-visible = false
-offset_left = 2.0
-offset_top = 4.0
-offset_right = 2.0
-offset_bottom = 1.0
 
 [node name="TreeButton" type="Button" parent="HUD" unique_id=451374236]
 offset_left = 8.0
