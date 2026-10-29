@@ -7,15 +7,20 @@
 
 [sub_resource type="Resource" id="Resource_m8owj"]
 script = ExtResource("1_wofmb")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.21
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_56ouo")
 id = "data_science"
 name = "Data Science"
-description = "Étudier les données pour prendre de meilleures décisions.
+description = "La science des données est un domaine interdisciplinaire qui utilise les statistiques, le calcul scientifique, les méthodes scientifiques, les algorithmes et les systèmes informatiques automatisés pour extraire et extrapoler des connaissances à partir de grandes quantités de données brutes, structurées ou non.
 
-On comprend mieux ses clients et on repère les tendances."
+Étudier ces données permet de prendre de meilleures décisions.
+
+On comprend donc mieux ses clients et on repère mieux les tendances."
 requierment = Array[ExtResource("2_56ouo")]([ExtResource("3_56ouo")])
 conditions = SubResource("Resource_m8owj")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

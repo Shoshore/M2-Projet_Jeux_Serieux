@@ -7,13 +7,16 @@
 
 [sub_resource type="Resource" id="Resource_446qw"]
 script = ExtResource("1_a7dnq")
+number_researcher = 1
+funds = 15
+boost_turnover = 0.66
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_3ubqu")
 id = "cybersecurity"
 name = "Cybersécurité"
-description = "Surveiller en permanence les attaques et tester ses propres défenses"
+description = "La cybersécurité est l'ensemble des lois, politiques, outils, dispositifs, concepts et mécanismes de sécurité, méthodes de gestion des risques, actions, formations, bonnes pratiques et technologies qui peuvent être utilisés pour protéger les personnes et les actifs informatiques matériels et immatériels des États et des organisations, dans un objectif de disponibilité, intégrité et authenticité, confidentialité, preuve et non-répudiation."
 requierment = Array[ExtResource("2_3ubqu")]([ExtResource("3_3ubqu")])
 conditions = SubResource("Resource_446qw")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

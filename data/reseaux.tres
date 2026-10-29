@@ -7,13 +7,20 @@
 
 [sub_resource type="Resource" id="Resource_b2058"]
 script = ExtResource("1_5v6yu")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.79
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_sdg5w")
 id = "reseaux"
 name = "Réseaux"
-description = "Améliore les communications"
+description = "Un réseau informatique relie plusieurs machines pour qu'elles échangent des données. On distingue le réseau local (LAN), qui couvre un bâtiment, du réseau étendu (WAN), qui relie des sites éloignés. Internet est le plus grand de tous.
+
+Cette technologie va permettre à vos employés de partager fichiers, imprimantes et connexion Internet, et de communiquer instantanément, même depuis des bureaux différents. Le travail circule ainsi beaucoup plus vite dans l'entreprise.
+
+Mais une entreprise connectée est aussi une entreprise exposée : il faudra penser à la protéger."
 requierment = Array[ExtResource("2_sdg5w")]([ExtResource("3_sdg5w")])
 conditions = SubResource("Resource_b2058")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -7,13 +7,20 @@
 
 [sub_resource type="Resource" id="Resource_iild1"]
 script = ExtResource("1_6om8g")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.01
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_3isgg")
 id = "cyber_attack"
 name = "Attaque"
-description = "Améliore les attaques de votre entreprise."
+description = "Une cyberattaque est un acte offensif envers un dispositif informatique à travers un réseau cybernétique. Une cyberattaque peut émaner de personnes isolées ou d'un groupe de pirates informatiques, éventuellement étatique.
+
+Une cyberattaque est presque systématiquement malveillante, mais peut s'inscrire dans une approche éthique, lorsqu'elle a pour seul but de mettre en évidence une faille de sécurité.
+
+Améliore les attaques de votre entreprise."
 requierment = Array[ExtResource("2_3isgg")]([ExtResource("3_3isgg")])
 conditions = SubResource("Resource_iild1")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

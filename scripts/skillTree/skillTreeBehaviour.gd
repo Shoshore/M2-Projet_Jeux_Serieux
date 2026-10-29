@@ -76,9 +76,39 @@ func is_conditions_filled(s: Skill) -> bool:
 		return false
 	if company._boost_mood < s.conditions.boost_mood:
 		return false
-	if company._mood_threshold < s.conditions.mood_threshold:
-		return false
 	return true
+
+func display_conditions(s: Skill) -> String:
+	var text := ""
+	if s.conditions.number_developer > 0:
+		text += "Number Developer > "
+		text += str(s.conditions.number_developer)
+		text += "\n"  
+	if s.conditions.number_researcher > 0:
+		text += "Number Researcher > "
+		text += str(s.conditions.number_researcher)
+		text += "\n"  
+	if s.conditions.number_recruiter > 0:
+		text += "Number Recruiter > "
+		text += str(s.conditions.number_recruiter)
+		text += "\n"  
+	if s.conditions.funds > 0:
+		text += "Funds > "
+		text += str(s.conditions.funds)
+		text += "\n"  
+	if s.conditions.boost_turnover > 0:
+		text += "Boost Turnover > "
+		text += str(s.conditions.boost_turnover)
+		text += "\n"  
+	if s.conditions.mood_gauge > 0:
+		text += "Mood gauge > "
+		text += str(s.conditions.mood_gauge)
+		text += "\n"  
+	if s.conditions.boost_mood > 0:
+		text += "Boost mood > "
+		text += str(s.conditions.boost_mood)
+		text += "\n"  
+	return text
 
 func can_unlock_skill(s: Skill) -> bool :
 	# Si la compétence est déjà débloqué on la débloque pas
@@ -117,7 +147,7 @@ func _draw() -> void:
 # Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
 	skill_name.text = skill.name
-	skill_description.text = skill.description
+	skill_description.text = display_conditions(skill) + "--------------------\n" + skill.description
 	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text
 	else:
@@ -171,7 +201,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			if skill_tree.scale < Vector2(2,2):
 				skill_tree.scale += Vector2(ZOOM_VALUE,ZOOM_VALUE)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			if skill_tree.scale > Vector2(0.5,0.5):
+			if skill_tree.scale > Vector2(0.4,0.4):
 				skill_tree.scale -= Vector2(ZOOM_VALUE,ZOOM_VALUE)
 	elif event is InputEventMouseMotion and is_dragging:
 		skill_tree.position += event.relative

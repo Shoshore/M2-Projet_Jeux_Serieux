@@ -29,8 +29,9 @@
 [ext_resource type="Resource" uid="uid://blkht73d5bgkh" path="res://data/stuff_2.tres" id="27_hi7ky"]
 [ext_resource type="Resource" uid="uid://b0j4ikvd8k562" path="res://data/stuff_3.tres" id="28_ke6dd"]
 [ext_resource type="Resource" uid="uid://kvpm7kewouyc" path="res://data/taylorism.tres" id="29_5akyu"]
+[ext_resource type="Resource" uid="uid://c8ovtgymqctlo" path="res://data/paradigme.tres" id="30_gfh30"]
 
 [resource]
 script = ExtResource("1_rplw0")
-skills = Array[ExtResource("2_68cpy")]([ExtResource("3_68cpy"), ExtResource("4_3kagt"), ExtResource("5_gfh30"), ExtResource("6_beypx"), ExtResource("7_u5vm7"), ExtResource("8_ddelq"), ExtResource("9_mxgpt"), ExtResource("10_n6401"), ExtResource("11_2p31y"), ExtResource("12_k5ur6"), ExtResource("13_gfiam"), ExtResource("14_d2ch7"), ExtResource("15_2fivr"), ExtResource("16_7wcvs"), ExtResource("17_s8mpi"), ExtResource("18_fsq33"), ExtResource("19_e1ioi"), ExtResource("20_8l0eg"), ExtResource("21_rjmdl"), ExtResource("22_hsdee"), ExtResource("23_ugttt"), ExtResource("24_s1ixj"), ExtResource("25_81tsj"), ExtResource("26_kjyfw"), ExtResource("27_hi7ky"), ExtResource("28_ke6dd"), ExtResource("29_5akyu")])
+skills = Array[ExtResource("2_68cpy")]([ExtResource("3_68cpy"), ExtResource("4_3kagt"), ExtResource("5_gfh30"), ExtResource("6_beypx"), ExtResource("7_u5vm7"), ExtResource("8_ddelq"), ExtResource("9_mxgpt"), ExtResource("10_n6401"), ExtResource("11_2p31y"), ExtResource("12_k5ur6"), ExtResource("13_gfiam"), ExtResource("14_d2ch7"), ExtResource("15_2fivr"), ExtResource("16_7wcvs"), ExtResource("17_s8mpi"), ExtResource("18_fsq33"), ExtResource("19_e1ioi"), ExtResource("20_8l0eg"), ExtResource("21_rjmdl"), ExtResource("22_hsdee"), ExtResource("23_ugttt"), ExtResource("24_s1ixj"), ExtResource("25_81tsj"), ExtResource("26_kjyfw"), ExtResource("27_hi7ky"), ExtResource("28_ke6dd"), ExtResource("29_5akyu"), ExtResource("30_gfh30")])
 metadata/_custom_type_script = "uid://2kyoyl4n3mnd"

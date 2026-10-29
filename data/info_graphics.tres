@@ -7,13 +7,18 @@
 
 [sub_resource type="Resource" id="Resource_an2ig"]
 script = ExtResource("1_lcoy4")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.55
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_ss6r0")
 id = "info_graphics"
 name = "Informatique graphique"
-description = "L’informatique graphique est un domaine en constante évolution de l’informatique, axé sur la modélisation mathématique et la simulation du monde tridimensionnel. Elle combine des principes de physique, de géométrie et de calcul numérique pour atteindre à la fois un réalisme physique et une efficacité computationnelle. Depuis longtemps, l’informatique graphique joue un rôle fondamental dans la création de contenus visuels pour le cinéma, les jeux vidéo et les environnements virtuels."
+description = "L’informatique graphique est un domaine en constante évolution de l’informatique, axé sur la modélisation mathématique et la simulation du monde tridimensionnel. Elle combine des principes de physique, de géométrie et de calcul numérique pour atteindre à la fois un réalisme physique et une efficacité computationnelle. Depuis longtemps, l’informatique graphique joue un rôle fondamental dans la création de contenus visuels pour le cinéma, les jeux vidéo et les environnements virtuels.
+
+L'entreprise créer désormais des logiciels avec de bien meilleurs interfaces utilisateurs et environnement graphiques."
 requierment = Array[ExtResource("2_ss6r0")]([ExtResource("3_ss6r0")])
 conditions = SubResource("Resource_an2ig")
 metadata/_custom_type_script = "uid://jfrest3lsltq"
