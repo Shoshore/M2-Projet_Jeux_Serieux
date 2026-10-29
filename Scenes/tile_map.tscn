@@ -78,10 +78,10 @@ volume_db = 12.0
 
 [node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
 visible = false
-offset_left = -684.0
-offset_top = 13.0
-offset_right = -127.0
-offset_bottom = -19.0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 2.0
+offset_bottom = 1.0
 
 [node name="TreeButton" type="Button" parent="HUD" unique_id=451374236]
 offset_left = 8.0
