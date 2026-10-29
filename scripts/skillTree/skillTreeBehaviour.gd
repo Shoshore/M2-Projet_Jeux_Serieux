@@ -19,18 +19,24 @@ const unlock_text = "Acquis"
 # Boutons de l'arbre rangés par id de compétence, rempli dans _ready
 var buttons_by_id: Dictionary[String, Button] = {}
 
+# Arbre de compétence complet
+@onready var skill_tree: HBoxContainer = $SkillTree
+var is_dragging := false
+const ZOOM_VALUE := 0.01
+
 # Origine de l'arbre
-@onready var button_origin: Button = $HBoxContainer/SkillTree/VBoxContainer/ORIGIN/ButtonOrigin
+@onready var button_origin: Button = $SkillTree/VBoxContainer/ORIGIN/ButtonOrigin
 
 # Bouton de changement vers le plateau/arbre
 @onready var tree_button: Button = $"../TreeButton"
 
 # Affichage des compétences
-@onready var skill_name: Label = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
-@onready var skill_icon: TextureRect = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
-@onready var skill_description: Label = $HBoxContainer/SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
-@onready var unlock_button: Button = $HBoxContainer/SkillInfos/VBoxContainerInfos/UnlockButton
-@onready var audio_click: AudioStreamPlayer2D = $HBoxContainer/SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
+
+@onready var skill_name: Label = $SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
+@onready var skill_icon: TextureRect = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
+@onready var skill_description: Label = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
+@onready var unlock_button: Button = $SkillInfos/VBoxContainerInfos/UnlockButton
+@onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
 
 # Dernier bouton sélectionné, si vide aucun bouton sélectionné
@@ -39,7 +45,8 @@ var last_click = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	resized.connect(queue_redraw)
-
+	# Pour centrer le zoom
+	skill_tree.pivot_offset = skill_tree.size / 2
 	# Connexion des boutons aux signaux mouse entered/exited
 	for button in button_origin.button_group.get_buttons():
 		buttons_by_id[button.skill.id] = button
@@ -50,10 +57,9 @@ func _ready() -> void:
 		button.item_rect_changed.connect(queue_redraw)
 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	queue_redraw() # Les liens entre skills sont conservé durant les déplacements
 
 func can_unlock_skill(s: Skill) -> bool :
 	# Si la compétence est déjà débloqué on la débloque pas
@@ -137,6 +143,18 @@ func _on_buttons_exited() -> void:
 
 # Déselectionne une compétence en cliquant n'importe où ailleurs
 func _on_gui_input(event: InputEvent) -> void:
+	# Gestion du zoom et déplacement de l'arbre
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_dragging = event.pressed # Mode déplacement
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			skill_tree.scale += Vector2(ZOOM_VALUE,ZOOM_VALUE)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			skill_tree.scale -= Vector2(ZOOM_VALUE,ZOOM_VALUE)
+	elif event is InputEventMouseMotion and is_dragging:
+		skill_tree.position += event.relative
+	
+	# Gestion du clic hors compétences
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		# Relache le dernier bouton enfoncé
 		var pressed_button := button_origin.button_group.get_pressed_button()
