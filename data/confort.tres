@@ -1,8 +1,13 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://coqd4xyccsesm"]
 
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_6q7dl"]
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_ueh0o"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_rgm6a"]
 [ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/origin.tres" id="3_rgm6a"]
+
+[sub_resource type="Resource" id="Resource_jxqpc"]
+script = ExtResource("1_ueh0o")
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_rgm6a")
@@ -10,4 +15,5 @@ id = "confort"
 name = "Confort dans l'entreprise"
 description = "Bonheur des employés + améliorations des biens"
 requierment = Array[ExtResource("2_rgm6a")]([ExtResource("3_rgm6a")])
+conditions = SubResource("Resource_jxqpc")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

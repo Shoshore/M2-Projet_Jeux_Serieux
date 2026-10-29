@@ -1,8 +1,13 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://b0j4ikvd8k562"]
 
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_libgm"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_oxwe4"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_63wr5"]
 [ext_resource type="Resource" uid="uid://blkht73d5bgkh" path="res://data/stuff_2.tres" id="3_63wr5"]
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_libgm")
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [resource]
 script = ExtResource("2_63wr5")
@@ -10,4 +15,5 @@ id = "stuff_3"
 name = "Amélioration mobilier 3"
 description = "Amélioration mobilier 3"
 requierment = Array[ExtResource("2_63wr5")]([ExtResource("3_63wr5")])
+conditions = SubResource("Resource_14dii")
 metadata/_custom_type_script = "uid://jfrest3lsltq"
