@@ -22,7 +22,7 @@ var buttons_by_id: Dictionary[String, Button] = {}
 # Arbre de compétence complet
 @onready var skill_tree: HBoxContainer = $SkillTree
 var is_dragging := false
-const ZOOM_VALUE := 0.01
+const ZOOM_VALUE := 0.05
 
 # Origine de l'arbre
 @onready var button_origin: Button = $SkillTree/VBoxContainer/ORIGIN/ButtonOrigin
@@ -31,13 +31,14 @@ const ZOOM_VALUE := 0.01
 @onready var tree_button: Button = $"../TreeButton"
 
 # Affichage des compétences
-
 @onready var skill_name: Label = $SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
 @onready var skill_icon: TextureRect = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
 @onready var skill_description: Label = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
 @onready var unlock_button: Button = $SkillInfos/VBoxContainerInfos/UnlockButton
 @onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
+
+var company: Company = null
 
 # Dernier bouton sélectionné, si vide aucun bouton sélectionné
 var last_click = ""
@@ -56,10 +57,28 @@ func _ready() -> void:
 		# On redessine les lignes dès qu'un bouton bouge (placement par les conteneurs)
 		button.item_rect_changed.connect(queue_redraw)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw() # Les liens entre skills sont conservé durant les déplacements
+
+func is_conditions_filled(s: Skill) -> bool:
+	if company._number_developer < s.conditions.number_developer:
+		return false 
+	if company._number_researcher < s.conditions.number_researcher:
+		return false
+	if company._number_recruiter < s.conditions.number_recruiter:
+		return false
+	if company._funds < s.conditions.funds:
+		return false
+	if company._boost_turnover < s.conditions.boost_turnover:
+		return false
+	if company._mood_gauge < s.conditions.mood_gauge:
+		return false
+	if company._boost_mood < s.conditions.boost_mood:
+		return false
+	if company._mood_threshold < s.conditions.mood_threshold:
+		return false
+	return true
 
 func can_unlock_skill(s: Skill) -> bool :
 	# Si la compétence est déjà débloqué on la débloque pas
@@ -74,9 +93,12 @@ func can_unlock_skill(s: Skill) -> bool :
 
 func unlock(s: Skill) -> void:
 	if can_unlock_skill(s):
-		unlocked.append(s.id)
-		unlocked_skill.emit(s)
-		audio_click.play()
+		if is_conditions_filled(s):
+			unlocked.append(s.id)
+			unlocked_skill.emit(s)
+			audio_click.play()
+			unlock_button.disabled = true
+			unlock_button.text = unlock_text
 
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
@@ -96,11 +118,11 @@ func _draw() -> void:
 func display_skill(skill: Skill) -> void:
 	skill_name.text = skill.name
 	skill_description.text = skill.description
-	if skill.id in unlocked:
+	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text
 	else:
 		unlock_button.text = lock_text
-	if can_unlock_skill(skill):
+	if can_unlock_skill(skill) and is_conditions_filled(skill):
 		unlock_button.disabled = false
 	if skill.icone:
 		skill_icon.visible = true
@@ -127,8 +149,6 @@ func _on_skill_button_toggled(toggled_on: bool, button: Button) -> void:
 func _on_unlock_button_pressed() -> void:
 	var skill = TREE.get_skill(last_click)
 	unlock(skill)
-	unlock_button.disabled = true
-	unlock_button.text = unlock_text
 	# _draw() colore en doré les lignes qui partent de la compétence débloquée
 	queue_redraw()
 
@@ -148,9 +168,11 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			is_dragging = event.pressed # Mode déplacement
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			skill_tree.scale += Vector2(ZOOM_VALUE,ZOOM_VALUE)
+			if skill_tree.scale < Vector2(2,2):
+				skill_tree.scale += Vector2(ZOOM_VALUE,ZOOM_VALUE)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			skill_tree.scale -= Vector2(ZOOM_VALUE,ZOOM_VALUE)
+			if skill_tree.scale > Vector2(0.5,0.5):
+				skill_tree.scale -= Vector2(ZOOM_VALUE,ZOOM_VALUE)
 	elif event is InputEventMouseMotion and is_dragging:
 		skill_tree.position += event.relative
 	
@@ -163,3 +185,4 @@ func _on_gui_input(event: InputEvent) -> void:
 		# Désaffiche la compétence
 		last_click = ""
 		undisplay_skill()
+		company.display()

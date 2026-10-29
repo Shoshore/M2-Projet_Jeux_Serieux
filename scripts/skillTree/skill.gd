@@ -8,3 +8,4 @@ extends Resource
 @export_range(0, 10) var cout: int = 1
 @export var requierment: Array[Skill] = []
 @export var effects: Array[SkillEffect] = []
+@export var conditions: Conditions

@@ -24,6 +24,7 @@ func _ready() -> void:
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(game_length)
 	skill_tree.unlocked_skill.connect(_on_skill_unlock)
+	skill_tree.company = company_array[0]
 
 
 func _map_filling(map: Map) -> void:
