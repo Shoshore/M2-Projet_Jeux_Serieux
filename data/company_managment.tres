@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bf7h7ki1jclcw"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_1jdvh"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_adkln"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_1ggs5"]
+[ext_resource type="Resource" uid="uid://dx5l827mtaca2" path="res://data/origin.tres" id="3_1ggs5"]
+
+[sub_resource type="Resource" id="Resource_885uq"]
+script = ExtResource("1_1jdvh")
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_adkln")
+variable_name = &"_mood_gauge"
+value = 5.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_1jdvh"]
+script = ExtResource("1_adkln")
+variable_name = &"_boost_turnover"
+value = 0.46
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_1ggs5")
+id = "compagny_managment"
+name = "Gestion de l'entreprise"
+description = "La gestion d'entreprise, ou management, est l'ensemble des techniques qui permettent d'organiser, de diriger et de contrôler une organisation pour atteindre ses objectifs. Elle touche aussi bien la répartition du travail que les relations entre les personnes.
+
+Votre entreprise commence à se structurer : chacun sait ce qu'il a à faire et à qui il rend des comptes."
+requierment = Array[ExtResource("2_1ggs5")]([ExtResource("3_1ggs5")])
+effects = Array[ExtResource("1_adkln")]([SubResource("Resource_14dii"), SubResource("Resource_1jdvh")])
+conditions = SubResource("Resource_885uq")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

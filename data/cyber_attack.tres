@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dil6ffuw3nggw"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_6om8g"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ejmq2"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_3isgg"]
+[ext_resource type="Resource" uid="uid://cxgj4ihsfx0hc" path="res://data/cybersecurity.tres" id="3_3isgg"]
+
+[sub_resource type="Resource" id="Resource_iild1"]
+script = ExtResource("1_6om8g")
+number_researcher = 1
+funds = 1
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_wofmb"]
+script = ExtResource("1_ejmq2")
+variable_name = &"_boost_turnover"
+value = 0.56
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_3isgg")
+id = "cyber_attack"
+name = "Attaque"
+description = "Une cyberattaque peut émaner d'un pirate isolé, d'un groupe organisé, ou même d'un État.
+
+Une cyberattaque est un acte offensif visant un système informatique à travers un réseau. Elle peut chercher à voler des données, à les chiffrer pour exiger une rançon (rançongiciel), à saturer un service pour le rendre inaccessible (déni de service) ou à piéger un utilisateur pour obtenir ses identifiants (hameçonnage).
+
+Votre entreprise apprend à exploiter les failles de ses concurrents : vos attaques deviennent plus efficaces."
+requierment = Array[ExtResource("2_3isgg")]([ExtResource("3_3isgg")])
+effects = Array[ExtResource("1_ejmq2")]([SubResource("Resource_wofmb")])
+conditions = SubResource("Resource_iild1")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

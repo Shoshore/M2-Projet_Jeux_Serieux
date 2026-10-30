@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://cpm42dnpqsuj1"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_fksqo"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ogach"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_vpad0"]
+[ext_resource type="Texture2D" uid="uid://b5dloiia0kort" path="res://assets/Git-Icon.png" id="3_arv51"]
+[ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="3_vpad0"]
+
+[sub_resource type="Resource" id="Resource_r2wu6"]
+script = ExtResource("1_fksqo")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.67
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_en13e"]
+script = ExtResource("1_ogach")
+variable_name = &"_boost_turnover"
+value = 0.54
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_vpad0")
+id = "git"
+name = "GIT"
+description = "Finis les fichiers « projet_final_v2_corrige_VRAIMENT_final.zip ».
+
+Git est un logiciel de gestion de versions décentralisé. Il enregistre l'historique de toutes les modifications d'un projet, permet de revenir à une version antérieure et de travailler en parallèle sur plusieurs branches avant de les fusionner.
+
+Ce logiciel permettra à vos employés de travailler plus efficacement sur un même projet : chaque modification est enregistrée, datée et signée. Plusieurs développeurs peuvent travailler sur le même code en même temps et, par conséquent, réaliser plus de projets dans l'année ; vos équipes partagent enfin leur code sans écraser le travail des autres."
+icone = ExtResource("3_arv51")
+requierment = Array[ExtResource("2_vpad0")]([ExtResource("3_vpad0")])
+effects = Array[ExtResource("1_ogach")]([SubResource("Resource_en13e")])
+conditions = SubResource("Resource_r2wu6")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

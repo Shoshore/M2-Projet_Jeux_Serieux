@@ -166,3 +166,24 @@ func set_ressources(ressource: Recruitement_building.Ressources) -> void:
 			_number_developer += 1
 		Recruitement_building.Ressources.RESEARCHER:
 			_number_researcher += 1
+
+
+# Application des compétences
+func apply_effect(effect: SkillEffect) -> void:
+	# En cas d'erreur dans le nom de la variable
+	if not effect.variable_name in self:
+		push_error("[COMPAGNY] Variable inconnue : '%s'" % effect.variable_name)
+		return
+	
+	var selected_var = get(effect.variable_name)
+	print("[COMPAGNY] variable modifier : '%s'" % effect.variable_name)
+	match effect.operation:
+		SkillEffect.Operation.ADD:
+			set(effect.variable_name, selected_var + effect.value)
+		SkillEffect.Operation.MUL:
+			set(effect.variable_name, selected_var * effect.value)
+
+
+func apply_skill(skill: Skill) -> void:
+	for effect in skill.effects:
+		apply_effect(effect)

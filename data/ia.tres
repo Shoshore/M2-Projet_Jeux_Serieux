@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dglj33x3dt4pj"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_2b6wj"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_romwp"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_wl1ri"]
+[ext_resource type="Resource" uid="uid://cpm42dnpqsuj1" path="res://data/git.tres" id="3_myx1x"]
+[ext_resource type="Resource" uid="uid://crkauxe4vjicx" path="res://data/data_science.tres" id="4_2b6wj"]
+[ext_resource type="Resource" uid="uid://cxgj4ihsfx0hc" path="res://data/cybersecurity.tres" id="5_xf5f8"]
+[ext_resource type="Resource" uid="uid://dy386mterott5" path="res://data/info_graphics.tres" id="6_b28c2"]
+[ext_resource type="Resource" uid="uid://cphpksq2deqqc" path="res://data/algo.tres" id="7_0j5i7"]
+[ext_resource type="Resource" uid="uid://c8ovtgymqctlo" path="res://data/paradigme.tres" id="9_xf5f8"]
+
+[sub_resource type="Resource" id="Resource_6b3hv"]
+script = ExtResource("1_2b6wj")
+number_researcher = 1
+funds = 1
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_romwp")
+variable_name = &"_boost_turnover"
+value = 0.97
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_xf5f8"]
+script = ExtResource("1_romwp")
+variable_name = &"_mood_gauge"
+value = -10.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_wl1ri")
+id = "ia"
+name = "IA"
+description = "L'intelligence artificielle regroupe les techniques qui permettent à une machine d'imiter certaines capacités humaines : reconnaître des images, comprendre le langage, prendre des décisions. Les approches modernes reposent sur l'apprentissage automatique : le programme apprend à partir d'exemples plutôt qu'à partir de règles écrites à la main.
+
+Cette technologie offre un gain de productivité énorme à votre entreprise. Mais vos employés craignent d'être remplacés, et leur moral en pâtit."
+requierment = Array[ExtResource("2_wl1ri")]([ExtResource("3_myx1x"), ExtResource("4_2b6wj"), ExtResource("5_xf5f8"), ExtResource("6_b28c2"), ExtResource("7_0j5i7"), ExtResource("9_xf5f8")])
+effects = Array[ExtResource("1_romwp")]([SubResource("Resource_14dii"), SubResource("Resource_xf5f8")])
+conditions = SubResource("Resource_6b3hv")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c7qamk5vhafe0"]
+
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_2m2t7"]
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_76mw0"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_gxtdu"]
+[ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="3_gxtdu"]
+
+[sub_resource type="Resource" id="Resource_jy63w"]
+script = ExtResource("1_76mw0")
+number_researcher = 1
+funds = 1
+boost_turnover = 0.36
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_7hy3g"]
+script = ExtResource("1_2m2t7")
+variable_name = &"_boost_turnover"
+value = 0.45
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_gxtdu")
+id = "database"
+name = "Base de données"
+description = "Une base de données est une collection organisée d'objets structurés tels que des nombres, des textes, des dates, des images, et généralement des objets structurés etc., pouvant être traités par des moyens informatiques pour produire une information ; par exemple, des chiffres et des noms assemblés et triés pour former un annuaire. Les traitements sont des combinaisons de recherches, de choix, de tris, de regroupements, de concaténations, etc.
+
+Cette technologie va permettre à l'entreprise de sauvegarder et de transmettre de l'informations beaucoup plus facilement, car tous les employés y ont accés, et donc d'augmenter la fluidité du travail."
+requierment = Array[ExtResource("2_gxtdu")]([ExtResource("3_gxtdu")])
+effects = Array[ExtResource("1_2m2t7")]([SubResource("Resource_7hy3g")])
+conditions = SubResource("Resource_jy63w")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

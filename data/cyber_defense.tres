@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bt3bff4yj7h5g"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_6amis"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ul5v0"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_2yh0k"]
+[ext_resource type="Resource" uid="uid://cxgj4ihsfx0hc" path="res://data/cybersecurity.tres" id="3_2yh0k"]
+
+[sub_resource type="Resource" id="Resource_ww3np"]
+script = ExtResource("1_6amis")
+number_researcher = 1
+funds = 1
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_a7dnq"]
+script = ExtResource("1_ul5v0")
+variable_name = &"_boost_turnover"
+value = 0.45
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_2yh0k")
+id = "cyber_defense"
+name = "Défense"
+description = "Dans la cybersécurité, l'attaquant n'a pas besoin de trouver qu'une seule faille ; le défenseur, lui, doit toutes les combler.
+
+La cyberdéfense regroupe l'ensemble des moyens mis en place pour détecter, bloquer et répondre aux cyberattaques. Pare-feu, antivirus, détection d'intrusion, sauvegardes et plans de reprise d'activité forment autant de lignes de défense successives.
+
+Votre entreprise résiste mieux aux attaques de ses concurrents, et se remet plus vite lorsqu'elle est touchée."
+requierment = Array[ExtResource("2_2yh0k")]([ExtResource("3_2yh0k")])
+effects = Array[ExtResource("1_ul5v0")]([SubResource("Resource_a7dnq")])
+conditions = SubResource("Resource_ww3np")
+metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://kvpm7kewouyc"]
+
+[ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_602vq"]
+[ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_eb4ik"]
+[ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_cgvwa"]
+[ext_resource type="Resource" uid="uid://bf7h7ki1jclcw" path="res://data/company_managment.tres" id="4_602vq"]
+
+[sub_resource type="Resource" id="Resource_1t56v"]
+script = ExtResource("1_602vq")
+number_researcher = 1
+funds = 1
+metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_qk3yr"]
+script = ExtResource("1_eb4ik")
+variable_name = &"_boost_turnover"
+value = 0.64
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_602vq"]
+script = ExtResource("1_eb4ik")
+variable_name = &"_mood_gauge"
+value = -5.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[resource]
+script = ExtResource("2_cgvwa")
+id = "taylorism"
+name = "Taylorisme"
+description = "Le taylorisme, ou organisation scientifique du travail, consiste à analyser en détail les gestes et les cadences de production pour définir la « meilleure façon » d'accomplir chaque tâche. Le travail est découpé en tâches simples et répétitives, et la rémunération est liée au rendement.
+
+La productivité de vos employés augmente nettement, mais un travail aussi répétitif pèse sur leur moral, vos employés ont de plus en plus l'impression d'être des machines."
+requierment = Array[ExtResource("2_cgvwa")]([ExtResource("4_602vq")])
+effects = Array[ExtResource("1_eb4ik")]([SubResource("Resource_qk3yr"), SubResource("Resource_602vq")])
+conditions = SubResource("Resource_1t56v")
+metadata/_custom_type_script = "uid://jfrest3lsltq"
