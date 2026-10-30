@@ -9,8 +9,13 @@
 script = ExtResource("1_5v6yu")
 number_researcher = 1
 funds = 1
-boost_turnover = 0.79
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_4aiyl"]
+script = ExtResource("1_w7cqe")
+variable_name = &"_boost_turnover"
+value = 0.65
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_sdg5w")
@@ -22,5 +27,6 @@ Cette technologie va permettre à vos employés de partager fichiers, imprimante
 
 Mais une entreprise connectée est aussi une entreprise exposée : il faudra penser à la protéger."
 requierment = Array[ExtResource("2_sdg5w")]([ExtResource("3_sdg5w")])
+effects = Array[ExtResource("1_w7cqe")]([SubResource("Resource_4aiyl")])
 conditions = SubResource("Resource_b2058")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -7,13 +7,26 @@
 
 [sub_resource type="Resource" id="Resource_gd36q"]
 script = ExtResource("1_7hy3g")
+number_researcher = 1
+funds = 20
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_7hy3g"]
+script = ExtResource("1_4gb22")
+variable_name = &"_boost_turnover"
+value = 0.12
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_txexr")
 id = "algo"
-name = "Algorithmie"
-description = "Amélioration de la complexité des algorithme utilisé, et donc améliorer la productivité."
+name = "Algorithmique"
+description = "Trier, chercher, parcourir : derrière chaque logiciel se cachent des algorithmes.
+
+Un algorithme est une suite finie d'instructions qui permet de résoudre un problème. L'algorithmique étudie leur conception et leur efficacité : on mesure la complexité d'un algorithme, c'est-à-dire le temps et la mémoire dont il a besoin quand la quantité de données augmente.
+
+Un algorithme bien choisi traite en quelques secondes ce qu'un mauvais traiterait en plusieurs heures : vos employés produisent plus, avec les mêmes machines."
 requierment = Array[ExtResource("2_txexr")]([ExtResource("3_txexr")])
+effects = Array[ExtResource("1_4gb22")]([SubResource("Resource_7hy3g")])
 conditions = SubResource("Resource_gd36q")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

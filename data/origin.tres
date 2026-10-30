@@ -6,21 +6,17 @@
 
 [sub_resource type="Resource" id="Resource_1t56v"]
 script = ExtResource("1_on7l8")
-funds = 50
+funds = 8
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
-
-[sub_resource type="Resource" id="Resource_br8ie"]
-script = ExtResource("1_rr2cb")
-variable_name = &"_funds"
-value = 100.0
-metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("1_tqcbg")
 id = "origin"
 name = "Origine"
-description = "C'est le début quoi"
-cout = 0
-effects = Array[ExtResource("1_rr2cb")]([SubResource("Resource_br8ie")])
+description = "Un bureau, quelques postes, une poignée d'employés motivés.
+
+Votre entreprise d'informatique vient de voir le jour et reçoit ses premiers fonds.
+
+À vous de choisir ce qu'il faut prioriser : miser sur la technique, sur l'organisation ou sur le bien-être de vos employés."
 conditions = SubResource("Resource_1t56v")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

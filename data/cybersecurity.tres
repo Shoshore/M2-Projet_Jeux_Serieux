@@ -9,14 +9,29 @@
 script = ExtResource("1_a7dnq")
 number_researcher = 1
 funds = 15
-boost_turnover = 0.66
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_vkm7d"]
+script = ExtResource("1_di5km")
+variable_name = &"_boost_turnover"
+value = 0.32
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_3ubqu")
 id = "cybersecurity"
 name = "Cybersécurité"
-description = "La cybersécurité est l'ensemble des lois, politiques, outils, dispositifs, concepts et mécanismes de sécurité, méthodes de gestion des risques, actions, formations, bonnes pratiques et technologies qui peuvent être utilisés pour protéger les personnes et les actifs informatiques matériels et immatériels des États et des organisations, dans un objectif de disponibilité, intégrité et authenticité, confidentialité, preuve et non-répudiation."
+description = "La cybersécurité regroupe l'ensemble des outils, des méthodes et des bonnes pratiques qui protègent les systèmes informatiques et les données contre les attaques, les vols et les pannes. 
+
+Elle repose sur trois piliers : 
+- la confidentialité : seules les personnes autorisées accèdent aux données ;
+- l'intégrité : les données ne sont pas modifiées à leur insu ;
+- la disponibilité : les services restent accessibles.
+
+Cette compétence va permettre à votre entreprise de protéger ses données et celles de ses clients, et de gagner leur confiance.
+
+Votre entreprise prend désormais la menace au sérieux et forme ses employés aux bons réflexes."
 requierment = Array[ExtResource("2_3ubqu")]([ExtResource("3_3ubqu")])
+effects = Array[ExtResource("1_di5km")]([SubResource("Resource_vkm7d")])
 conditions = SubResource("Resource_446qw")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

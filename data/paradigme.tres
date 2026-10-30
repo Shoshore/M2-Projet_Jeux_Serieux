@@ -7,13 +7,28 @@
 
 [sub_resource type="Resource" id="Resource_ap0s8"]
 script = ExtResource("1_ap0s8")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_qk3yr"]
+script = ExtResource("1_7h0ta")
+variable_name = &"_boost_turnover"
+value = 0.51
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_rujd6")
 id = "paradigme"
 name = "Paradigme"
-description = "La description là"
+description = "Un paradigme de programmation est une manière de penser et de structurer un programme.
+
+Il existe plusieurs paradigmes de programmation : objet, fonctionnel, agent ; ils permettent à vos équipes de choisir la meilleure approche pour chaque problème et d'écrire un code plus facile à maintenir.
+
+Un code mieux organisé, ce sont moins de bugs et des projets livrés plus tôt.
+
+Vos développeurs ne se contentent plus d'écrire du code : ils savent l'organiser pour qu'il reste clair, réutilisable et facile à faire évoluer."
 requierment = Array[ExtResource("2_rujd6")]([ExtResource("4_ae50q")])
+effects = Array[ExtResource("1_7h0ta")]([SubResource("Resource_qk3yr")])
 conditions = SubResource("Resource_ap0s8")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

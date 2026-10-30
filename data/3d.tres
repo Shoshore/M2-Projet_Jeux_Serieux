@@ -5,15 +5,26 @@
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_h3qln"]
 [ext_resource type="Resource" uid="uid://dy386mterott5" path="res://data/info_graphics.tres" id="3_h3qln"]
 
-[sub_resource type="Resource" id="Resource_b6ugg"]
+[sub_resource type="Resource" id="Resource_fog4q"]
 script = ExtResource("1_fog4q")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_yn8uq")
+variable_name = &"_boost_turnover"
+value = 0.33
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_h3qln")
 id = "3d"
 name = "3D"
-description = "Domaine 3D"
+description = "L'infographie 3D consiste à représenter des objets en trois dimensions, généralement sous forme de maillages de polygones. Ces objets sont éclairés, texturés et animés, puis le rendu calcule l'image finale vue par une caméra virtuelle, en simulant le trajet de la lumière.
+
+Votre entreprise peut désormais proposer des jeux vidéo, des simulations et des visualisations 3D : des projets plus ambitieux, et mieux payés."
 requierment = Array[ExtResource("2_h3qln")]([ExtResource("3_h3qln")])
-conditions = SubResource("Resource_b6ugg")
+effects = Array[ExtResource("1_yn8uq")]([SubResource("Resource_14dii")])
+conditions = SubResource("Resource_fog4q")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

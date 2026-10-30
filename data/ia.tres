@@ -12,15 +12,30 @@
 
 [sub_resource type="Resource" id="Resource_6b3hv"]
 script = ExtResource("1_2b6wj")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_romwp")
+variable_name = &"_boost_turnover"
+value = 0.97
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_xf5f8"]
+script = ExtResource("1_romwp")
+variable_name = &"_mood_gauge"
+value = -10.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_wl1ri")
 id = "ia"
 name = "IA"
-description = "Gain de productivité énorme
+description = "L'intelligence artificielle regroupe les techniques qui permettent à une machine d'imiter certaines capacités humaines : reconnaître des images, comprendre le langage, prendre des décisions. Les approches modernes reposent sur l'apprentissage automatique : le programme apprend à partir d'exemples plutôt qu'à partir de règles écrites à la main.
 
-Baisse du moral des employés"
+Cette technologie offre un gain de productivité énorme à votre entreprise. Mais vos employés craignent d'être remplacés, et leur moral en pâtit."
 requierment = Array[ExtResource("2_wl1ri")]([ExtResource("3_myx1x"), ExtResource("4_2b6wj"), ExtResource("5_xf5f8"), ExtResource("6_b28c2"), ExtResource("7_0j5i7"), ExtResource("9_xf5f8")])
+effects = Array[ExtResource("1_romwp")]([SubResource("Resource_14dii"), SubResource("Resource_xf5f8")])
 conditions = SubResource("Resource_6b3hv")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

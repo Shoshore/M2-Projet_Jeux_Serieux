@@ -13,7 +13,9 @@ metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 script = ExtResource("2_rgm6a")
 id = "confort"
 name = "Confort dans l'entreprise"
-description = "Bonheur des employés + améliorations des biens"
+description = "La qualité de vie au travail regroupe tout ce qui rend le quotidien des employés plus agréable : un environnement de travail bien aménagé, des espaces de détente, des avantages sociaux. Elle est étudiée comme un remède au stress au travail.
+
+Vos employés sont plus heureux, et vos locaux sont prêts à être améliorés."
 requierment = Array[ExtResource("2_rgm6a")]([ExtResource("3_rgm6a")])
 conditions = SubResource("Resource_jxqpc")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -9,8 +9,13 @@
 script = ExtResource("1_wofmb")
 number_researcher = 1
 funds = 1
-boost_turnover = 0.21
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_ih6t1")
+variable_name = &"_boost_turnover"
+value = 0.87
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_56ouo")
@@ -22,5 +27,6 @@ description = "La science des données est un domaine interdisciplinaire qui uti
 
 On comprend donc mieux ses clients et on repère mieux les tendances."
 requierment = Array[ExtResource("2_56ouo")]([ExtResource("3_56ouo")])
+effects = Array[ExtResource("1_ih6t1")]([SubResource("Resource_14dii")])
 conditions = SubResource("Resource_m8owj")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -7,19 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_x8tvb"]
 script = ExtResource("1_qk3yr")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_wbnjf")
+variable_name = &"_boost_turnover"
+value = 1.987
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_qk3yr")
 id = "fayolism"
 name = "Fayolisme"
-description = "Henri Fayol divise l'activité de toute entreprise industrielle ou commerciale en six catégories essentielles :
-- Techniques (production, fabrication, transformation)
-- Commerciales (achats, ventes, échanges)
-- Financières (recherche et gestion optimale des capitaux)
-- De sécurité (protection des biens et des personnes)
-- Comptables (inventaires, bilans, calcul des prix de revient)
-- Administratives (prévoir, organiser, commander, coordonner, contrôler)"
+description = "Le fayolisme est une théorie de l'administration des entreprises. Henri Fayol y divise l'activité de toute entreprise en six fonctions : techniques, commerciales, financières, de sécurité, comptables et administratives. Il résume le rôle du dirigeant en cinq verbes : prévoir, organiser, commander, coordonner et contrôler.
+
+Votre direction gagne en méthode : les responsabilités sont clairement réparties et l'entreprise est mieux pilotée, même si elle laisse peu de place à l'initiative."
 requierment = Array[ExtResource("2_qk3yr")]([ExtResource("3_en13e")])
+effects = Array[ExtResource("1_wbnjf")]([SubResource("Resource_14dii")])
 conditions = SubResource("Resource_x8tvb")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

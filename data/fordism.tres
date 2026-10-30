@@ -7,19 +7,32 @@
 
 [sub_resource type="Resource" id="Resource_ysboq"]
 script = ExtResource("1_o1wg8")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_4ospx")
+variable_name = &"_boost_turnover"
+value = 0.05
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_4aiyl"]
+script = ExtResource("1_4ospx")
+variable_name = &"_mood_gauge"
+value = 0.05
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_h5irr")
 id = "fordism"
 name = "Fordisme"
-description = "Le but de ce développement de l'entreprise est d'accroître la productivité (quantité de pièces produites par ouvrier) et la production de l'entreprise grâce à plusieurs principes :
+description = "Le fordisme reprend les principes du taylorisme et y ajoute le travail à la chaîne et la standardisation : on produit en grande série des produits identiques, à partir de pièces interchangeables. Les salaires sont augmentés, pour stimuler la consommation et pour limiter les départs d'ouvriers.
 
-- la division du travail en une division verticale (séparation entre conception et réalisation) et en une division horizontale (parcellisation des tâches) reprises du taylorisme, et l'apparition de la ligne de montage (et donc du travail à la chaîne) afin de supprimer les temps de trajet entre différentes tâches ;
-- la standardisation permettant de produire en grandes séries, et à des coûts bas, à l'aide de pièces interchangeables ;
-- l'augmentation du salaire des ouvriers (5 dollars / jour contre 2 à 3 auparavant), afin de stimuler la demande de biens et donc d'augmenter la consommation, grâce à la hausse du pouvoir d'achat qui en résulte. Mais cette augmentation des salaires avait officieusement pour but de lutter contre le taux de roulement (démission des ouvriers) devenu de plus en plus élevé avec l'apparition du travail à la chaîne, qui rendait les conditions de vie des ouvriers encore plus difficiles qu'auparavant.
+Henry Ford le résumait lui-même : des ouvriers mieux payés sont « exempts de préoccupation étrangère au travail, et donc plus industrieux ».
 
-De plus, Henri Ford lui même énonce que si les ouvriers étaient mieux payés, ils seraient « exempts de préoccupation étrangère au travail, et donc plus industrieux, par conséquent, plus productifs »et moins démotivés."
+Votre entreprise produit plus et moins cher, et de meilleurs salaires limitent les départs de vos employés."
 requierment = Array[ExtResource("2_h5irr")]([ExtResource("3_h5irr")])
+effects = Array[ExtResource("1_4ospx")]([SubResource("Resource_14dii"), SubResource("Resource_4aiyl")])
 conditions = SubResource("Resource_ysboq")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

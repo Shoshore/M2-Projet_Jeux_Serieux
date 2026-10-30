@@ -7,13 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_cktb6"]
 script = ExtResource("1_5wrv1")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_lcoy4"]
+script = ExtResource("1_fblp5")
+variable_name = &"_boost_turnover"
+value = 0.22
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_4sb5r")
 id = "2d"
 name = "2D"
-description = "Domaine 2D"
+description = "L'infographie 2D regroupe les techniques de création et de traitement d'images planes. On distingue les images matricielles, composées d'une grille de pixels comme une photographie, des images vectorielles, décrites par des formes géométriques et agrandissables sans perte de qualité.
+
+Vos logiciels deviennent accessibles à des clients qui n'ont jamais tapé une commande de leur vie : votre marché s'élargit."
 requierment = Array[ExtResource("2_4sb5r")]([ExtResource("3_4sb5r")])
+effects = Array[ExtResource("1_fblp5")]([SubResource("Resource_lcoy4")])
 conditions = SubResource("Resource_cktb6")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

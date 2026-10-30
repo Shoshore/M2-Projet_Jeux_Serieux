@@ -7,21 +7,32 @@
 
 [sub_resource type="Resource" id="Resource_16ip4"]
 script = ExtResource("1_j57gm")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_6w0i2")
+variable_name = &"_boost_turnover"
+value = 0.5
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_4aiyl"]
+script = ExtResource("1_6w0i2")
+variable_name = &"_mood_gauge"
+value = 0.5
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_kg5qp")
 id = "post_fordism"
 name = "Post-Fordisme"
-description = "Le post-fordisme est caractérisé par les attributs suivants s:
+description = "Le post-fordisme désigne le modèle d'organisation qui succède au fordisme à partir des années 1970. Il privilégie la flexibilité : production en petites séries, produits spécialisés, nouvelles technologies de l'information et attention portée aux différents types de consommateurs.
 
-- Production en petits lots
-- Économies d'envergure
-- Produits spécialisés et emplois
-- Nouvelles technologies de l'information
-- Accent sur les types de consommateurs contrairement aux précédent accent sur la classe sociale
-- La montée du service et le col blanc
-- La féminisation de la force de travail"
+Votre entreprise s'adapte rapidement aux demandes de chaque client, au lieu de produire la même chose pour tout le monde.
+
+Le travail est moins répétitif, et vos employés plus impliqués."
 requierment = Array[ExtResource("2_kg5qp")]([ExtResource("3_kg5qp")])
+effects = Array[ExtResource("1_6w0i2")]([SubResource("Resource_14dii"), SubResource("Resource_4aiyl")])
 conditions = SubResource("Resource_16ip4")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

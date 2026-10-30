@@ -8,8 +8,7 @@
 [sub_resource type="Resource" id="Resource_it2oe"]
 script = ExtResource("1_8r1cr")
 number_researcher = 1
-funds = 1
-boost_turnover = 0.64
+funds = 10
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_8r1cr"]
@@ -22,11 +21,11 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_ffrip")
 id = "langages_prog"
 name = "Langages de programmation"
-description = "Un langage de programmation est construit à partir d'une grammaire formelle, qui inclut des symboles et des règles syntaxiques, auxquels sont associées des règles sémantiques. 
+description = "Un langage de programmation est une notation formelle qui permet d'écrire des instructions compréhensibles à la fois par l'humain et par la machine. Il repose sur une syntaxe, qui fixe la forme du code, et sur une sémantique, qui en fixe le sens. 
 
-Ces éléments sont plus ou moins complexes selon la capacité du langage.
+Un compilateur ou un interpréteur traduit ensuite ce code en instructions exécutables par le processeur.
 
-Ce sont ces éléments qui permettent de communiquer clairement avec la machine."
+Maîtriser plusieurs langages permettra à vos employés de choisir le bon outil pour chaque projet, et donc de livrer plus vite et plus souvent, ce qui augmentera la confiance des clients envers votre entreprise."
 requierment = Array[ExtResource("2_ffrip")]([ExtResource("3_ffrip")])
 effects = Array[ExtResource("1_b21a1")]([SubResource("Resource_8r1cr")])
 conditions = SubResource("Resource_it2oe")

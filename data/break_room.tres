@@ -7,13 +7,26 @@
 
 [sub_resource type="Resource" id="Resource_fwmip"]
 script = ExtResource("1_5vg6x")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_5vg6x"]
+script = ExtResource("1_52gxm")
+variable_name = &"_mood_gauge"
+value = 1.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_gib2i")
 id = "break_room"
 name = "Salle de repos"
-description = "ZZZZZZZZZZzzzzzzzzzzzz....."
+description = "Une salle de repos est un espace où les employés peuvent faire une pause loin de leur poste : se détendre, discuter, ou même faire une courte sieste. Des pauses régulières limitent la fatigue et aident à rester concentré sur la durée.
+
+Vos employés reviennent de leur pause plus reposés et plus efficaces.
+
+ZZZZZZZZZZzzzzzzzzzzzz....."
 requierment = Array[ExtResource("2_gib2i")]([ExtResource("3_gib2i")])
+effects = Array[ExtResource("1_52gxm")]([SubResource("Resource_5vg6x")])
 conditions = SubResource("Resource_fwmip")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

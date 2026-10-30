@@ -7,13 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_4aiyl"]
 script = ExtResource("1_woeao")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_woeao"]
+script = ExtResource("1_pq88x")
+variable_name = &"_mood_gauge"
+value = 0.5
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_gh337")
 id = "stuff_2"
 name = "Amélioration mobilier 2"
-description = "Amélioration mobilier 2"
+description = "Selon l'Organisation mondiale de la santé, la sédentarité, comme le temps passé en position assise, a de nombreux effets négatifs sur la santé. Les bureaux assis-debout permettent de rompre les longues périodes passées assis devant l'écran.
+
+Vos employés bougent davantage et terminent leur journée moins fatigués."
 requierment = Array[ExtResource("2_gh337")]([ExtResource("3_gh337")])
+effects = Array[ExtResource("1_pq88x")]([SubResource("Resource_woeao")])
 conditions = SubResource("Resource_4aiyl")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

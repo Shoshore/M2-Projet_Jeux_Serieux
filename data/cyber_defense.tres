@@ -9,16 +9,24 @@
 script = ExtResource("1_6amis")
 number_researcher = 1
 funds = 1
-boost_turnover = 0.02
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_a7dnq"]
+script = ExtResource("1_ul5v0")
+variable_name = &"_boost_turnover"
+value = 0.45
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_2yh0k")
 id = "cyber_defense"
 name = "Défense"
-description = "La cyberdéfense regroupe l'ensemble des moyens physiques et virtuels mis en place par un pays dans le cadre de la guerre informatique menée dans le cyberespace. Selon le ministère des Armées français, elle est « l’ensemble des mesures techniques et non techniques permettant à un État de défendre dans le cyberespace les systèmes d’informations jugés essentiels » et comme « l’ensemble des activités qu’il conduit afin d’intervenir militairement ou non dans le cyberespace pour garantir l’efficacité de l’action des forces armées, la réalisation des missions confiées et le bon fonctionnement du ministère ».
+description = "Dans la cybersécurité, l'attaquant n'a pas besoin de trouver qu'une seule faille ; le défenseur, lui, doit toutes les combler.
 
-Améliore la défense de votre entreprise."
+La cyberdéfense regroupe l'ensemble des moyens mis en place pour détecter, bloquer et répondre aux cyberattaques. Pare-feu, antivirus, détection d'intrusion, sauvegardes et plans de reprise d'activité forment autant de lignes de défense successives.
+
+Votre entreprise résiste mieux aux attaques de ses concurrents, et se remet plus vite lorsqu'elle est touchée."
 requierment = Array[ExtResource("2_2yh0k")]([ExtResource("3_2yh0k")])
+effects = Array[ExtResource("1_ul5v0")]([SubResource("Resource_a7dnq")])
 conditions = SubResource("Resource_ww3np")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

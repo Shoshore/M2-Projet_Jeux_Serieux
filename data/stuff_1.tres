@@ -7,13 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_vkm7d"]
 script = ExtResource("1_i86jb")
+number_researcher = 1
+funds = 1
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
+
+[sub_resource type="Resource" id="Resource_4aiyl"]
+script = ExtResource("1_n07cn")
+variable_name = &"_mood_gauge"
+value = 0.5
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
 script = ExtResource("2_xjymy")
 id = "stuff_1"
 name = "Amélioration mobilier 1"
-description = "Amélioration mobilier 1"
+description = "L'ergonomie est la discipline qui adapte le travail à l'humain, et non l'inverse. Un siège ergonomique se règle en hauteur, soutient le bas du dos et réduit les douleurs liées aux longues heures passées devant l'écran.
+
+Vos employés remplacent leurs vieilles chaises par des sièges de qualité : ils travaillent plus longtemps sans se fatiguer."
 requierment = Array[ExtResource("2_xjymy")]([ExtResource("3_xjymy")])
+effects = Array[ExtResource("1_n07cn")]([SubResource("Resource_4aiyl")])
 conditions = SubResource("Resource_vkm7d")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

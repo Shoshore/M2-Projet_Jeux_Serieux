@@ -9,13 +9,26 @@
 script = ExtResource("1_1jdvh")
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
+[sub_resource type="Resource" id="Resource_14dii"]
+script = ExtResource("1_adkln")
+variable_name = &"_mood_gauge"
+value = 5.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
+[sub_resource type="Resource" id="Resource_1jdvh"]
+script = ExtResource("1_adkln")
+variable_name = &"_boost_turnover"
+value = 0.46
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
 [resource]
 script = ExtResource("2_1ggs5")
 id = "compagny_managment"
 name = "Gestion de l'entreprise"
-description = "Modèles d'organisation
+description = "La gestion d'entreprise, ou management, est l'ensemble des techniques qui permettent d'organiser, de diriger et de contrôler une organisation pour atteindre ses objectifs. Elle touche aussi bien la répartition du travail que les relations entre les personnes.
 
-Relationnel"
+Votre entreprise commence à se structurer : chacun sait ce qu'il a à faire et à qui il rend des comptes."
 requierment = Array[ExtResource("2_1ggs5")]([ExtResource("3_1ggs5")])
+effects = Array[ExtResource("1_adkln")]([SubResource("Resource_14dii"), SubResource("Resource_1jdvh")])
 conditions = SubResource("Resource_885uq")
 metadata/_custom_type_script = "uid://jfrest3lsltq"
