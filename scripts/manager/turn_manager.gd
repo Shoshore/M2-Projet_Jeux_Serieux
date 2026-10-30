@@ -149,5 +149,5 @@ func _update_company_info() -> void:
 		+ "Developpeurs: " + str(company.get_number_developers()) + "\n"
 		+ "Chercheurs: " + str(company.get_number_researchers()) + "\n"
 		+ "Recruteurs: " + str(company.get_number_recruiters()) + "\n"
-		+ "Bonheur: " + str(company.get_happiness()) + " / 30"
+		+ "Bonheur: " + str(company.get_happiness()) + "  bonheur à atteindre est : " + str(company.get_mood_threshold())
 	)

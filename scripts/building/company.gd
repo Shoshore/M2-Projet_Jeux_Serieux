@@ -162,6 +162,9 @@ func get_number_employees() -> int:
 func get_happiness() -> int:
 	return _mood_gauge
 
+func get_mood_threshold() -> int:
+	return _mood_threshold
+
 func display() -> void:
 	print("nb dev : ", _number_developer)
 	print("nb researcher : ", _number_researcher)
