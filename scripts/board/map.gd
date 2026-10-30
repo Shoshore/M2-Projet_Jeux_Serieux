@@ -5,6 +5,9 @@ class_name Map
 #const HEX_SIZE : float = 20.0
 
 var grid_size : int = 10
+var visibility_range: int = 1
+var recruitment_site_chance: float = 0.03
+var biome_noise_frequency: float = 0.12
 var tiles_by_coord: Dictionary = {}
 var is_board_clickable = true
 
@@ -22,6 +25,10 @@ func _ready() -> void:
 # Génère une grille hexagonale régulière
 func generate_hex_grid(radius : int) -> void:
 	tiles_by_coord.clear()
+	var biome_noise := FastNoiseLite.new()
+	biome_noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	biome_noise.frequency = biome_noise_frequency
+	biome_noise.seed = Random.randi()
 	
 	for q in range(-radius, radius + 1):
 		var r_min : int = max(-radius, -q - radius)
@@ -31,9 +38,21 @@ func generate_hex_grid(radius : int) -> void:
 			var t = Tile.new()
 			t.position = coords_to_pixel(q, r)
 			t.initialize(q, r)
+			t.biome = _get_biome(biome_noise.get_noise_2d(q, r))
+			t.is_recruitment_site = Random.randf() < clampf(recruitment_site_chance, 0.01, 0.05)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
 	return
+
+
+
+func _get_biome(noise_value: float) -> Tile.Biome:
+	if noise_value < -0.35:
+		return Tile.Biome.EMPTY
+	if noise_value < -0.15:
+		return Tile.Biome.PROCESSOR
+	if noise_value < 0.25:
+		return Tile.Biome.GRASS
 
 
 # Conversion des coordonnées axiales vers la position à l'écran
@@ -101,3 +120,19 @@ func get_occuped_neighbor(coord: Vector2i) -> Array[Tile]:
 		if tile.get_occupant() != null:
 			tiles.append(tile)
 	return tiles
+
+
+func refresh() -> void:
+	var vision := Vision_component.new(visibility_range)
+	var visible_coordinates: Dictionary[Vector2i, bool] = {}
+
+	for tile: Tile in tiles_by_coord.values():
+		if tile.ceo == "Aucun":
+			continue
+		for coord in vision.get_visible_hexes(tile.coordinate):
+			if tiles_by_coord.has(coord):
+				visible_coordinates[coord] = true
+
+	for tile: Tile in tiles_by_coord.values():
+		tile.is_visible_by_fog = visible_coordinates.has(tile.coordinate)
+		tile.reload_visual()
