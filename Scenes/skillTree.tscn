@@ -195,6 +195,62 @@ skill = ExtResource("3_1t56v")
 layout_mode = 2
 theme_override_constants/separation = 100
 
+[node name="InfoGraphic" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=252333139]
+layout_mode = 2
+theme_override_constants/separation = 108
+alignment = 1
+
+[node name="InfoChoice" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic" unique_id=1491828208]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="2D" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic/InfoChoice" unique_id=1998365049]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Tech"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("10_16ip4")
+
+[node name="3D" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic/InfoChoice" unique_id=1601181502]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Tech"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("11_it2oe")
+
+[node name="InfoGraphic" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic" unique_id=130105665]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Tech"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("12_an2ig")
+
 [node name="Git" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1830961064]
 layout_mode = 2
 theme_override_constants/separation = 108
@@ -250,6 +306,45 @@ button_group = SubResource("ButtonGroup_yt575")
 text = "Tech"
 script = ExtResource("2_rqqkb")
 skill = ExtResource("5_14dii")
+
+[node name="Algo" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=2055958912]
+layout_mode = 2
+theme_override_constants/separation = 108
+alignment = 1
+
+[node name="Algorithmique" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Algo" unique_id=35660711]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Tech"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("13_6b3hv")
+
+[node name="Paradigme" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1800540302]
+layout_mode = 2
+alignment = 1
+
+[node name="Paradigme" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Paradigme" unique_id=238190118]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Tech"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("15_14dii")
 
 [node name="Reseau" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1241277127]
 layout_mode = 2
@@ -322,101 +417,6 @@ text = "Tech"
 script = ExtResource("2_rqqkb")
 skill = ExtResource("9_b2058")
 
-[node name="InfoGraphic" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=252333139]
-layout_mode = 2
-theme_override_constants/separation = 108
-alignment = 1
-
-[node name="InfoChoice" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic" unique_id=1491828208]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="2D" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic/InfoChoice" unique_id=1998365049]
-custom_minimum_size = Vector2(50, 50)
-custom_maximum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Tech"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("10_16ip4")
-
-[node name="3D" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic/InfoChoice" unique_id=1601181502]
-custom_minimum_size = Vector2(50, 50)
-custom_maximum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Tech"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("11_it2oe")
-
-[node name="InfoGraphic" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic" unique_id=130105665]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Tech"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("12_an2ig")
-
-[node name="Algo" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=2055958912]
-layout_mode = 2
-theme_override_constants/separation = 108
-alignment = 1
-
-[node name="Algorithmie" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Algo" unique_id=35660711]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Tech"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("13_6b3hv")
-
-[node name="Paradigme" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1800540302]
-layout_mode = 2
-alignment = 1
-
-[node name="Paradigme" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Paradigme" unique_id=238190118]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Tech"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("15_14dii")
-
 [node name="TechOrigin" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer" unique_id=1612511309]
 layout_mode = 2
 alignment = 1
@@ -449,51 +449,12 @@ theme_override_constants/separation = 30
 layout_mode = 2
 alignment = 1
 
-[node name="CompanyOrganisation" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills" unique_id=1186260641]
+[node name="CompanyFayolism" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills" unique_id=1186260641]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Post-Fordisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyOrganisation" unique_id=2048838530]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Human"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("15_r2wu6")
-
-[node name="Fordisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyOrganisation" unique_id=1367817983]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Human"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("16_ysboq")
-
-[node name="Taylorisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyOrganisation" unique_id=1068126148]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yt575")
-text = "Human"
-script = ExtResource("2_rqqkb")
-skill = ExtResource("17_x8tvb")
-
-[node name="Fayolisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyOrganisation" unique_id=1773982530]
+[node name="Fayolisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyFayolism" unique_id=1773982530]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
@@ -506,12 +467,63 @@ text = "Human"
 script = ExtResource("2_rqqkb")
 skill = ExtResource("18_m8owj")
 
-[node name="CompanyHumanRelations" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills" unique_id=1973732715]
+[node name="CompanyTaylorism" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills" unique_id=1973732715]
 layout_mode = 2
-theme_override_constants/separation = 180
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="HumanRelations" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyHumanRelations" unique_id=824675377]
+[node name="TaylorismSeparation" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism" unique_id=1994780757]
+layout_mode = 2
+alignment = 1
+
+[node name="FordismBranch" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation" unique_id=1305589329]
+layout_mode = 2
+alignment = 1
+
+[node name="AGILE" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/FordismBranch" unique_id=1980825078]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
+theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Human"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("20_ww3np")
+
+[node name="Post-Fordisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/FordismBranch" unique_id=2048838530]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
+theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Human"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("15_r2wu6")
+
+[node name="Fordisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/FordismBranch" unique_id=1367817983]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
+theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yt575")
+text = "Human"
+script = ExtResource("2_rqqkb")
+skill = ExtResource("16_ysboq")
+
+[node name="HumanRelationsContainer" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation" unique_id=741952219]
+layout_mode = 2
+alignment = 1
+
+[node name="HumanRelations" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/HumanRelationsContainer" unique_id=824675377]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
@@ -524,7 +536,11 @@ text = "Human"
 script = ExtResource("2_rqqkb")
 skill = ExtResource("19_jy63w")
 
-[node name="AGILE" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyHumanRelations" unique_id=1980825078]
+[node name="TaylorismOrigin" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism" unique_id=644536281]
+layout_mode = 2
+alignment = 1
+
+[node name="Taylorisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismOrigin" unique_id=1068126148]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
@@ -535,7 +551,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
 script = ExtResource("2_rqqkb")
-skill = ExtResource("20_ww3np")
+skill = ExtResource("17_x8tvb")
 
 [node name="CompanyManagmentOrigin" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment" unique_id=1266264579]
 layout_mode = 2
@@ -709,7 +725,9 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillInfos/VBoxContainerInfos/PanelContainer2" unique_id=2096181753]
+custom_minimum_size = Vector2(300, 500)
 layout_mode = 2
+alignment = 1
 
 [node name="SkillIcon" type="TextureRect" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=460935640]
 custom_minimum_size = Vector2(128, 128)
@@ -718,14 +736,13 @@ texture = ExtResource("12_r7jmg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SkillDescription" type="Label" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=270398573]
+[node name="SkillDescription" type="RichTextLabel" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=1912844967]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Description compétence"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-max_lines_visible = 15
 
 [node name="UnlockButton" type="Button" parent="SkillInfos/VBoxContainerInfos" unique_id=1040100931]
 layout_mode = 2
