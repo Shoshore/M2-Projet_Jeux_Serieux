@@ -33,7 +33,7 @@ const ZOOM_VALUE := 0.05
 # Affichage des compétences
 @onready var skill_name: Label = $SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
 @onready var skill_icon: TextureRect = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
-@onready var skill_description: Label = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
+@onready var skill_description: RichTextLabel = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
 @onready var unlock_button: Button = $SkillInfos/VBoxContainerInfos/UnlockButton
 @onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
@@ -56,10 +56,21 @@ func _ready() -> void:
 		button.toggled.connect(_on_skill_button_toggled.bind(button))
 		# On redessine les lignes dès qu'un bouton bouge (placement par les conteneurs)
 		button.item_rect_changed.connect(queue_redraw)
+		apply_funds_to_skill(button.skill)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw() # Les liens entre skills sont conservé durant les déplacements
+
+func apply_funds_to_skill(s: Skill) -> void:
+	var funds = s.conditions.funds
+	if funds < 0 :
+		return
+	var skillEffect = SkillEffect.new()
+	skillEffect.variable_name = "_funds"
+	skillEffect.operation = SkillEffect.Operation.ADD
+	skillEffect.value = -funds
+	s.effects.append(skillEffect)
 
 func is_conditions_filled(s: Skill) -> bool:
 	if company._number_developer < s.conditions.number_developer:
@@ -148,6 +159,7 @@ func _draw() -> void:
 func display_skill(skill: Skill) -> void:
 	skill_name.text = skill.name
 	skill_description.text = display_conditions(skill) + "--------------------\n" + skill.description
+	skill_description.scroll_to_line(0)  # revient en haut pour chaque nouvelle compétence
 	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text
 	else:
