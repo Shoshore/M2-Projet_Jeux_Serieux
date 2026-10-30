@@ -73,53 +73,52 @@ func apply_funds_to_skill(s: Skill) -> void:
 	s.effects.append(skillEffect)
 
 func is_conditions_filled(s: Skill) -> bool:
-	if company._number_developer < s.conditions.number_developer:
+	if company._number_developer <= s.conditions.number_developer:
 		return false 
-	if company._number_researcher < s.conditions.number_researcher:
+	if company._number_researcher <= s.conditions.number_researcher:
 		return false
-	if company._number_recruiter < s.conditions.number_recruiter:
+	if company._number_recruiter <= s.conditions.number_recruiter:
 		return false
-	if company._funds < s.conditions.funds:
-		return false
-	if company._boost_turnover < s.conditions.boost_turnover:
+	if company._funds <= s.conditions.funds:
 		return false
 	if company._mood_gauge < s.conditions.mood_gauge:
-		return false
-	if company._boost_mood < s.conditions.boost_mood:
 		return false
 	return true
 
 func display_conditions(s: Skill) -> String:
-	var text := ""
+	var text := "Condition d'obtention : \n"
 	if s.conditions.number_developer > 0:
-		text += "Number Developer > "
+		text += "Nombre de développeur nécessaire : "
 		text += str(s.conditions.number_developer)
 		text += "\n"  
 	if s.conditions.number_researcher > 0:
-		text += "Number Researcher > "
+		text += "Nombre de chercheur nécessaire : "
 		text += str(s.conditions.number_researcher)
-		text += "\n"  
-	if s.conditions.number_recruiter > 0:
-		text += "Number Recruiter > "
-		text += str(s.conditions.number_recruiter)
-		text += "\n"  
+		text += "\n"   
 	if s.conditions.funds > 0:
-		text += "Funds > "
+		text += "Quantité d'argent nécessaire : "
 		text += str(s.conditions.funds)
-		text += "\n"  
-	if s.conditions.boost_turnover > 0:
-		text += "Boost Turnover > "
-		text += str(s.conditions.boost_turnover)
-		text += "\n"  
+		text += "€\n"  
 	if s.conditions.mood_gauge > 0:
-		text += "Mood gauge > "
+		text += "Quantité d'humeur nécessaire :  "
 		text += str(s.conditions.mood_gauge)
 		text += "\n"  
-	if s.conditions.boost_mood > 0:
-		text += "Boost mood > "
-		text += str(s.conditions.boost_mood)
-		text += "\n"  
 	return text
+
+
+func display_boost(s: Skill) -> String:
+	var text := "Gain d'acquisition du noeud :\n"
+	for effect in s.effects:
+		if effect.variable_name == "_boost_turnover":
+			text += "Gain de revenue : "
+			text += str(effect.value)
+			text += "\n"
+		if effect.variable_name == "_mood_gauge":
+			text += "Gain d'humeur : "
+			text += str(effect.value)
+			text += "\n"
+	return text
+
 
 func can_unlock_skill(s: Skill) -> bool :
 	# Si la compétence est déjà débloqué on la débloque pas
@@ -158,7 +157,13 @@ func _draw() -> void:
 # Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
 	skill_name.text = skill.name
-	skill_description.text = display_conditions(skill) + "--------------------\n" + skill.description
+	skill_description.text = skill.description
+	var text_cond = display_conditions(skill)
+	var text_boost = display_boost(skill)
+	if text_cond != "Condition d'obtention : \n":
+		skill_description.text += "\n---------------------\n" + text_cond
+	if text_boost != "Gain d'acquisition du noeud :\n":
+		skill_description.text += "\n---------------------\n" + text_boost
 	skill_description.scroll_to_line(0)  # revient en haut pour chaque nouvelle compétence
 	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text
