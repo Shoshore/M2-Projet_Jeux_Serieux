@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://te0nrq8emqwj" path="res://data/2d.tres" id="10_16ip4"]
 [ext_resource type="Resource" uid="uid://c6jblen7l5wn7" path="res://data/3d.tres" id="11_it2oe"]
 [ext_resource type="Resource" uid="uid://dy386mterott5" path="res://data/info_graphics.tres" id="12_an2ig"]
-[ext_resource type="Texture2D" uid="uid://ccw55bdg6t24r" path="res://assets/icon.svg" id="12_r7jmg"]
 [ext_resource type="Resource" uid="uid://cphpksq2deqqc" path="res://data/algo.tres" id="13_6b3hv"]
 [ext_resource type="AudioStream" uid="uid://8ien5eum4754" path="res://Audio/unlock_sound.mp3" id="13_x83wx"]
 [ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="14_nq0pk"]
@@ -137,6 +136,9 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 20
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4aiyl"]
+load_path = "res://.godot/imported/icon.svg-56083ea2a1f1a4f1e49773bdc6d7826c.ctex"
 
 [node name="Control" type="Control" unique_id=2043676651]
 layout_mode = 3
@@ -732,7 +734,7 @@ alignment = 1
 [node name="SkillIcon" type="TextureRect" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=460935640]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("12_r7jmg")
+texture = SubResource("CompressedTexture2D_4aiyl")
 expand_mode = 1
 stretch_mode = 5
 

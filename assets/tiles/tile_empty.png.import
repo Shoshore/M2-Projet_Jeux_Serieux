@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chmpirun0o1kb"
-path="res://.godot/imported/agile.png-b1265ca45c1cf8a3a7180372edfa9254.ctex"
+uid="uid://dwxb8oajr47n"
+path="res://.godot/imported/tile_empty.png-db8710e40bf0e8c48625dfb8974263e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/agile.png"
-dest_files=["res://.godot/imported/agile.png-b1265ca45c1cf8a3a7180372edfa9254.ctex"]
+source_file="res://assets/tiles/tile_empty.png"
+dest_files=["res://.godot/imported/tile_empty.png-db8710e40bf0e8c48625dfb8974263e9.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_a3awv"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_strr3"]
-[ext_resource type="Texture2D" uid="uid://chmpirun0o1kb" path="res://assets/agile.png" id="2_pooy8"]
+[ext_resource type="Texture2D" uid="uid://chmpirun0o1kb" path="res://assets/skill_tree/agile.png" id="2_pooy8"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_q102j"]
 [ext_resource type="Resource" uid="uid://db58cau5feyw1" path="res://data/post_fordism.tres" id="5_a3awv"]
 

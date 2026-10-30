@@ -73,13 +73,13 @@ func apply_funds_to_skill(s: Skill) -> void:
 	s.effects.append(skillEffect)
 
 func is_conditions_filled(s: Skill) -> bool:
-	if company._number_developer <= s.conditions.number_developer:
+	if company._number_developer < s.conditions.number_developer:
 		return false 
-	if company._number_researcher <= s.conditions.number_researcher:
+	if company._number_researcher < s.conditions.number_researcher:
 		return false
-	if company._number_recruiter <= s.conditions.number_recruiter:
+	if company._number_recruiter < s.conditions.number_recruiter:
 		return false
-	if company._funds <= s.conditions.funds:
+	if company._funds < s.conditions.funds:
 		return false
 	if company._mood_gauge < s.conditions.mood_gauge:
 		return false

@@ -45,6 +45,7 @@ script = ExtResource("2_1n30v")
 
 [node name="PauseMenu" parent="HUD" unique_id=749739424 instance=ExtResource("3_bfdkv")]
 mouse_filter = 2
+
 [node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
 visible = false
 offset_left = 2.0

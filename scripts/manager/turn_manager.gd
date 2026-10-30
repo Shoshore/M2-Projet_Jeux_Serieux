@@ -16,7 +16,7 @@ var company_array : Dictionary[int, Company] = {} # id -> Company
 var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 
 @onready var boardObject: Node2D = $"."
-@onready var skill_tree: SkillTree = $HUD/SkillTree
+@onready var skill_tree: Control = $HUD/SkillTree
 @onready var tree_button: Button = $HUD/TreeButton
 @onready var round_button: Button = $HUD/Control/End_turn_button
 @onready var tiles_info: PanelContainer = $CanvasLayer/info
@@ -28,6 +28,8 @@ func _ready() -> void:
 	Global.recruitement_give_employee.connect(_give_employee)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
+	skill_tree.unlocked_skill.connect(_on_skill_unlock)
+	skill_tree.company = company_array[0]
 
 
 func _map_filling(map: Map) -> void:
@@ -131,6 +133,12 @@ func _go_to_skill_tree() -> void:
 	else:
 		tree_button.text = skillTreeText
 		window_info_label.text = boardText
+
+
+func _on_skill_unlock(skill: Skill) -> void:
+	var company: Company = company_array[0]
+	company.apply_skill(skill)
+
 
 # ------------
 # signals

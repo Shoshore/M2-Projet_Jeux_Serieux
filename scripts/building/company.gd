@@ -11,7 +11,6 @@ var _funds := 100
 var _boost_turnover := 1
 
 var _mood_gauge := 30
-var _boost_mood := 1
 var _mood_threshold := 0
 
 var _list_unities: Array[Unit]
@@ -113,7 +112,7 @@ func _update_funds(tour: int) -> void:
 
 	# profit
 	var profit = _boost_turnover * 850 * _number_developer
-	if _mood_threshold > (_mood_gauge * _boost_mood):
+	if _mood_threshold > _mood_gauge:
 		profit *= 0.4
 
 	_funds += profit - (energy_cost + total_payroll)
@@ -151,7 +150,6 @@ func display() -> void:
 	print("funds : ", _funds)
 	print("boost turnover : ", _boost_turnover)
 	print("mood gauge : ", _mood_gauge)
-	print("boost mood : ", _boost_mood)
 	print("mood threshold : ", _mood_threshold)
 	print("------------------------")
 

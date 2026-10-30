@@ -25,7 +25,7 @@ func _ready() -> void:
 	outline.width = 1.0
 	outline.default_color = Color(0, 0, 0, 0.35)
 	add_child(outline)
-	texture = Texture_component.new(Visuals.GRASS)
+	texture = Texture_component.new(Visuals.EMPTY)
 	reload_visual()
 
 static func hex_vertices(radius: float) -> PackedVector2Array:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brirgkd0ft48w"
-path="res://.godot/imported/recrutement.png-7da5a50ab5f523868fb358c00e6ed3f2.ctex"
+uid="uid://b1qswmens80ov"
+path="res://.godot/imported/company.png-1b41597b12e271427a9d4203775e413e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/recrutement.png"
-dest_files=["res://.godot/imported/recrutement.png-7da5a50ab5f523868fb358c00e6ed3f2.ctex"]
+source_file="res://assets/tiles/company.png"
+dest_files=["res://.godot/imported/company.png-1b41597b12e271427a9d4203775e413e.ctex"]
 
 [params]
 

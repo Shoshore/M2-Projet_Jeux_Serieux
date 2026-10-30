@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xeinxulsh6i"
-path="res://.godot/imported/bonhomme.png-f1834679055030a93e0be0d051123e0b.ctex"
+uid="uid://b5dloiia0kort"
+path="res://.godot/imported/Git-Icon.png-95374e42ba505117f3be2dbbc2a1bc4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bonhomme.png"
-dest_files=["res://.godot/imported/bonhomme.png-f1834679055030a93e0be0d051123e0b.ctex"]
+source_file="res://assets/skill_tree/Git-Icon.png"
+dest_files=["res://.godot/imported/Git-Icon.png-95374e42ba505117f3be2dbbc2a1bc4b.ctex"]
 
 [params]
 
