@@ -143,15 +143,18 @@ load_path = "res://.godot/imported/icon.svg-56083ea2a1f1a4f1e49773bdc6d7826c.cte
 [node name="Control" type="Control" unique_id=2043676651]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1709.0
-offset_bottom = 648.0
+offset_right = 1153.0
+offset_bottom = 644.0
 script = ExtResource("1_iv0no")
 
 [node name="SkillTree" type="HBoxContainer" parent="." unique_id=1311361869]
 layout_mode = 1
 anchors_preset = -1
-offset_right = 1286.0
-offset_bottom = 647.0
+offset_left = -575.0
+offset_top = -50.0
+offset_right = 1363.0
+offset_bottom = 780.0
+scale = Vector2(0.45, 0.45)
 accessibility_region = true
 alignment = 1
 
@@ -697,10 +700,10 @@ skill = ExtResource("3_ht7w8")
 
 [node name="SkillInfos" type="HBoxContainer" parent="." unique_id=1214785360]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 70.0
-offset_right = 1140.0
-offset_bottom = 632.0
+offset_left = 845.0
+offset_top = 78.0
+offset_right = 1145.0005
+offset_bottom = 640.0
 alignment = 1
 
 [node name="VBoxContainerInfos" type="VBoxContainer" parent="SkillInfos" unique_id=2124954942]

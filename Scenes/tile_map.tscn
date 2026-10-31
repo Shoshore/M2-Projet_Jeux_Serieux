@@ -46,6 +46,7 @@ process_mode = 3
 
 [node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
 visible = false
+anchors_preset = -1
 offset_left = 2.0
 offset_top = 4.0
 offset_right = 2.0
@@ -120,6 +121,7 @@ script = ExtResource("7_xsk5a")
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=167875768]
 process_mode = 2
+visible = false
 
 [node name="PauseMenu" parent="PauseMenu" unique_id=749739424 instance=ExtResource("3_bfdkv")]
 offset_top = 8.0
