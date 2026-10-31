@@ -189,3 +189,30 @@ func hex_distance(a: Vector2i, b: Vector2i) -> int:
 	var dq := a.x - b.x
 	var dr := a.y - b.y
 	return (absi(dq) + absi(dq + dr) + absi(dr)) / 2
+
+
+# ------------------
+# movement unit
+# ------------------
+
+func get_line(a: Vector2i, b: Vector2i) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	var n := hex_distance(a, b)
+	if n == 0:
+		result.append(a)
+		return result
+	for i in range(n + 1):
+		var t := float(i) / n
+		var q := lerpf(a.x, b.x, t) + 1e-6
+		var r := lerpf(a.y, b.y, t) + 1e-6
+		result.append(axial_round(Vector2(q, r)))
+	return result
+
+
+func is_path_blocked(from: Vector2i, to: Vector2i) -> bool:
+	var line := get_line(from, to)
+	for i in range(1, line.size() - 1):
+		var t := get_tile_at(line[i])
+		if t == null or t.get_building() != null:
+			return true
+	return false

@@ -12,7 +12,6 @@ func _get_current_tile(unit: Unit) -> Tile:
 	return map.get_tile_at(unit.movement.position.get_position())
 
 
-
 func on_tile_clicked(tile: Tile) -> void:
 	var unit = tile.get_occupant()
 	if  unit != null:
@@ -29,7 +28,13 @@ func on_tile_clicked(tile: Tile) -> void:
 		return
 	
 	var from_tile: Tile = _get_current_tile(selected_unit)
-	if selected_unit.movement.move_to(tile.position_.get_position()):
+	var target_pos := tile.position_.get_position()
+	
+	if from_tile != null and map.is_path_blocked(from_tile.position_.get_position(), target_pos):
+		selected_unit = null
+		return
+	
+	if selected_unit.movement.move_to(target_pos):
 		if from_tile != null:
 			from_tile.set_occupant(null)
 			from_tile.reload_visual() 
