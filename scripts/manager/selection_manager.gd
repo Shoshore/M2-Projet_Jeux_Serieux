@@ -1,6 +1,7 @@
 class_name Selection_manager
 extends RefCounted
 
+signal info_reset(tile: Tile)
 var map: Map
 var selected_unit: Unit = null
 var selected_tile: Tile = null
@@ -50,4 +51,5 @@ func on_tile_clicked(tile: Tile) -> void:
 		tile.set_occupant(selected_unit)
 		tile.reload_visual()
 		map.refresh_sight(tile)
+		info_reset.emit(tile)
 	selected_unit = null

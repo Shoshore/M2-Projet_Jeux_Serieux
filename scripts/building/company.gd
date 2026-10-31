@@ -20,6 +20,8 @@ var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
 
+var _debt := 0.0
+
 var _cyber_security := false
 var _cyber_defense := false
 var _cyber_attack := false
@@ -115,13 +117,15 @@ func _update_funds(tour: int) -> void:
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
 	var total_payroll = pay_rise * (_salary_pay * (_number_developer + _number_researcher + _number_recruiter))
 	var energy_cost = 40 * (_number_developer + _number_researcher + _number_recruiter)
-
+	# debt
+	var pay_debt = _debt * 0.1
+	_debt -= pay_debt
 	# profit
 	var profit = _boost_turnover * _profit * _number_developer
 	if _mood_threshold > _mood_gauge:
 		profit *= 0.4
 
-	_funds += profit - (energy_cost + total_payroll)
+	_funds += profit - (energy_cost + total_payroll + pay_debt)
 
 
 func _update_unit() -> void:
@@ -130,7 +134,8 @@ func _update_unit() -> void:
 
 
 func _update_mood() -> void:
-	_mood_threshold += 3
+	if _mood_threshold + 3 < 100:
+		_mood_threshold += 3
 	if _mood_gauge < 30:
 		_mood_gauge += 3
 		if _mood_gauge > 30:

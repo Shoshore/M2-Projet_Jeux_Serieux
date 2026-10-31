@@ -18,23 +18,65 @@ mesh = SubResource("ArrayMesh_u0tgg")
 [node name="game" type="Node2D" unique_id=2141197782]
 script = ExtResource("1_rlxc1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020972732]
+[node name="InfoBox" type="CanvasLayer" parent="." unique_id=1020972732]
 
-[node name="info" type="PanelContainer" parent="CanvasLayer" unique_id=673878352]
+[node name="Info_node" type="Control" parent="InfoBox" unique_id=1731494199]
+layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -183.0
-offset_top = -219.0
-offset_right = -8.0
-offset_bottom = -152.0
+offset_left = -235.0
+offset_top = -274.0
+offset_bottom = -165.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/info" unique_id=119894826]
+[node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.10638298
+anchor_top = -2.7798166
+anchor_bottom = 0.0091743115
+offset_left = -2.0
+offset_top = 31.0
+offset_right = 235.0
+offset_bottom = 108.0
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Info_panel" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=523928467]
 layout_mode = 2
+
+[node name="Info_label" type="Label" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=119894826]
+layout_mode = 2
+text = "Aucun hexagone sélecitonné"
+
+[node name="Pay_share_holder" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=454757013]
+visible = false
+layout_mode = 2
+
+[node name="Share_holder" type="Button" parent="InfoBox/Info_node/Info_container/Pay_share_holder" unique_id=1296701844]
+layout_mode = 2
+text = "Contracté un pret"
+
+[node name="Fire_employe" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=1182287169]
+visible = false
+layout_mode = 2
+
+[node name="Fire_button" type="OptionButton" parent="InfoBox/Info_node/Info_container/Fire_employe" unique_id=1512664568]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Aucune sélection"
+popup/item_0/id = 3
+popup/item_1/text = "Licencié un chercheur"
+popup/item_1/id = 0
+popup/item_2/text = "Licencicé un développeur"
+popup/item_2/id = 1
+popup/item_3/text = "Licencicé un recruter"
+popup/item_3/id = 2
 
 [node name="cameraManager" type="Node2D" parent="." unique_id=401334710]
 script = ExtResource("2_1n30v")
@@ -57,6 +99,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -128,6 +172,8 @@ offset_top = 8.0
 offset_bottom = 8.0
 mouse_filter = 2
 
+[connection signal="pressed" from="InfoBox/Info_node/Info_container/Pay_share_holder/Share_holder" to="." method="_on_share_holder_pressed"]
+[connection signal="item_selected" from="InfoBox/Info_node/Info_container/Fire_employe/Fire_button" to="." method="_on_fire_button_item_selected"]
 [connection signal="pressed" from="HUD/Control/End_turn_button" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="HUD/TreeButton" to="." method="_go_to_skill_tree"]
 [connection signal="board_click" from="input_manager" to="." method="_on_input_board_click"]

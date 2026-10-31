@@ -152,7 +152,7 @@ func company_info(turn: int, not_all : bool = true) -> String:
 		text += "Nombre de developpers : " + str(_building._number_developer) + "\n"
 	text += "Nombre de chercheurs : " + str(_building._number_researcher) + "\n"
 	text += "Nombre de recruteurs : " + str(_building._number_recruiter) + "\n"
-	text += "Paye des salarier : " + str(_building._salary_pay * (1 + 0.3 * floor(turn / 3))) + "\n" 
+	text += "Paye des salarier : " + str(_building._salary_pay * 0.3 * floor(turn / 3)) + "\n" 
 	if not_all:
 		text += "Profit par salarier : " + str(_building._profit * _building._boost_turnover) + "\n" 
 	text += "Portée visuelle : " + str(_building.vision.sight_range) + "\n"
@@ -166,7 +166,7 @@ func get_info_text(company: Company, turn: int) -> String:
 			text += "Votre unité 'Recruiter' :\n"
 		else:
 			text += "Unité Recruiter adverse :\n"
-		text +=  "Points de mouvements : " +str(_occupant.movement._current_movement) + "/"
+		text +=  "Points de mouvements : " + str(_occupant.movement._current_movement) + " / "
 		text += str(_occupant.movement._max_movement) + "\n"
 		text += "Portée de visuelle : " + str(_occupant.vision.sight_range)
 	elif _building:
@@ -194,7 +194,7 @@ func get_info_text(company: Company, turn: int) -> String:
 				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
-			text += "Durée de marchage avant embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
+			text += "Durée de marchage avant \n embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
 			text += _building.text_turn_left()
 	else:
 		text = "L'hexagone est vide"

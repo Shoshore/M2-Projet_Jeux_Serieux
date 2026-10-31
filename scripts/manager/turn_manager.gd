@@ -5,12 +5,15 @@ var skillTreeText = "Arbre de compétence"
 
 var map := Map.new()
 var selection_manager := Selection_manager.new(map)
-@onready var label_info: Label = get_node("CanvasLayer/info/Label")
+@onready var label_info: Label = get_node("InfoBox/Info_node/Info_container/Info_panel/Info_label")
 
 const GAME_LENGTH := 30
 var current_turn := 1
 const MAX_STITCH_TURN := 2
 var current_stitch_turn := 0
+
+const TURN_SHARE_HOLDER = 5
+var turn_wait_share_holder = 0
 
 var company_array : Dictionary[int, Company] = {} # id -> Company
 var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
@@ -27,6 +30,7 @@ func _ready() -> void:
 	add_child(map)
 	Global.company_fire_employee.connect(_delete_unit)
 	Global.recruitement_give_employee.connect(_give_employee)
+	selection_manager.info_reset.connect(_on_tile_clicked)
 	_map_filling(map)
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +" /" +str(GAME_LENGTH)
 	skill_tree.unlocked_skill.connect(_on_skill_unlock)
@@ -85,12 +89,20 @@ func _on_end_turn_button_pressed() -> void:
 	_update_company_info()
 	_end_check()
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
-	
+	_on_tile_clicked(selection_manager.selected_tile)
+	if turn_wait_share_holder > 0:
+		turn_wait_share_holder -= 1
 
 
 func _on_tile_clicked(tile: Tile) -> void:
 	if tile.is_visible_by_fog:
 		label_info.text = tile.get_info_text(company_array[0], current_turn)
+		if tile.get_building() == company_array[0]:
+			$InfoBox/Info_node/Info_container/Fire_employe.visible = true
+			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = true
+		else:
+			$InfoBox/Info_node/Info_container/Fire_employe.visible = false
+			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = false
 	else:
 		label_info.text = "Le brouillard vous empêche de savoir \n ce qu'il  y a sur cette hexagone"
 
@@ -130,7 +142,7 @@ func _on_skill_unlock(skill: Skill) -> void:
 func _delete_unit(position: Vector2i) -> void:
 	var tile := map.get_tile_at(position)
 	if tile != null:
-		tile.occupant = null
+		tile._occupant = null
 		tile.reload_visual()
 
 
@@ -149,3 +161,27 @@ func _update_company_info() -> void:
 		+ "Recruteurs: " + str(company.get_number_recruiters()) + "\n"
 		+ "Bonheur: " + str(company.get_happiness()) + "  bonheur à atteindre est : " + str(company.get_mood_threshold())
 	)
+
+
+func _on_fire_button_item_selected(index: int) -> void:
+	match index:
+		1:
+			print("test")
+			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
+		2:
+			print("c")
+			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
+		3:
+			print("ici")
+			company_array[0].fire_employee(Company.Employee_type.RECRUITER, 0)
+	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
+
+
+func _on_share_holder_pressed() -> void:
+	if turn_wait_share_holder != 0:
+		return
+	
+	var player = company_array[0]
+	player._funds += 1000
+	player._debt += 1300
+	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
