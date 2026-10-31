@@ -23,7 +23,7 @@ id = "reseaux"
 name = "Réseaux"
 description = "Un réseau informatique relie plusieurs machines pour qu'elles échangent des données. On distingue le réseau local (LAN), qui couvre un bâtiment, du réseau étendu (WAN), qui relie des sites éloignés. Internet est le plus grand de tous.
 
-Cette technologie va permettre à vos employés de partager fichiers, imprimantes et connexion Internet, et de communiquer instantanément, même depuis des bureaux différents. Le travail circule ainsi beaucoup plus vite dans l'entreprise.
+Cette technologie va permettre à vos employés de partager fichiers, imprimantes et connexion Internet, et de communiquer instantanément, même depuis des bureaux différents. Les informations circule ainsi beaucoup plus vite dans l'entreprise et donc le travaille va plus vite.
 
 Mais une entreprise connectée est aussi une entreprise exposée : il faudra penser à la protéger."
 requierment = Array[ExtResource("2_sdg5w")]([ExtResource("3_sdg5w")])

@@ -28,7 +28,7 @@ func _ready() -> void:
 	Global.company_fire_employee.connect(_delete_unit)
 	Global.recruitement_give_employee.connect(_give_employee)
 	_map_filling(map)
-	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +" /" +str(GAME_LENGTH)
 	skill_tree.unlocked_skill.connect(_on_skill_unlock)
 	skill_tree.company = company_array[0]
 	_update_company_info()
@@ -89,7 +89,7 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func _on_tile_clicked(tile: Tile) -> void:
-	label_info.text = tile.get_info_text()
+	label_info.text = tile.get_info_text(company_array[0], current_turn)
 
 
 func _on_input_board_click(position: Vector2) -> void:
@@ -99,14 +99,10 @@ func _on_input_board_click(position: Vector2) -> void:
 	if tile != null:
 		_on_tile_clicked(tile)
 		selection_manager.on_tile_clicked(tile)
-		print("tile")
-	else:
-		print("no tile")
 
 
 func _go_to_skill_tree() -> void:
 	var currentValue = map.is_board_clickable
-	print("État du plateau au moment du clic : ", currentValue)
 	map.is_board_clickable = !currentValue
 	boardObject.visible = !currentValue
 	round_button.visible = !currentValue
@@ -145,8 +141,8 @@ func _update_company_info() -> void:
 	ressources_label.text = (
 		"Argent: " + str(company.get_funds()) + "\n"
 		+ "Employés: " + str(company.get_number_employees()) + "\n"
-		+ "Developpeurs: " + str(company.get_number_developers()) + "\n"
-		+ "Chercheurs: " + str(company.get_number_researchers()) + "\n"
+		+ "Developpeurs: " + str(company.get_number_developers()) + "|"
+		+ "Chercheurs: " + str(company.get_number_researchers()) + "|"
 		+ "Recruteurs: " + str(company.get_number_recruiters()) + "\n"
 		+ "Bonheur: " + str(company.get_happiness()) + "  bonheur à atteindre est : " + str(company.get_mood_threshold())
 	)

@@ -232,4 +232,3 @@ func _on_gui_input(event: InputEvent) -> void:
 		# Désaffiche la compétence
 		last_click = ""
 		undisplay_skill()
-		company.display()

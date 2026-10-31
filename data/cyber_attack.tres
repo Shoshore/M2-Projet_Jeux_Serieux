@@ -17,6 +17,12 @@ variable_name = &"_boost_turnover"
 value = 0.56
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
+[sub_resource type="Resource" id="Resource_bfdkv"]
+script = ExtResource("1_ejmq2")
+variable_name = &"_cyber_attack"
+operation = 2
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
 [resource]
 script = ExtResource("2_3isgg")
 id = "cyber_attack"
@@ -27,6 +33,6 @@ Une cyberattaque est un acte offensif visant un système informatique à travers
 
 Votre entreprise apprend à exploiter les failles de ses concurrents : vos attaques deviennent plus efficaces."
 requierment = Array[ExtResource("2_3isgg")]([ExtResource("3_3isgg")])
-effects = Array[ExtResource("1_ejmq2")]([SubResource("Resource_wofmb")])
+effects = Array[ExtResource("1_ejmq2")]([SubResource("Resource_wofmb"), SubResource("Resource_bfdkv")])
 conditions = SubResource("Resource_iild1")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_gxtdu")
 id = "database"
 name = "Base de données"
-description = "Une base de données est une collection organisée d'objets structurés tels que des nombres, des textes, des dates, des images, et généralement des objets structurés etc., pouvant être traités par des moyens informatiques pour produire une information ; par exemple, des chiffres et des noms assemblés et triés pour former un annuaire. Les traitements sont des combinaisons de recherches, de choix, de tris, de regroupements, de concaténations, etc.
+description = "Une base de données est une collection organisée d'objets structurés tels que des nombres, des textes, des dates, des images, etc., pouvant être traités par des moyens informatiques pour produire une information ; par exemple, des chiffres et des noms assemblés et triés pour former un annuaire. Les traitements sont des combinaisons de recherches, de choix, de tris, de regroupements, de concaténations, etc.
 
 Cette technologie va permettre à l'entreprise de sauvegarder et de transmettre de l'informations beaucoup plus facilement, car tous les employés y ont accés, et donc d'augmenter la fluidité du travail."
 requierment = Array[ExtResource("2_gxtdu")]([ExtResource("3_gxtdu")])

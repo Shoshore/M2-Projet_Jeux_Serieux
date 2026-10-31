@@ -13,11 +13,3 @@ func _on_input_manager_camera_is_pressed(is_pressed: bool) -> void:
 
 func _on_input_manager_camera_zoom(zoom: Vector2) -> void:
 	$camera.zoom += zoom
-
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventMouseMotion and isPressed:
-		#global_position -= event.relative
-
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT:
-			#isPressed = event.pressed

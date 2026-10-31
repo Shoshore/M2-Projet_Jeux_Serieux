@@ -17,6 +17,12 @@ variable_name = &"_boost_turnover"
 value = 0.32
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
+[sub_resource type="Resource" id="Resource_bfdkv"]
+script = ExtResource("1_di5km")
+variable_name = &"_cyber_security"
+operation = 2
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
 [resource]
 script = ExtResource("2_3ubqu")
 id = "cybersecurity"
@@ -32,6 +38,6 @@ Cette compétence va permettre à votre entreprise de protéger ses données et 
 
 Votre entreprise prend désormais la menace au sérieux et forme ses employés aux bons réflexes."
 requierment = Array[ExtResource("2_3ubqu")]([ExtResource("3_3ubqu")])
-effects = Array[ExtResource("1_di5km")]([SubResource("Resource_vkm7d")])
+effects = Array[ExtResource("1_di5km")]([SubResource("Resource_vkm7d"), SubResource("Resource_bfdkv")])
 conditions = SubResource("Resource_446qw")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

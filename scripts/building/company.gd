@@ -7,6 +7,9 @@ var _number_developer := 1
 var _number_researcher := 1
 var _number_recruiter := 0
 
+var _salary_pay := 500
+var _profit := 800
+
 var _funds := 100
 var _boost_turnover := 1
 
@@ -17,6 +20,9 @@ var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
 
+var _cyber_security := false
+var _cyber_defense := false
+var _cyber_attack := false
 
 func _init(id_unic: int, position: Vector2i) -> void:
 	super(id_unic, position, Visuals.COMPANY)
@@ -107,11 +113,11 @@ func fire_employee(type: Employee_type, id_: int = -1) -> void:
 func _update_funds(tour: int) -> void:
 	# pay
 	var pay_rise = 1 + 0.3 * floor(tour / 3)
-	var total_payroll = pay_rise * (230 * _number_developer + 205 * _number_researcher + 165 * _number_recruiter)
+	var total_payroll = pay_rise * (_salary_pay * (_number_developer + _number_researcher + _number_recruiter))
 	var energy_cost = 40 * (_number_developer + _number_researcher + _number_recruiter)
 
 	# profit
-	var profit = _boost_turnover * 850 * _number_developer
+	var profit = _boost_turnover * _profit * _number_developer
 	if _mood_threshold > _mood_gauge:
 		profit *= 0.4
 
@@ -201,6 +207,8 @@ func apply_effect(effect: SkillEffect) -> void:
 			set(effect.variable_name, selected_var + effect.value)
 		SkillEffect.Operation.MUL:
 			set(effect.variable_name, selected_var * effect.value)
+		SkillEffect.Operation.BOOL:
+			set(effect.variable_name, not selected_var)
 
 
 func apply_skill(skill: Skill) -> void:

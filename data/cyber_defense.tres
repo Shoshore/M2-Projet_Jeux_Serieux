@@ -17,6 +17,12 @@ variable_name = &"_boost_turnover"
 value = 0.45
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
+[sub_resource type="Resource" id="Resource_uqn18"]
+script = ExtResource("1_ul5v0")
+variable_name = &"_cyber_defense"
+operation = 2
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
 [resource]
 script = ExtResource("2_2yh0k")
 id = "cyber_defense"
@@ -27,6 +33,6 @@ La cyberdéfense regroupe l'ensemble des moyens mis en place pour détecter, blo
 
 Votre entreprise résiste mieux aux attaques de ses concurrents, et se remet plus vite lorsqu'elle est touchée."
 requierment = Array[ExtResource("2_2yh0k")]([ExtResource("3_2yh0k")])
-effects = Array[ExtResource("1_ul5v0")]([SubResource("Resource_a7dnq")])
+effects = Array[ExtResource("1_ul5v0")]([SubResource("Resource_a7dnq"), SubResource("Resource_uqn18")])
 conditions = SubResource("Resource_ww3np")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

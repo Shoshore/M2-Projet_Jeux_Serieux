@@ -25,7 +25,7 @@ description = "Un langage de programmation est une notation formelle qui permet 
 
 Un compilateur ou un interpréteur traduit ensuite ce code en instructions exécutables par le processeur.
 
-Maîtriser plusieurs langages permettra à vos employés de choisir le bon outil pour chaque projet, et donc de livrer plus vite et plus souvent, ce qui augmentera la confiance des clients envers votre entreprise."
+Chaque langage a ses points forts et ses points faibles ; donc, maîtriser plusieurs langages permettra à vos employés de choisir le bon outil pour chaque projet, et donc de livrer plus vite et plus souvent, ce qui augmentera la confiance des clients envers votre entreprise."
 requierment = Array[ExtResource("2_ffrip")]([ExtResource("3_ffrip")])
 effects = Array[ExtResource("1_b21a1")]([SubResource("Resource_8r1cr")])
 conditions = SubResource("Resource_it2oe")
