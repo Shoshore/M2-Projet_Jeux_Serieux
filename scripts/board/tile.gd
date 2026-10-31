@@ -38,7 +38,7 @@ func _ready() -> void:
 
 	outline.points = points
 	outline.closed = true
-	outline.width = 1.0
+	outline.width = 2.0
 	outline.default_color = Global.outline_default_color
 	add_child(outline)
 
