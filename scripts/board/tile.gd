@@ -25,10 +25,9 @@ enum Biome {
 }
 
 var biome: Biome = Biome.GRASS
-var is_recruitment_site: bool = false
 var is_visible_by_fog: bool = false
 
-const FOG_COLOR := Color(0.16, 0.16, 0.2)
+const FOG_COLOR := Color(0, 0, 0, 1)
 
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
@@ -40,7 +39,7 @@ func _ready() -> void:
 	outline.points = points
 	outline.closed = true
 	outline.width = 1.0
-	outline.default_color = Color(0, 0, 0, 0.15)
+	outline.default_color = Global.outline_default_color
 	add_child(outline)
 
 	set_texture_hex(hex_ground, Visuals.GRASS)
@@ -186,18 +185,17 @@ func get_info_text(company: Company, turn: int) -> String:
 				elif _building._cyber_defense:
 					text += "L'entreprise adverse à une cyber defense trop élevé \n"
 					text += "pensé à améliorer votre cyber attaque !"
-		elif _building is Recruitement_site:
-			if _building is University_site:
-				text += "Université :\n"
-			else:
-				text += "Site de recrutement :\n"
+		elif _building is Recruitement_building:
 			var ressource := ""
 			if _building._ressource == Recruitement_building.Ressources.DEVELOPPER:
+				text += "Site de recrutement :\n"
 				ressource = "développer"
 			else:
+				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
-			text += "Durée de marchage avant embauche : " + str(_building._turn_get_unit) + " tours"
+			text += "Durée de marchage avant embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
+			text += _building.text_turn_left()
 	else:
 		text = "L'hexagone est vide"
 	return text

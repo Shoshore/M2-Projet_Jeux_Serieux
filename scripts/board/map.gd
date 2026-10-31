@@ -150,7 +150,7 @@ func create_ressources(quantity: int, start_distance: int) -> Array[Recruitement
 	for tile: Tile in tiles_by_coord.values():
 		if tile.get_building() == null and tile.get_occupant() == null:
 			candidates.append(tile)
-	candidates.shuffle()
+	Random.shuffle(candidates)
 
 	var min_dist := start_distance
 	while result.size() < target and min_dist >= 1:
@@ -172,6 +172,7 @@ func create_ressources(quantity: int, start_distance: int) -> Array[Recruitement
 			_next_site_id += 1
 
 			tile.set_building(site)
+			tile.reload_visual()
 			result.append(site)
 		min_dist -= 1
 

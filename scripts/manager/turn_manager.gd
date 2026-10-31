@@ -89,7 +89,10 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func _on_tile_clicked(tile: Tile) -> void:
-	label_info.text = tile.get_info_text(company_array[0], current_turn)
+	if tile.is_visible_by_fog:
+		label_info.text = tile.get_info_text(company_array[0], current_turn)
+	else:
+		label_info.text = "Le brouillard vous empêche de savoir \n ce qu'il  y a sur cette hexagone"
 
 
 func _on_input_board_click(position: Vector2) -> void:

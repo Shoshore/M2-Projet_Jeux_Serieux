@@ -37,3 +37,10 @@ func update_end_turn(tiles: Array[Tile]) -> void:
 func display():
 	print("Position : ", position.get_position())
 	print("Ressource : ", _ressource)
+
+
+func text_turn_left() -> String:
+	for key in _array_recruiter:
+		if key.get_company_id() == 0:
+			return ("Tour restant pour que votre unité recrute : " + str(_array_recruiter[key]))
+	return ''
