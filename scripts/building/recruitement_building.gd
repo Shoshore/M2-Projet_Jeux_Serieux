@@ -9,7 +9,7 @@ enum Ressources {
 
 var _ressource : Ressources
 var _array_recruiter : Dictionary[Unit, int] = {} # id of unit : turn to get ressource
-var _turn_get_unit = 1
+var _turn_get_unit = 2
 
 func _init(id_unic: int, position_: Vector2i, ressource: Ressources, texture: Texture2D) -> void:
 	super(id_unic, position_, texture)

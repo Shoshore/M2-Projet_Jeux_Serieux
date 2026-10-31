@@ -36,7 +36,7 @@ func _ready() -> void:
 
 func _map_filling(map: Map) -> void:
 	company_array[0] = map.create_company(Vector2i(0, 0), 0)
-	var ressources := map.create_ressources(4, 3)
+	var ressources := map.create_ressources(10, 3)
 	var size := ressources.size()
 	for idx in range(size):
 		recrutement_building_array[idx] = ressources[idx]
@@ -73,7 +73,8 @@ func _update_companies() -> void:
 
 func _update_recruitement_building() -> void:
 	for key in recrutement_building_array:
-		recrutement_building_array[0].update_end_turn(map.get_occuped_neighbor(recrutement_building_array[0].position.get_position()))
+		var build = recrutement_building_array.get(key)
+		build.update_end_turn(map.get_occuped_neighbor(build.position.get_position()))
 
 
 func _on_end_turn_button_pressed() -> void:
