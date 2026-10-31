@@ -6,7 +6,7 @@ class_name Tile
 var hexagon := Polygon2D.new()
 var outline := Line2D.new()
 
-var texture: Texture_component
+var _texture : Texture_component
 
 var position_ : Position_component
 
@@ -17,12 +17,11 @@ var hex_company := Polygon2D.new()
 var hex_recruiter := Polygon2D.new()
 var hex_recruitment := Polygon2D.new()
 var hex_university := Polygon2D.new()
-var outline := Line2D.new()
 
 enum Biome {
 	GRASS,
 	EMPTY,
-	RED_SAND,
+	PROCESSOR,
 }
 
 var biome: Biome = Biome.GRASS
@@ -34,7 +33,7 @@ const FOG_COLOR := Color(0.16, 0.16, 0.2)
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
 
-	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter, hex_recruitment_site]:
+	for layer: Polygon2D in [hex_ground, hex_company, hex_recruiter, hex_recruitment, hex_university]:
 		layer.polygon = points
 		add_child(layer)
 
@@ -49,6 +48,7 @@ func _ready() -> void:
 	set_texture_hex(hex_recruiter, Visuals.RECRUITER)
 	set_texture_hex(hex_recruitment, Visuals.RECRUITEMENT)
 	set_texture_hex(hex_university, Visuals.UNIVERSITY)
+	_texture = Texture_component.new(Visuals.EMPTY)
 	reload_visual()
 
 static func hex_vertices(radius: float) -> PackedVector2Array:
@@ -84,9 +84,10 @@ func set_texture_hex(polygon: Polygon2D, tex: Texture2D) -> void:
 	
 func reload_visual() -> void:
 	hex_ground.visible = true
-	hex_company.visible = building != null
-	hex_recruiter.visible = occupant != null
-	hex_recruitment_site.visible = is_recruitment_site
+	hex_company.visible = _building != null
+	hex_recruiter.visible = _occupant != null
+	hex_recruitment.visible = _building is Recruitement_building
+	hex_university.visible = _building is University_site
 	match biome:
 		Biome.GRASS:
 			set_texture_hex(hex_ground, Visuals.GRASS)
@@ -101,14 +102,15 @@ func reload_visual() -> void:
 	elif _occupant:
 		set_texture_hex(hexagon, _occupant.texture.get_texture())
 	else:
-		set_texture_hex(hexagon, texture.get_texture())
+		set_texture_hex(hexagon, _texture.get_texture())
 	hexagon.modulate = Color.WHITE
 
-	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_MODULATE
+	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_COLOR
 	hex_ground.modulate = visibility_modulate
 	hex_company.modulate = visibility_modulate
 	hex_recruiter.modulate = visibility_modulate
-	hex_recruitment_site.modulate = visibility_modulate
+	hex_recruitment.modulate = visibility_modulate
+	hex_university.modulate = visibility_modulate
 	outline.modulate = visibility_modulate
 
 func initialize(q : int, r : int) -> void:
@@ -118,15 +120,13 @@ func initialize(q : int, r : int) -> void:
 func get_info() -> Dictionary:
 	return {
 		"position : ": position_.get_position(),
-		"biome": Biome.keys()[biome],
 	}
 
 
 func get_info_text() -> String:
 	return (
 		"Tuile %s\n"
-		+ "Biome : %s\n"
-	) % [coordinate, Biome.keys()[biome]]
+	) % [position_.get_position()]
 
 func display_data() -> void:
 	print(get_info_text())

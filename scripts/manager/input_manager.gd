@@ -27,19 +27,3 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion:
 		camera_position.emit(event.relative)
-
-
-
-#CREER UN INPUT MANAGER QUAND TOUT MARCHE POUR RENDRE LE CODE PLUS LISIBLE
-
-#GAMELOOP DEVRAIT DETECTER LE CLIC PAS LA MAP 
-
-
-# Après le menu -> On veut que ça init le jeu
-# créer plateau (fait)
-# Donne les ressources de bases à l'entreprise (voir compagnie)
-# On veut écouter les inputs du joueur :
-# -> Spécifier les inputs , les limités  
-# Detecter un input pour le menu 
-# Detection input changement fenetre world map/skilltree
-# Detecter les inputs du skilltree

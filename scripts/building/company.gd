@@ -18,9 +18,9 @@ var _list_unities: Array[Unit]
 var _next_unit_id := 0
 
 
-func _init(id_unic: int, position: Vector2i, vision_range: int) -> void:
+func _init(id_unic: int, position: Vector2i) -> void:
 	super(id_unic, position, Visuals.COMPANY)
-	vision = Vision_component.new(vision_range)
+	vision = Vision_component.new(3)
 
 # -------------------
 # Unit creation 

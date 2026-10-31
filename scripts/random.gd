@@ -1,7 +1,7 @@
 extends Node
 
 var _generator := RandomNumberGenerator.new()
-var _seed: int = 69
+var _seed: int = 64
 
 func _ready() -> void:
 	_apply_seed()

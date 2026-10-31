@@ -2,10 +2,7 @@ extends Node2D
 
 class_name Map
 
-#const HEX_SIZE : float = 20.0
-
 var grid_size : int = 10
-var visibility_range: int = 1
 var recruitment_site_chance: float = 0.03
 var biome_noise_frequency: float = 0.12
 var tiles_by_coord: Dictionary = {}
@@ -39,20 +36,17 @@ func generate_hex_grid(radius : int) -> void:
 			t.position = coords_to_pixel(q, r)
 			t.initialize(q, r)
 			t.biome = _get_biome(biome_noise.get_noise_2d(q, r))
-			t.is_recruitment_site = Random.randf() < clampf(recruitment_site_chance, 0.01, 0.05)
 			add_child(t)
 			tiles_by_coord[Vector2i(q, r)] = t
 	return
 
 
-
 func _get_biome(noise_value: float) -> Tile.Biome:
-	if noise_value < -0.35:
-		return Tile.Biome.EMPTY
 	if noise_value < -0.15:
 		return Tile.Biome.PROCESSOR
 	if noise_value < 0.25:
 		return Tile.Biome.GRASS
+	return Tile.Biome.EMPTY
 
 
 # Conversion des coordonnées axiales vers la position à l'écran
@@ -87,9 +81,22 @@ func axial_round(frac: Vector2) -> Vector2i:
 	return Vector2i(int(rx), int(rz))
 
 
-func refresh() -> void:
-	for tile: Tile in tiles_by_coord.values():
-		tile.reload_visual()
+func refresh_sight(tile: Tile) -> void:
+	var entity = null
+	var build = tile.get_building()
+	if build is Company:
+		entity = build
+	elif tile.get_occupant() != null:
+		entity = tile.get_occupant()
+	else:
+		return
+
+	for coord in entity.vision.get_visible_hexes(tile.position_.get_position()):
+		var t := get_tile_at(coord)
+		if t == null or t.is_visible_by_fog:
+			continue
+		t.is_visible_by_fog = true
+		t.reload_visual()
 
 # ----------------
 # getter
@@ -122,17 +129,63 @@ func get_occuped_neighbor(coord: Vector2i) -> Array[Tile]:
 	return tiles
 
 
-func refresh() -> void:
-	var vision := Vision_component.new(visibility_range)
-	var visible_coordinates: Dictionary[Vector2i, bool] = {}
+# ------------------------------
+# filling map
+# ---------------------------
+func create_company(position: Vector2i, id: int) -> Company:
+	var tile: Tile = tiles_by_coord[position]
+	var current_compagny = Company.new(id, position)
+	current_compagny.create_unit(get_free_neighbor(current_compagny.position.get_position()), Company.Create_unit_type.RECRUITER)
+	tile.set_building(current_compagny)
+	tile.reload_visual()
+	refresh_sight(tile)
+	return current_compagny
 
-	for tile: Tile in tiles_by_coord.values():
-		if tile.ceo == "Aucun":
-			continue
-		for coord in vision.get_visible_hexes(tile.coordinate):
-			if tiles_by_coord.has(coord):
-				visible_coordinates[coord] = true
+func create_ressources(quantity: int, start_distance: int) -> Array[Recruitement_building]:
+	var _next_site_id = 0
+	var result: Array[Recruitement_building] = []
+	var target := quantity * 2
 
+	var candidates: Array[Tile] = []
 	for tile: Tile in tiles_by_coord.values():
-		tile.is_visible_by_fog = visible_coordinates.has(tile.coordinate)
-		tile.reload_visual()
+		if tile.get_building() == null and tile.get_occupant() == null:
+			candidates.append(tile)
+	candidates.shuffle()
+
+	var min_dist := start_distance
+	while result.size() < target and min_dist >= 1:
+		for tile in candidates:
+			if result.size() >= target:
+				break
+			if tile.get_building() != null:
+				continue
+
+			var pos := tile.position_.get_position()
+			if not _is_far_enough(pos, result, min_dist):
+				continue
+
+			var site: Building
+			if result.size() % 2 == 0:
+				site = University_site.new(_next_site_id, pos)
+			else:
+				site = Recruitement_site.new(_next_site_id, pos)
+			_next_site_id += 1
+
+			tile.set_building(site)
+			result.append(site)
+		min_dist -= 1
+
+	return result
+
+
+func _is_far_enough(pos: Vector2i, sites: Array[Recruitement_building], min_dist: int) -> bool:
+	for s in sites:
+		if hex_distance(pos, s.position.get_position()) < min_dist:
+			return false
+	return true
+
+
+func hex_distance(a: Vector2i, b: Vector2i) -> int:
+	var dq := a.x - b.x
+	var dr := a.y - b.y
+	return (absi(dq) + absi(dq + dr) + absi(dr)) / 2

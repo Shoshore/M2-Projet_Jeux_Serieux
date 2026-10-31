@@ -35,20 +35,11 @@ func _ready() -> void:
 
 
 func _map_filling(map: Map) -> void:
-	var origin := Vector2i(0, 0)
-	var tile: Tile = map.tiles_by_coord[origin]
-	company_array[0] = Company.new(0, origin, 5)
-	var current_compagny = company_array[0]
-	current_compagny.create_unit(map.get_free_neighbor(current_compagny.position.get_position()), Company.Create_unit_type.RECRUITER)
-	tile.set_building(current_compagny)
-	tile.reload_visual()
-
-	var pos_recruitement := Vector2i(2, -2)
-	var tile_recruitement : Tile = map.tiles_by_coord[pos_recruitement]
-	var recruitement_building := Recruitement_building.new(0, pos_recruitement, Recruitement_building.Ressources.DEVELOPPER)
-	tile_recruitement.set_building(recruitement_building)
-	recrutement_building_array[0] = recruitement_building
-	tile_recruitement.reload_visual()
+	company_array[0] = map.create_company(Vector2i(0, 0), 0)
+	var ressources := map.create_ressources(4, 3)
+	var size := ressources.size()
+	for idx in range(size):
+		recrutement_building_array[idx] = ressources[idx]
 
 
 func update_result(score : int, turn : int, status : String):
@@ -88,8 +79,8 @@ func _update_recruitement_building() -> void:
 func _on_end_turn_button_pressed() -> void:
 	$HUD/Control/End_turn_button/AudioClick.play()
 	current_turn += 1
-	_update_companies()
 	_update_recruitement_building()
+	_update_companies()
 	_update_company_info()
 	_end_check()
 	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)

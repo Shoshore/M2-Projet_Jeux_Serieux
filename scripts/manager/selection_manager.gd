@@ -32,6 +32,8 @@ func on_tile_clicked(tile: Tile) -> void:
 	if selected_unit.movement.move_to(tile.position_.get_position()):
 		if from_tile != null:
 			from_tile.set_occupant(null)
+			from_tile.reload_visual() 
 		tile.set_occupant(selected_unit)
+		tile.reload_visual()
+		map.refresh_sight(tile)
 	selected_unit = null
-	map.refresh()
