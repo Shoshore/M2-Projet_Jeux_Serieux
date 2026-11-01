@@ -51,7 +51,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/university.png[/img][/cell]
 [cell]
-Cet hexagone représente une université restée quelques tours et vous obtiendrez un chercheur.[/cell]
+Cet hexagone représente une université ; restez quelques tours et vous obtiendrez un chercheur.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -62,7 +62,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/recruitement.png[/img][/cell]
 [cell]
-Cet hexagone représente un site de recrutement resté ici quelques tours et vous obtiendrez un développeur.[/cell]
+Cet hexagone représente un site de recrutement ; restez ici quelques tours et vous obtiendrez un développeur.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
