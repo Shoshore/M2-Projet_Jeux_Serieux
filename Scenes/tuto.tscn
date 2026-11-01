@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://xck7i2wsetwa"]
+
+[ext_resource type="Script" uid="uid://0vxyfomepsbp" path="res://scripts/menu/tuto_menu.gd" id="1_1sx44"]
+
+[node name="Tuto" type="Control" unique_id=216834116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1sx44")
+
+[node name="Tile description" type="PanelContainer" parent="." unique_id=616240166]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 580.0
+offset_bottom = 650.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tile description" unique_id=584041035]
+layout_mode = 2
+
+[node name="Company" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=623870326]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=2]
+[cell][img width=95 height=95 ]assets/tiles/company.png[/img][/cell]
+[cell]
+Cette Hexagone est votre entreprise, a vous de la développer.[/cell] 
+[/table] "
+fit_content = true
+scroll_active = false
+
+[node name="Recruiter" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=2102889912]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=2]
+[cell][img width=95  height=95 ]res://assets/tiles/recruiter.png[/img][/cell]
+[cell]
+Cette hexagone est recruiter, il vous permet de recruter des employés. Pour le déplacer, cliquez sur une case puis sur une autre.[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[node name="University" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=1486423513]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=2]
+[cell][img width=95 height=95 ]res://assets/tiles/University.png[/img][/cell]
+[cell]
+Cette hexagone représente une university resté y quelque tour et vous obtiendrez un chercheur.[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[node name="Recruitment" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=1419793260]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=2]
+[cell][img width=95 height=95 ]res://assets/tiles/Recruitement.png[/img][/cell]
+[cell]
+Cette hexagone représente un site de recrutement resté y quelque tour et vous obtiendrez un développer.[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[node name="Ground" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=687325852]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=4]
+[cell][img width=95 height=95 ]res://assets/tiles/tile_empty.png[/img][/cell]
+[cell][img width=95 height=95]res://assets/tiles/tile_grass.png[/img][/cell]
+[cell][img width=95  height=95 ]res://assets/tiles/tile_processor.png[/img][/cell]
+[cell]
+Ces Hexagones sont vide.[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[node name="Fog" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=663686131]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=2]
+[cell][img width=95 height=95 ]res://assets/tuto/fog_ofwar.png[/img][/cell]
+[cell]
+Sur toute la carte il y a un brouillar de guerre vos batiments et unité révelé la carte chacun avec sa porté visuelle[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[node name="Main_menu" type="Button" parent="." unique_id=343079696]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 431.0
+offset_right = 1037.0
+offset_bottom = 522.0
+text = "Main Menu"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1047223191]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 4.0
+offset_right = 1154.0
+offset_bottom = 301.0
+
+[node name="info" type="RichTextLabel" parent="PanelContainer" unique_id=1692652835]
+layout_mode = 2
+bbcode_enabled = true
+text = "[table=1]
+[cell][img width=570 height=95 ]res://assets/tuto/info.png[/img][/cell]
+[cell] Ce bandeau rose vous permettra de voir en permanence quelle stastique importante de votre entreprise. 
+L'argent est le score du jeu si vous êtes en déficite vous aurez 2 tours de surci.
+Vous pouvez faire un emprunt, tous les 5 tours mais attention vous devrez le remboursé.
+Le bonheur n'est pas à négligé si vous êtes endessous du seuil vos employers travallerons moins bien.[/cell]
+[/table]"
+fit_content = true
+scroll_active = false
+
+[connection signal="pressed" from="Main_menu" to="." method="_on_main_menu_pressed"]

@@ -4,10 +4,6 @@ signal board_click(position: Vector2)
 signal camera_zoom(zoom: Vector2)
 signal camera_position(position: Vector2)
 signal camera_is_pressed(is_pressed: bool)
-#func _on_tree_button_toggled(toggled_on: bool) -> void:
-	#map.is_board_clickable = !toggled_on
-
-# on peux bouger la cam tous en sélectionnant une tuile
 
 
 func _unhandled_input(event: InputEvent) -> void:

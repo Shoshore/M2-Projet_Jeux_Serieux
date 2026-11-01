@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ubmwyasbcw2n"
-path="res://.godot/imported/poulet.jpg-d957c4aee66ff206349624f69f5592cf.ctex"
+uid="uid://bb3bfmb248d7r"
+path="res://.godot/imported/fog_ofwar.png-28cfe68e2f08c607057191c4ed332031.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/poulet.jpg"
-dest_files=["res://.godot/imported/poulet.jpg-d957c4aee66ff206349624f69f5592cf.ctex"]
+source_file="res://assets/tuto/fog_ofwar.png"
+dest_files=["res://.godot/imported/fog_ofwar.png-28cfe68e2f08c607057191c4ed332031.ctex"]
 
 [params]
 

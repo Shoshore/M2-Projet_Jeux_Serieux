@@ -22,7 +22,7 @@ var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 @onready var skill_tree: Control = $HUD/SkillTree
 @onready var tree_button: Button = $HUD/TreeButton
 @onready var round_button: Button = $HUD/Control/End_turn_button
-@onready var tiles_info: PanelContainer = $CanvasLayer/info
+@onready var tiles_info: Control = $InfoBox/Info_node
 @onready var window_info_label: Control = $HUD/Control/HBoxContainer/Window_info/Label
 @onready var ressources_label: Label = $HUD/Control/HBoxContainer/Ressources/Label
 
@@ -96,13 +96,17 @@ func _on_end_turn_button_pressed() -> void:
 
 func _on_tile_clicked(tile: Tile) -> void:
 	if tile.is_visible_by_fog:
-		label_info.text = tile.get_info_text(company_array[0], current_turn)
+		var text = tile.get_info_text(company_array[0], current_turn)
 		if tile.get_building() == company_array[0]:
+			text +=  "Tour avant le prochain emprunt : " + str(turn_wait_share_holder) + "\n"
+			if company_array[0]._funds < 0:
+				text += "Tour avant de faire fahite : " + str(2 - current_stitch_turn)
 			$InfoBox/Info_node/Info_container/Fire_employe.visible = true
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = true
 		else:
 			$InfoBox/Info_node/Info_container/Fire_employe.visible = false
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = false
+		label_info.text = text
 	else:
 		label_info.text = "Le brouillard vous empêche de savoir \n ce qu'il  y a sur cette hexagone"
 

@@ -60,6 +60,12 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Charger partie"
 
+[node name="Tuto" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2108572341]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Tutoriel"
+
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1252962480]
 layout_mode = 2
 size_flags_vertical = 3
@@ -67,4 +73,5 @@ theme_override_font_sizes/font_size = 32
 text = "Quitter le jeu "
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Tuto" to="." method="_on_tuto_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

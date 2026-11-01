@@ -36,7 +36,7 @@ grow_vertical = 0
 [node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.10638298
+anchor_left = -0.14468086
 anchor_top = -2.7798166
 anchor_bottom = 0.0091743115
 offset_left = -2.0
