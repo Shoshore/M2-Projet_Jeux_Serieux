@@ -22,36 +22,36 @@ script = ExtResource("1_rlxc1")
 
 [node name="Info_node" type="Control" parent="InfoBox" unique_id=1731494199]
 layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchor_left = 0.786
+anchor_top = 0.14923458
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -235.0
-offset_top = -274.0
-offset_bottom = -165.0
+anchor_bottom = 0.77500004
+offset_left = 0.5279541
+offset_top = 0.29599762
+offset_right = -1.0
+offset_bottom = -0.2000122
 grow_horizontal = 0
 grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.14468086
-anchor_top = -2.7798166
-anchor_bottom = 0.0091743115
-offset_left = -2.0
-offset_top = 31.0
-offset_right = 235.0
-offset_bottom = 108.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_region = true
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Info_panel" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=523928467]
 layout_mode = 2
 
-[node name="Info_label" type="Label" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=119894826]
+[node name="Info_label" type="RichTextLabel" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=367300460]
 layout_mode = 2
 text = "Aucun hexagone sélectionné."
+fit_content = true
 
 [node name="Pay_share_holder" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=454757013]
 visible = false
@@ -67,6 +67,7 @@ layout_mode = 2
 
 [node name="Fire_button" type="OptionButton" parent="InfoBox/Info_node/Info_container/Fire_employe" unique_id=1512664568]
 layout_mode = 2
+alignment = 1
 selected = 0
 item_count = 4
 popup/item_0/text = "Aucune sélection"
@@ -165,7 +166,6 @@ script = ExtResource("7_xsk5a")
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=167875768]
 process_mode = 2
-visible = false
 
 [node name="PauseMenu" parent="PauseMenu" unique_id=749739424 instance=ExtResource("3_bfdkv")]
 offset_top = 8.0

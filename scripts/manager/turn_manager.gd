@@ -5,7 +5,7 @@ var skillTreeText = "Arbre de compétence"
 
 var map := Map.new()
 var selection_manager := Selection_manager.new(map)
-@onready var label_info: Label = get_node("InfoBox/Info_node/Info_container/Info_panel/Info_label")
+@onready var label_info: RichTextLabel = get_node("InfoBox/Info_node/Info_container/Info_panel/Info_label")
 
 const GAME_LENGTH := 30
 var current_turn := 1
@@ -101,6 +101,8 @@ func _on_tile_clicked(tile: Tile) -> void:
 			text +=  "Tour avant le prochain emprunt : " + str(turn_wait_share_holder) + "\n"
 			if company_array[0]._funds < 0:
 				text += "Tour avant de faire fahite : " + str(2 - current_stitch_turn)
+			var b: Control = $InfoBox/Info_node/Info_container/Fire_employe
+			print("visible: ", b.visible, " | in tree: ", b.is_visible_in_tree(), " | size: ", b.size, " | pos: ", b.global_position)
 			$InfoBox/Info_node/Info_container/Fire_employe.visible = true
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = true
 		else:
@@ -186,6 +188,6 @@ func _on_share_holder_pressed() -> void:
 		return
 	
 	var player = company_array[0]
-	player._funds += 1000
-	player._debt += 1300
+	player.borrowed()
+	turn_wait_share_holder = TURN_SHARE_HOLDER
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))

@@ -27,7 +27,7 @@ enum Biome {
 var biome: Biome = Biome.GRASS
 var is_visible_by_fog: bool = false
 
-const FOG_COLOR := Color(0, 0, 0, 1)
+
 
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
@@ -104,7 +104,7 @@ func reload_visual() -> void:
 		set_texture_hex(hexagon, _texture.get_texture())
 	hexagon.modulate = Color.WHITE
 
-	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_COLOR
+	var visibility_modulate := Color.WHITE if is_visible_by_fog else Global.FOG_COLOR
 	hex_ground.modulate = visibility_modulate
 	hex_company.modulate = visibility_modulate
 	hex_recruiter.modulate = visibility_modulate
@@ -146,15 +146,17 @@ func company_info(turn: int, not_all : bool = true) -> String:
 		text = "Argent : " + str(_building._funds) + "\n"
 		text += "Boost sur les profits : " + str(_building._boost_turnover - 1) + "%\n"
 	text += "Bonheur : " + str(_building._mood_gauge) + "/" + str(_building._mood_threshold) + "\n"
-	var nb_employee = _building._number_developer + _building._number_researcher + _building._number_recruiter
 	if not_all:
-		text += "Nombre d'employés : " + str(nb_employee) + "\n"
+		text += "Nombre d'employés : " + str(_building.get_number_employees()) + "\n"
 		text += "Nombre de developpers : " + str(_building._number_developer) + "\n"
 	text += "Nombre de chercheurs : " + str(_building._number_researcher) + "\n"
 	text += "Nombre de recruteurs : " + str(_building._number_recruiter) + "\n"
-	text += "Paye des salariers : " + str(_building._salary_pay * (1 + 0.3 * floor(turn / 3))) + "\n" 
+	var rise = _building._get_pay_rise(turn)
+	text += "Revenu net des salariés : " + str(roundi(_building._NET_SALARY * rise)) + " €\n"
+	text += "Charge patronale par employé : " + str(roundi(_building._GROSS_SALARY * _building._EMPLOYER_CHARGES * rise)) + " €\n"
+	text += "Coût total par employé : " + str(roundi(_building._EMPLOYER_COST * rise)) + " €\n"
 	if not_all:
-		text += "Profit par développer : " + str(_building._profit * _building._boost_turnover) + "\n" 
+		text += "Profit par développer : " + str(_building._PROFIT * _building._boost_turnover) + "\n" 
 	text += "Portée visuelle : " + str(_building.vision.sight_range) + "\n"
 	return text
 

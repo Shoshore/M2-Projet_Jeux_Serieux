@@ -111,7 +111,7 @@ func display_boost(s: Skill) -> String:
 	for effect in s.effects:
 		if effect.variable_name == "_boost_turnover":
 			text += "Gain de revenue : "
-			text += str(effect.value)
+			text += str(effect.value * 100) + "%"
 			text += "\n"
 		if effect.variable_name == "_mood_gauge":
 			text += "Gain d'humeur : "
