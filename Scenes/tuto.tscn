@@ -7,15 +7,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1sx44")
 
 [node name="Tile description" type="PanelContainer" parent="." unique_id=616240166]
 layout_mode = 0
-offset_left = -2.0
+offset_left = 2.0
 offset_top = -1.0
-offset_right = 580.0
+offset_right = 621.0
 offset_bottom = 650.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tile description" unique_id=584041035]
@@ -27,7 +29,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]assets/tiles/company.png[/img][/cell]
 [cell]
-Cette Hexagone est votre entreprise, a vous de la développer.[/cell] 
+Cet Hexagone est votre entreprise, à vous de la développer.[/cell] 
 [/table] "
 fit_content = true
 scroll_active = false
@@ -38,7 +40,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95  height=95 ]res://assets/tiles/recruiter.png[/img][/cell]
 [cell]
-Cette hexagone est recruiter, il vous permet de recruter des employés. Pour le déplacer, cliquez sur une case puis sur une autre.[/cell]
+Cet hexagone est recruteur ; il vous permet de recruter des employés. Pour le déplacer, cliquez sur une case, puis sur une autre.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -49,7 +51,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/University.png[/img][/cell]
 [cell]
-Cette hexagone représente une university resté y quelque tour et vous obtiendrez un chercheur.[/cell]
+Cet hexagone représente une université restée quelques tours et vous obtiendrez un chercheur.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -60,7 +62,7 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/Recruitement.png[/img][/cell]
 [cell]
-Cette hexagone représente un site de recrutement resté y quelque tour et vous obtiendrez un développer.[/cell]
+Cet hexagone représente un site de recrutement resté ici quelques tours et vous obtiendrez un développeur.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -73,7 +75,7 @@ text = "[table=4]
 [cell][img width=95 height=95]res://assets/tiles/tile_grass.png[/img][/cell]
 [cell][img width=95  height=95 ]res://assets/tiles/tile_processor.png[/img][/cell]
 [cell]
-Ces Hexagones sont vide.[/cell]
+Ces hexagones sont vides.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -84,35 +86,49 @@ bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tuto/fog_ofwar.png[/img][/cell]
 [cell]
-Sur toute la carte il y a un brouillar de guerre vos batiments et unité révelé la carte chacun avec sa porté visuelle[/cell]
+Sur toute la carte, il y a un brouillard de guerre ; vos bâtiments et unités révèlent la carte, chacun avec sa portée visuelle.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
 
 [node name="Main_menu" type="Button" parent="." unique_id=343079696]
 layout_mode = 0
-offset_left = 730.0
-offset_top = 431.0
-offset_right = 1037.0
-offset_bottom = 522.0
+offset_left = 759.0
+offset_top = 527.0
+offset_right = 1066.0
+offset_bottom = 618.0
 text = "Main Menu"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1047223191]
 layout_mode = 0
-offset_left = 580.0
-offset_top = 4.0
-offset_right = 1154.0
-offset_bottom = 301.0
+offset_left = 621.0
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 495.0
 
-[node name="info" type="RichTextLabel" parent="PanelContainer" unique_id=1692652835]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2097433182]
+layout_mode = 2
+
+[node name="info" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1692652835]
 layout_mode = 2
 bbcode_enabled = true
 text = "[table=1]
-[cell][img width=570 height=95 ]res://assets/tuto/info.png[/img][/cell]
-[cell] Ce bandeau rose vous permettra de voir en permanence quelle stastique importante de votre entreprise. 
-L'argent est le score du jeu si vous êtes en déficite vous aurez 2 tours de surci.
-Vous pouvez faire un emprunt, tous les 5 tours mais attention vous devrez le remboursé.
-Le bonheur n'est pas à négligé si vous êtes endessous du seuil vos employers travallerons moins bien.[/cell]
+[cell][img width=570 height=95]res://assets/tuto/info.png[/img][/cell]
+[cell]Ce bandeau vous permettra d'avoir en permanence des informations utiles sur votre entreprise.[/cell][/table]"
+fit_content = true
+scroll_active = false
+
+[node name="goal" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1036708432]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][u]Objectif du jeu :[/u][/center]
+[table=1]
+[cell]- Votre objectif est de maximiser votre score (argent) pendant le nombre de tours imparti.[/cell]
+[cell]- Si vous avez une somme négative d'argent, vous aurez 2 tours pour repasser en positif, sinon vous aurez perdu.[/cell]
+[cell]- Vous pouvez emprunter de l'argent, avec un temps de recharge de 5 tours, mais vous devrez rembourser avec des intérêts.[/cell]
+[cell]- Les développeurs sont la ressource qui génère du profit à votre entreprise.[/cell]
+[cell]- Vous aurez un arbre de compétences à développer ; pour ce faire, les ressources nécessaires seront : les chercheurs et de l'argent.[/cell]
+[cell]- Le bonheur de vos employés n'est pas à négliger, sinon ils travailleront moins bien.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false

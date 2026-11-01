@@ -144,17 +144,17 @@ func company_info(turn: int, not_all : bool = true) -> String:
 	var text := ""
 	if not_all:
 		text = "Argent : " + str(_building._funds) + "\n"
-		text += "Boost de revenu : " + str(_building._boost_turnover) + "%\n"
-	text += "Humeur : " + str(_building._mood_gauge) + "/" + str(_building._mood_threshold) + "\n"
+		text += "Boost sur les profits : " + str(_building._boost_turnover - 1) + "%\n"
+	text += "Bonheur : " + str(_building._mood_gauge) + "/" + str(_building._mood_threshold) + "\n"
 	var nb_employee = _building._number_developer + _building._number_researcher + _building._number_recruiter
 	if not_all:
-		text += "Nombre d'employer : " + str(nb_employee) + "\n"
+		text += "Nombre d'employés : " + str(nb_employee) + "\n"
 		text += "Nombre de developpers : " + str(_building._number_developer) + "\n"
 	text += "Nombre de chercheurs : " + str(_building._number_researcher) + "\n"
 	text += "Nombre de recruteurs : " + str(_building._number_recruiter) + "\n"
-	text += "Paye des salarier : " + str(_building._salary_pay * 0.3 * floor(turn / 3)) + "\n" 
+	text += "Paye des salariers : " + str(_building._salary_pay * (1 + 0.3 * floor(turn / 3))) + "\n" 
 	if not_all:
-		text += "Profit par salarier : " + str(_building._profit * _building._boost_turnover) + "\n" 
+		text += "Profit par développer : " + str(_building._profit * _building._boost_turnover) + "\n" 
 	text += "Portée visuelle : " + str(_building.vision.sight_range) + "\n"
 	return text
 
@@ -163,12 +163,12 @@ func get_info_text(company: Company, turn: int) -> String:
 	var text := ""
 	if _occupant:
 		if _occupant.get_company_id() == 0:
-			text += "Votre unité 'Recruiter' :\n"
+			text += "Votre unité « Recruiter » :\n"
 		else:
-			text += "Unité Recruiter adverse :\n"
-		text +=  "Points de mouvements : " + str(_occupant.movement._current_movement) + " / "
+			text += "Unité « Recruiter » adverse :\n"
+		text +=  "Points de mouvement : " + str(_occupant.movement._current_movement) + " / "
 		text += str(_occupant.movement._max_movement) + "\n"
-		text += "Portée de visuelle : " + str(_occupant.vision.sight_range)
+		text += "Portée visuelle : " + str(_occupant.vision.sight_range)
 	elif _building:
 		if _building is Company:
 			if _building.id.get_id() == 0:
@@ -180,11 +180,11 @@ func get_info_text(company: Company, turn: int) -> String:
 					text += company_info(turn)
 				elif _building._cyber_security:
 					text += company_info(turn, false)
-					text += "L'entreprise adverse commence à développé sa cybersécurité \n"
-					text += "vous ne pouvez pas espionné toutes ses informations"
+					text += "L'entreprise adverse commence à développer sa cybersécurité ; "
+					text += "vous ne pouvez pas espionner toutes ses informations."
 				elif _building._cyber_defense:
-					text += "L'entreprise adverse à une cyber defense trop élevé \n"
-					text += "pensé à améliorer votre cyber attaque !"
+					text += "L'entreprise adverse a une cyberdéfense trop élevée ; "
+					text += "pensez à améliorer votre cyberattaque !"
 		elif _building is Recruitement_building:
 			var ressource := ""
 			if _building._ressource == Recruitement_building.Ressources.DEVELOPPER:
@@ -194,7 +194,7 @@ func get_info_text(company: Company, turn: int) -> String:
 				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
-			text += "Durée de marchage avant \n embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
+			text += "Durée de démarchage \n avant embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
 			text += _building.text_turn_left()
 	else:
 		text = "L'hexagone est vide"

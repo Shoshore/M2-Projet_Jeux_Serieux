@@ -51,7 +51,7 @@ layout_mode = 2
 
 [node name="Info_label" type="Label" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=119894826]
 layout_mode = 2
-text = "Aucun hexagone sélecitonné"
+text = "Aucun hexagone sélectionné."
 
 [node name="Pay_share_holder" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=454757013]
 visible = false
@@ -59,7 +59,7 @@ layout_mode = 2
 
 [node name="Share_holder" type="Button" parent="InfoBox/Info_node/Info_container/Pay_share_holder" unique_id=1296701844]
 layout_mode = 2
-text = "Contracté un pret"
+text = "Contracter un prêt"
 
 [node name="Fire_employe" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=1182287169]
 visible = false
@@ -71,11 +71,11 @@ selected = 0
 item_count = 4
 popup/item_0/text = "Aucune sélection"
 popup/item_0/id = 3
-popup/item_1/text = "Licencié un chercheur"
+popup/item_1/text = "Licencier un chercheur"
 popup/item_1/id = 0
-popup/item_2/text = "Licencicé un développeur"
+popup/item_2/text = "Licencicer un développeur"
 popup/item_2/id = 1
-popup/item_3/text = "Licencicé un recruter"
+popup/item_3/text = "Licencicer un recruter"
 popup/item_3/id = 2
 
 [node name="cameraManager" type="Node2D" parent="." unique_id=401334710]
