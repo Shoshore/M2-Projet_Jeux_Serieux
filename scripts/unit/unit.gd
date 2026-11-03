@@ -23,3 +23,7 @@ func update_end_turn() -> void:
 
 func get_company_id():
 	return _compagny_id
+
+
+func get_distance_tile(pos: Vector2i) -> int:
+	return movement.get_hex_distance(movement.position.get_position(), pos)

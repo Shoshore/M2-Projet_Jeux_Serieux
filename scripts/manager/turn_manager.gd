@@ -95,7 +95,9 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func _on_tile_clicked(tile: Tile) -> void:
-	if tile.is_visible_by_fog:
+	if !tile:
+		label_info.text = "Aucun hexagone sélectionné"
+	elif tile.is_visible_by_fog:
 		var text = tile.get_info_text(company_array[0], current_turn)
 		if tile.get_building() == company_array[0]:
 			text +=  "Tour avant le prochain emprunt : " + str(turn_wait_share_holder) + "\n"
@@ -188,4 +190,5 @@ func _on_share_holder_pressed() -> void:
 	var player = company_array[0]
 	player._funds += 1000
 	player._debt += 1300
+	turn_wait_share_holder = TURN_SHARE_HOLDER
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))

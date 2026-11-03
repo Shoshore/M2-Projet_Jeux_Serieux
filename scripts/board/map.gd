@@ -210,10 +210,20 @@ func get_line(a: Vector2i, b: Vector2i) -> Array[Vector2i]:
 	return result
 
 
-func is_path_blocked(from: Vector2i, to: Vector2i) -> bool:
+func path_check(from: Vector2i, to: Vector2i) -> Vector2i:
 	var line := get_line(from, to)
-	for i in range(1, line.size() - 1):
+	var last_free := from
+	for i in range(1, line.size()):
 		var t := get_tile_at(line[i])
 		if t == null or t.get_building() != null:
-			return true
-	return false
+			return last_free
+		last_free = line[i]
+	return last_free
+
+
+func get_tile_between(from: Vector2i, to: Vector2i) -> Array[Tile]:
+	var line := get_line(from, to)
+	var result : Array[Tile] = []
+	for i in range(1, line.size()):
+		result.append(get_tile_at(line[i]))
+	return result

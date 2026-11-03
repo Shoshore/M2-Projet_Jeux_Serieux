@@ -43,11 +43,13 @@ offset_left = -2.0
 offset_top = 31.0
 offset_right = 235.0
 offset_bottom = 108.0
+mouse_filter = 2
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Info_panel" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=523928467]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Info_label" type="Label" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=119894826]
 layout_mode = 2

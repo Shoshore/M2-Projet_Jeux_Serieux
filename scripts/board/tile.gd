@@ -27,8 +27,6 @@ enum Biome {
 var biome: Biome = Biome.GRASS
 var is_visible_by_fog: bool = false
 
-const FOG_COLOR := Color(0, 0, 0, 1)
-
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
 
@@ -104,7 +102,7 @@ func reload_visual() -> void:
 		set_texture_hex(hexagon, _texture.get_texture())
 	hexagon.modulate = Color.WHITE
 
-	var visibility_modulate := Color.WHITE if is_visible_by_fog else FOG_COLOR
+	var visibility_modulate := Color.WHITE if is_visible_by_fog else Global.FOG_COLOR
 	hex_ground.modulate = visibility_modulate
 	hex_company.modulate = visibility_modulate
 	hex_recruiter.modulate = visibility_modulate
