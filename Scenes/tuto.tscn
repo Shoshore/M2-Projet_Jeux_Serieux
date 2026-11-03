@@ -15,16 +15,18 @@ script = ExtResource("1_1sx44")
 
 [node name="Tile description" type="PanelContainer" parent="." unique_id=616240166]
 layout_mode = 0
-offset_left = 2.0
-offset_top = -1.0
-offset_right = 621.0
-offset_bottom = 650.0
+anchor_left = 0.0017331023
+anchor_top = -0.001545595
+anchor_right = 0.53812826
+anchor_bottom = 1.0046368
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tile description" unique_id=584041035]
 layout_mode = 2
 
 [node name="Company" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=623870326]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]assets/tiles/company.png[/img][/cell]
@@ -33,9 +35,11 @@ Cet Hexagone est votre entreprise, à vous de la développer.[/cell]
 [/table] "
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="Recruiter" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=2102889912]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95  height=95 ]res://assets/tiles/recruiter.png[/img][/cell]
@@ -44,9 +48,11 @@ Cet hexagone est recruteur ; il vous permet de recruter des employés. Pour le d
 [/table]"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="University" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=1486423513]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/university.png[/img][/cell]
@@ -55,9 +61,11 @@ Cet hexagone représente une université ; restez quelques tours et vous obtiend
 [/table]"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="Recruitment" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=1419793260]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tiles/recruitement.png[/img][/cell]
@@ -66,9 +74,11 @@ Cet hexagone représente un site de recrutement ; restez ici quelques tours et v
 [/table]"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="Ground" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=687325852]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=4]
 [cell][img width=95 height=95 ]res://assets/tiles/tile_empty.png[/img][/cell]
@@ -79,9 +89,11 @@ Ces hexagones sont vides.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="Fog" type="RichTextLabel" parent="Tile description/VBoxContainer" unique_id=663686131]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[table=2]
 [cell][img width=95 height=95 ]res://assets/tuto/fog_ofwar.png[/img][/cell]
@@ -90,21 +102,24 @@ Sur toute la carte, il y a un brouillard de guerre ; vos bâtiments et unités r
 [/table]"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="Main_menu" type="Button" parent="." unique_id=343079696]
 layout_mode = 0
-offset_left = 759.0
-offset_top = 527.0
-offset_right = 1066.0
-offset_bottom = 618.0
+anchor_left = 0.6577123
+anchor_top = 0.8145286
+anchor_right = 0.9237435
+anchor_bottom = 0.9551777
 text = "Main Menu"
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1047223191]
 layout_mode = 0
-offset_left = 621.0
-offset_top = -1.0
-offset_right = 1152.0
-offset_bottom = 495.0
+anchor_left = 0.53812826
+anchor_top = -0.001545595
+anchor_right = 0.9982669
+anchor_bottom = 0.76506954
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2097433182]
 layout_mode = 2
@@ -120,6 +135,7 @@ scroll_active = false
 
 [node name="goal" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1036708432]
 layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[center][u]Objectif du jeu :[/u][/center]
 [table=1]
