@@ -5,7 +5,7 @@ var skillTreeText = "Arbre de compétence"
 
 var map := Map.new()
 var selection_manager := Selection_manager.new(map)
-@onready var label_info: Label = get_node("InfoBox/Info_node/Info_container/Info_panel/Info_label")
+@onready var label_info: RichTextLabel = get_node("InfoBox/Info_node/Info_container/Info_panel/Info_label")
 
 const GAME_LENGTH := 30
 var current_turn := 1
@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _map_filling(map: Map) -> void:
 	company_array[0] = map.create_company(Vector2i(0, 0), 0)
-	var ressources := map.create_ressources(10, 3)
+	var ressources := map.create_ressources(14, 4, 3)
 	var size := ressources.size()
 	for idx in range(size):
 		recrutement_building_array[idx] = ressources[idx]
@@ -103,6 +103,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 			text +=  "Tour avant le prochain emprunt : " + str(turn_wait_share_holder) + "\n"
 			if company_array[0]._funds < 0:
 				text += "Tour avant de faire fahite : " + str(2 - current_stitch_turn)
+			var b: Control = $InfoBox/Info_node/Info_container/Fire_employe
 			$InfoBox/Info_node/Info_container/Fire_employe.visible = true
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = true
 		else:
@@ -110,7 +111,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = false
 		label_info.text = text
 	else:
-		label_info.text = "Le brouillard vous empêche de savoir \n ce qu'il  y a sur cette hexagone"
+		label_info.text = "Le brouillard vous empêche de savoir ce qu'il  y a sur cette hexagone"
 
 
 func _on_input_board_click(position: Vector2) -> void:
@@ -135,11 +136,13 @@ func _go_to_skill_tree() -> void:
 	else:
 		tree_button.text = skillTreeText
 		window_info_label.text = boardText
+		_on_tile_clicked(selection_manager.selected_tile)
 
 
 func _on_skill_unlock(skill: Skill) -> void:
 	var company: Company = company_array[0]
 	company.apply_skill(skill)
+	_update_company_info()
 
 
 # ------------
@@ -172,13 +175,10 @@ func _update_company_info() -> void:
 func _on_fire_button_item_selected(index: int) -> void:
 	match index:
 		1:
-			print("test")
 			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
 		2:
-			print("c")
 			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
 		3:
-			print("ici")
 			company_array[0].fire_employee(Company.Employee_type.RECRUITER, 0)
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
 
@@ -188,7 +188,11 @@ func _on_share_holder_pressed() -> void:
 		return
 	
 	var player = company_array[0]
+<<<<<<< HEAD
 	player._funds += 1000
 	player._debt += 1300
+=======
+	player.borrowed()
+>>>>>>> balancegame
 	turn_wait_share_holder = TURN_SHARE_HOLDER
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))

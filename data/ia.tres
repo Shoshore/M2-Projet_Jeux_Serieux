@@ -12,14 +12,14 @@
 
 [sub_resource type="Resource" id="Resource_6b3hv"]
 script = ExtResource("1_2b6wj")
-number_researcher = 1
-funds = 1
+number_researcher = 4
+funds = 40000
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_14dii"]
 script = ExtResource("1_romwp")
 variable_name = &"_boost_turnover"
-value = 0.97
+value = 0.5
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [sub_resource type="Resource" id="Resource_xf5f8"]

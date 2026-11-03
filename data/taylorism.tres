@@ -7,20 +7,20 @@
 
 [sub_resource type="Resource" id="Resource_1t56v"]
 script = ExtResource("1_602vq")
-number_researcher = 1
-funds = 1
+number_researcher = 2
+funds = 12000
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_qk3yr"]
 script = ExtResource("1_eb4ik")
 variable_name = &"_boost_turnover"
-value = 0.64
+value = 0.12
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [sub_resource type="Resource" id="Resource_602vq"]
 script = ExtResource("1_eb4ik")
 variable_name = &"_mood_gauge"
-value = -5.0
+value = -10.0
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]

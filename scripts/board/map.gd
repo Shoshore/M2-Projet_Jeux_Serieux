@@ -141,14 +141,23 @@ func create_company(position: Vector2i, id: int) -> Company:
 	refresh_sight(tile)
 	return current_compagny
 
-func create_ressources(quantity: int, start_distance: int) -> Array[Recruitement_building]:
+
+func create_ressources(quantity: int, start_distance: int, safe_distance: int) -> Array[Recruitement_building]:
 	var _next_site_id = 0
 	var result: Array[Recruitement_building] = []
 	var target := quantity * 2
 
+	var existing: Array[Vector2i] = []
+	for tile: Tile in tiles_by_coord.values():
+		if tile.get_building() != null or tile.get_occupant() != null:
+			existing.append(tile.position_.get_position())
+
 	var candidates: Array[Tile] = []
 	for tile: Tile in tiles_by_coord.values():
-		if tile.get_building() == null and tile.get_occupant() == null:
+		if tile.get_building() != null or tile.get_occupant() != null:
+			continue
+		var pos := tile.position_.get_position()
+		if _is_far_from_all(pos, existing, safe_distance):
 			candidates.append(tile)
 	Random.shuffle(candidates)
 
@@ -185,12 +194,21 @@ func _is_far_enough(pos: Vector2i, sites: Array[Recruitement_building], min_dist
 			return false
 	return true
 
-
 func hex_distance(a: Vector2i, b: Vector2i) -> int:
 	var dq := a.x - b.x
 	var dr := a.y - b.y
 	return (absi(dq) + absi(dq + dr) + absi(dr)) / 2
 
+
+func _is_far_from_all(pos: Vector2i, others: Array[Vector2i], min_dist: int) -> bool:
+	for other in others:
+		if _distance(pos, other) < min_dist:
+			return false
+	return true
+
+
+func _distance(a: Vector2i, b: Vector2i) -> int:
+	return maxi(absi(a.x - b.x), absi(a.y - b.y)) 
 
 # ------------------
 # movement unit

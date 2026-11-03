@@ -7,20 +7,41 @@ var _number_developer := 1
 var _number_researcher := 1
 var _number_recruiter := 0
 
-var _salary_pay := 500
-var _profit := 800
+const _NET_SALARY := 2350.0
+const _NET_TO_GROSS := 0.78
+const _EMPLOYER_CHARGES := 0.42
 
-var _funds := 100
-var _boost_turnover := 1
+const _GROSS_SALARY := _NET_SALARY / _NET_TO_GROSS
+const _EMPLOYER_COST := _GROSS_SALARY * (1.0 + _EMPLOYER_CHARGES)
+
+
+const _OVERHEAD := 40
+const _PROFIT := 9000
+
+const _RAISE := 0.1
+const _RAISE_EVERY := 6
+
+const _MOOD_STEP := 2.5
+const _MOOD_FIRE_CONS := 15
+const _MOOD_MALUS_FLOOR := 0.6
+const _MOOD_MALUS_PER_POINT := 0.02
+
+const _REFUND := 0.1
+const _BORROWED_AMOUNT := 18000
+const _INTEREST := 1.2
+
+var _funds := 35000
+var _boost_turnover := 1.0
 
 var _mood_gauge := 30
-var _mood_threshold := 0
+var _mood_reduce := 0
+var _mood_threshold := 0.0
+
+var _debt := 0.0
 
 var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
-
-var _debt := 0.0
 
 var _cyber_security := false
 var _cyber_defense := false
@@ -74,8 +95,7 @@ enum Employee_type {
 
 
 func _fire_consequence():
-	_mood_gauge = floor(_mood_gauge / 2)
-	_funds += 2000
+	_mood_reduce += _MOOD_FIRE_CONS
 
 
 func _find_unit_by_id(unit_id: int) -> Unit:
@@ -107,25 +127,37 @@ func fire_employee(type: Employee_type, id_: int = -1) -> void:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
 				_fire_unit(_find_unit_by_id(id_))
+				_fire_consequence()
 
-
+func borrowed() -> void:
+	_debt += _BORROWED_AMOUNT * _INTEREST
+	_funds += _BORROWED_AMOUNT
 # -------------------
 # Update
 # -------------------
-func _update_funds(tour: int) -> void:
-	# pay
-	var pay_rise = 1 + 0.3 * floor(tour / 3)
-	var total_payroll = pay_rise * (_salary_pay * (_number_developer + _number_researcher + _number_recruiter))
-	var energy_cost = 40 * (_number_developer + _number_researcher + _number_recruiter)
-	# debt
-	var pay_debt = _debt * 0.1
-	_debt -= pay_debt
-	# profit
-	var profit = _boost_turnover * _profit * _number_developer
-	if _mood_threshold > _mood_gauge:
-		profit *= 0.4
+func _get_pay_rise(tour: int) -> float:
+	return pow(1.0 + _RAISE, floori(float(tour) / _RAISE_EVERY))
 
-	_funds += profit - (energy_cost + total_payroll + pay_debt)
+
+func _get_mood_factor() -> float:
+	var gap := _mood_threshold - (_mood_gauge - _mood_reduce)
+	if gap <= 0:
+		return 1.0
+	return maxf(_MOOD_MALUS_FLOOR, 1.0 - _MOOD_MALUS_PER_POINT * gap)
+
+
+func _update_funds(tour: int) -> void:
+	var staff := get_number_employees()
+	var payroll := _get_pay_rise(tour) * _EMPLOYER_COST * staff
+	var overhead := _OVERHEAD * staff
+
+	var pay_debt := _debt * _REFUND
+	if _debt < 100.0:
+		pay_debt = _debt
+	_debt = maxf(_debt - pay_debt, 0.0)
+
+	var profit := _boost_turnover * _PROFIT * _number_developer * _get_mood_factor()
+	_funds += int(profit - payroll - overhead - pay_debt)
 
 
 func _update_unit() -> void:
@@ -134,12 +166,8 @@ func _update_unit() -> void:
 
 
 func _update_mood() -> void:
-	if _mood_threshold + 3 < 100:
-		_mood_threshold += 3
-	if _mood_gauge < 30:
-		_mood_gauge += 3
-		if _mood_gauge > 30:
-			_mood_gauge = 30
+	_mood_threshold = minf(_mood_threshold + _MOOD_STEP, 80.0)
+	_mood_reduce = maxi(_mood_reduce - 3, 0)
 
 
 func update_end_turn(tour: int) -> void:

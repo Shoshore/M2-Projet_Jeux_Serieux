@@ -7,14 +7,14 @@
 
 [sub_resource type="Resource" id="Resource_14dii"]
 script = ExtResource("1_libgm")
-number_researcher = 1
-funds = 1
+number_researcher = 2
+funds = 23000
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_libgm"]
 script = ExtResource("1_oxwe4")
 variable_name = &"_mood_gauge"
-value = 0.5
+value = 10.0
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]
