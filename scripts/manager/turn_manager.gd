@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _map_filling(map: Map) -> void:
 	company_array[0] = map.create_company(Vector2i(0, 0), 0)
-	var ressources := map.create_ressources(10, 3)
+	var ressources := map.create_ressources(14, 4, 3)
 	var size := ressources.size()
 	for idx in range(size):
 		recrutement_building_array[idx] = ressources[idx]
@@ -95,6 +95,8 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func _on_tile_clicked(tile: Tile) -> void:
+	if !tile:
+		return
 	if tile.is_visible_by_fog:
 		var text = tile.get_info_text(company_array[0], current_turn)
 		if tile.get_building() == company_array[0]:
@@ -102,7 +104,6 @@ func _on_tile_clicked(tile: Tile) -> void:
 			if company_array[0]._funds < 0:
 				text += "Tour avant de faire fahite : " + str(2 - current_stitch_turn)
 			var b: Control = $InfoBox/Info_node/Info_container/Fire_employe
-			print("visible: ", b.visible, " | in tree: ", b.is_visible_in_tree(), " | size: ", b.size, " | pos: ", b.global_position)
 			$InfoBox/Info_node/Info_container/Fire_employe.visible = true
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = true
 		else:
@@ -110,7 +111,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 			$InfoBox/Info_node/Info_container/Pay_share_holder.visible = false
 		label_info.text = text
 	else:
-		label_info.text = "Le brouillard vous empêche de savoir \n ce qu'il  y a sur cette hexagone"
+		label_info.text = "Le brouillard vous empêche de savoir ce qu'il  y a sur cette hexagone"
 
 
 func _on_input_board_click(position: Vector2) -> void:
@@ -135,11 +136,13 @@ func _go_to_skill_tree() -> void:
 	else:
 		tree_button.text = skillTreeText
 		window_info_label.text = boardText
+		_on_tile_clicked(selection_manager.selected_tile)
 
 
 func _on_skill_unlock(skill: Skill) -> void:
 	var company: Company = company_array[0]
 	company.apply_skill(skill)
+	_update_company_info()
 
 
 # ------------
@@ -172,13 +175,10 @@ func _update_company_info() -> void:
 func _on_fire_button_item_selected(index: int) -> void:
 	match index:
 		1:
-			print("test")
 			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
 		2:
-			print("c")
 			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
 		3:
-			print("ici")
 			company_array[0].fire_employee(Company.Employee_type.RECRUITER, 0)
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
 

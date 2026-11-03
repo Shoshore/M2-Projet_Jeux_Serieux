@@ -19,6 +19,10 @@ func randf() -> float:
 	return _generator.randf()
 
 
+func randi_range(from: int, to: int) -> int:
+	return _generator.randi_range(from, to)
+
+
 func randi() -> int:
 	return _generator.randi()
 

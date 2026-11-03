@@ -153,6 +153,7 @@ func company_info(turn: int, not_all : bool = true) -> String:
 	text += "Nombre de recruteurs : " + str(_building._number_recruiter) + "\n"
 	var rise = _building._get_pay_rise(turn)
 	text += "Revenu net des salariés : " + str(roundi(_building._NET_SALARY * rise)) + " €\n"
+	text += "Prochaine augmentation des salaires : " + str(6 - turn % _building._RAISE_EVERY) + " tours" + "\n"
 	text += "Charge patronale par employé : " + str(roundi(_building._GROSS_SALARY * _building._EMPLOYER_CHARGES * rise)) + " €\n"
 	text += "Coût total par employé : " + str(roundi(_building._EMPLOYER_COST * rise)) + " €\n"
 	if not_all:
@@ -196,6 +197,7 @@ func get_info_text(company: Company, turn: int) -> String:
 				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
+			text += "Employé recrutable restant : " + str(_building._max_ressource) + "\n"
 			text += "Durée de démarchage \n avant embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
 			text += _building.text_turn_left()
 	else:

@@ -5,7 +5,7 @@ const TREE: SkillTree = preload("res://data/skillTree.tres")
 
 # Signal pour appliquer les compétences
 signal unlocked_skill(skill: Skill)
-
+signal reset_info()
 # Pour savoir quelles compétences ont été débloquées par le joueur
 var unlocked: Array[StringName] = []
 

@@ -16,12 +16,12 @@ const _EMPLOYER_COST := _GROSS_SALARY * (1.0 + _EMPLOYER_CHARGES)
 
 
 const _OVERHEAD := 40
-const _PROFIT := 8200
+const _PROFIT := 9000
 
-const _RAISE := 0.04
+const _RAISE := 0.1
 const _RAISE_EVERY := 6
 
-const _MOOD_STEP := 2
+const _MOOD_STEP := 2.5
 const _MOOD_FIRE_CONS := 15
 const _MOOD_MALUS_FLOOR := 0.6
 const _MOOD_MALUS_PER_POINT := 0.02
@@ -35,7 +35,7 @@ var _boost_turnover := 1.0
 
 var _mood_gauge := 30
 var _mood_reduce := 0
-var _mood_threshold := 0
+var _mood_threshold := 0.0
 
 var _debt := 0.0
 
@@ -166,7 +166,7 @@ func _update_unit() -> void:
 
 
 func _update_mood() -> void:
-	_mood_threshold = mini(_mood_threshold + _MOOD_STEP, 100)
+	_mood_threshold = minf(_mood_threshold + _MOOD_STEP, 80.0)
 	_mood_reduce = maxi(_mood_reduce - 3, 0)
 
 

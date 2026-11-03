@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 [sub_resource type="Resource" id="Resource_qk3yr"]
 script = ExtResource("1_eb4ik")
 variable_name = &"_boost_turnover"
-value = 0.06
+value = 0.12
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [sub_resource type="Resource" id="Resource_602vq"]
