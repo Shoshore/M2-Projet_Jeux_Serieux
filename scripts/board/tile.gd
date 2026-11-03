@@ -27,11 +27,7 @@ enum Biome {
 var biome: Biome = Biome.GRASS
 var is_visible_by_fog: bool = false
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> balancegame
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
 

@@ -188,11 +188,6 @@ func _on_share_holder_pressed() -> void:
 		return
 	
 	var player = company_array[0]
-<<<<<<< HEAD
-	player._funds += 1000
-	player._debt += 1300
-=======
 	player.borrowed()
->>>>>>> balancegame
 	turn_wait_share_holder = TURN_SHARE_HOLDER
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))

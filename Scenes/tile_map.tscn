@@ -32,6 +32,7 @@ offset_right = -1.0
 offset_bottom = -0.2000122
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
@@ -41,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 accessibility_region = true
 alignment = 2
 metadata/_edit_use_anchors_ = true
@@ -51,12 +53,14 @@ mouse_filter = 2
 
 [node name="Info_label" type="RichTextLabel" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=367300460]
 layout_mode = 2
+mouse_filter = 2
 text = "Aucun hexagone sélectionné."
 fit_content = true
 
 [node name="Pay_share_holder" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=454757013]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Share_holder" type="Button" parent="InfoBox/Info_node/Info_container/Pay_share_holder" unique_id=1296701844]
 layout_mode = 2
@@ -65,6 +69,7 @@ text = "Contracter un prêt"
 [node name="Fire_employe" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=1182287169]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Fire_button" type="OptionButton" parent="InfoBox/Info_node/Info_container/Fire_employe" unique_id=1512664568]
 layout_mode = 2
@@ -166,11 +171,7 @@ process_mode = 1
 script = ExtResource("7_xsk5a")
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=167875768]
-<<<<<<< HEAD
 process_mode = 3
-=======
-process_mode = 2
->>>>>>> balancegame
 
 [node name="PauseMenu" parent="PauseMenu" unique_id=749739424 instance=ExtResource("3_bfdkv")]
 offset_top = 8.0
