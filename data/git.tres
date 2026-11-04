@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_r2wu6"]
 script = ExtResource("1_fksqo")
 number_researcher = 2
-funds = 15000
+funds = 17000
 boost_turnover = 0.67
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
