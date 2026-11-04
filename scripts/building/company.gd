@@ -15,17 +15,16 @@ const _GROSS_SALARY := _NET_SALARY / _NET_TO_GROSS
 const _EMPLOYER_COST := _GROSS_SALARY * (1.0 + _EMPLOYER_CHARGES)
 
 
-const _OVERHEAD := 100
-const _PROFIT := 9000
+const _OVERHEAD := 50
+const _PROFIT := 9100
 
-const _RAISE_EARLY := 0.1
-const _RAISE_MID := 0.2
+const _RAISE := 0.1
 const _RAISE_EVERY := 6
 
-const _MOOD_STEP := 4
+const _MOOD_STEP := 3
 const _MOOD_FIRE_CONS := 15
-const _MOOD_MALUS_FLOOR := 0.8
-const _MOOD_MALUS_PER_POINT := 0.2
+const _MOOD_MALUS_FLOOR := 0.6
+const _MOOD_MALUS_PER_POINT := 0.1
 
 const _REFUND := 0.1
 const _BORROWED_AMOUNT := 18000
@@ -137,12 +136,7 @@ func borrowed() -> void:
 # Update
 # -------------------
 func _get_pay_rise(turn: int) -> float:
-	var current_rise : float
-	if turn < 12:
-		current_rise = _RAISE_EARLY
-	else:
-		current_rise = _RAISE_MID
-	return pow(1.0 + current_rise, floori(float(turn) / _RAISE_EVERY))
+	return pow(1.0 + _RAISE, floori(float(turn) / _RAISE_EVERY))
 
 
 func _get_mood_factor() -> float:
