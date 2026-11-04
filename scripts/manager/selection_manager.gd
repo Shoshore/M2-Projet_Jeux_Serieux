@@ -40,8 +40,6 @@ func on_tile_clicked(tile: Tile) -> void:
 	if selected_unit == null:
 		return
 	
-	if tile.get_building() != null:
-		return
 
 	var from_tile: Tile = _get_current_tile(selected_unit)
 	var target_pos := map.path_check(from_tile.position_.get_position(), tile.position_.get_position())
