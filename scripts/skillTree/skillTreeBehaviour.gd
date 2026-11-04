@@ -38,6 +38,9 @@ const ZOOM_VALUE := 0.05
 @onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
 
+# Bouton qui reset la position de l'arbre
+@onready var reset_button: Button = $SkillInfos/VBoxContainerInfos/ResetButton
+
 var company: Company = null
 
 # Dernier bouton sélectionné, si vide aucun bouton sélectionné
@@ -232,3 +235,14 @@ func _on_gui_input(event: InputEvent) -> void:
 		# Désaffiche la compétence
 		last_click = ""
 		undisplay_skill()
+		print("pos : ", skill_tree.position)
+		print("scale : ", skill_tree.scale)
+		print("windows size : ", get_window().size)
+
+
+func _on_reset_button_pressed() -> void:
+	skill_tree.pivot_offset = skill_tree.size / 2
+	skill_tree.scale = Vector2(0.5, 0.5)
+	var top_bar := 64.0 # Taille de la barre du HUD
+	var free_rect := Rect2(0, top_bar, size.x, size.y - top_bar) # Espace dispo pour le skilltree
+	skill_tree.position = free_rect.get_center() - skill_tree.size / 2
