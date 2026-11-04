@@ -32,10 +32,11 @@ offset_right = -1.0
 offset_bottom = -0.2000122
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
+custom_maximum_size = Vector2(245, 405)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,17 +44,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-accessibility_region = true
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Info_panel" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=523928467]
+custom_maximum_size = Vector2(245, 350)
 layout_mode = 2
 mouse_filter = 2
 
 [node name="Info_label" type="RichTextLabel" parent="InfoBox/Info_node/Info_container/Info_panel" unique_id=367300460]
 layout_mode = 2
-mouse_filter = 2
 text = "Aucun hexagone sélectionné."
 fit_content = true
 
@@ -95,11 +95,6 @@ process_mode = 3
 
 [node name="SkillTree" parent="HUD" unique_id=2043676651 instance=ExtResource("3_xsk5a")]
 visible = false
-anchors_preset = -1
-offset_left = 2.0
-offset_top = 4.0
-offset_right = 2.0
-offset_bottom = 4.0
 
 [node name="Control" type="Control" parent="HUD" unique_id=1631286862]
 layout_mode = 3
