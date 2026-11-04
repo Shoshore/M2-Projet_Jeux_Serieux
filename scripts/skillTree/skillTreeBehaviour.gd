@@ -1,7 +1,7 @@
 extends Control
 
 # Chargement de notre liste de compétence (ressource)
-const TREE: SkillTree = preload("res://data/skillTree.tres") 
+var TREE: SkillTree = load("res://data/skillTree.tres") 
 
 # Signal pour appliquer les compétences
 signal unlocked_skill(skill: Skill)

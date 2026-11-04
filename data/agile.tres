@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_6lvo8"]
 script = ExtResource("1_a3awv")
 number_researcher = 3
-funds = 23000
+funds = 35000
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_a3awv"]

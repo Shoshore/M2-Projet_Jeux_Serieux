@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_ap0s8"]
 script = ExtResource("1_ap0s8")
 number_researcher = 2
-funds = 15000
+funds = 17000
 metadata/_custom_type_script = "uid://bgkpiothrwkdf"
 
 [sub_resource type="Resource" id="Resource_qk3yr"]

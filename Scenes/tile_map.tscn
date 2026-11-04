@@ -76,7 +76,7 @@ layout_mode = 2
 alignment = 1
 selected = 0
 item_count = 4
-popup/item_0/text = "Aucune sélection"
+popup/item_0/text = "Licencier un employé"
 popup/item_0/id = 3
 popup/item_1/text = "Licencier un chercheur"
 popup/item_1/id = 0
@@ -152,7 +152,7 @@ grow_vertical = 0
 text = "Fin de tour"
 icon = SubResource("MeshTexture_rlxc1")
 
-[node name="AudioClick" type="AudioStreamPlayer2D" parent="HUD/Control/End_turn_button" unique_id=2123704296]
+[node name="AudioClick" type="AudioStreamPlayer" parent="HUD/Control/End_turn_button" unique_id=163775102]
 stream = ExtResource("7_bfdkv")
 volume_db = 12.0
 

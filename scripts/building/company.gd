@@ -15,16 +15,16 @@ const _GROSS_SALARY := _NET_SALARY / _NET_TO_GROSS
 const _EMPLOYER_COST := _GROSS_SALARY * (1.0 + _EMPLOYER_CHARGES)
 
 
-const _OVERHEAD := 40
-const _PROFIT := 9000
+const _OVERHEAD := 50
+const _PROFIT := 9100
 
 const _RAISE := 0.1
 const _RAISE_EVERY := 6
 
-const _MOOD_STEP := 2.5
+const _MOOD_STEP := 3
 const _MOOD_FIRE_CONS := 15
 const _MOOD_MALUS_FLOOR := 0.6
-const _MOOD_MALUS_PER_POINT := 0.02
+const _MOOD_MALUS_PER_POINT := 0.1
 
 const _REFUND := 0.1
 const _BORROWED_AMOUNT := 18000
@@ -135,8 +135,8 @@ func borrowed() -> void:
 # -------------------
 # Update
 # -------------------
-func _get_pay_rise(tour: int) -> float:
-	return pow(1.0 + _RAISE, floori(float(tour) / _RAISE_EVERY))
+func _get_pay_rise(turn: int) -> float:
+	return pow(1.0 + _RAISE, floori(float(turn) / _RAISE_EVERY))
 
 
 func _get_mood_factor() -> float:
@@ -146,9 +146,9 @@ func _get_mood_factor() -> float:
 	return maxf(_MOOD_MALUS_FLOOR, 1.0 - _MOOD_MALUS_PER_POINT * gap)
 
 
-func _update_funds(tour: int) -> void:
+func _update_funds(turn: int) -> void:
 	var staff := get_number_employees()
-	var payroll := _get_pay_rise(tour) * _EMPLOYER_COST * staff
+	var payroll := _get_pay_rise(turn) * _EMPLOYER_COST * staff
 	var overhead := _OVERHEAD * staff
 
 	var pay_debt := _debt * _REFUND
