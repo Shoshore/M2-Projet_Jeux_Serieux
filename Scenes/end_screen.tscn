@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ctl2eoms8sjn1" path="res://scripts/menu/end_screen.gd" id="1_f2mtv"]
 
-
 [node name="EndScreen" type="Control" unique_id=75256661]
 layout_mode = 3
 anchors_preset = 15
@@ -12,17 +11,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2mtv")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1496023440]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=68923613]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1152.0
-offset_top = -648.0
-grow_horizontal = 0
-grow_vertical = 0
+color = Color(0, 0.57254905, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=59076807]
 layout_mode = 1

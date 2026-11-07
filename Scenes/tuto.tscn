@@ -13,6 +13,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1sx44")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=55370631]
+layout_mode = 0
+anchor_left = 0.0017331023
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.57254905, 1, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="Tile description" type="PanelContainer" parent="." unique_id=616240166]
 layout_mode = 0
 anchor_left = 0.0017331023

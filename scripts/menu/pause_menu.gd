@@ -1,9 +1,11 @@
 extends Control
 
+@onready var tutoriel: Control = $Tuto
 
 func _ready() -> void:
 	hide()
-
+	tutoriel.hide()
+	
 func resume():
 	get_tree().paused = false
 	hide()
@@ -34,3 +36,6 @@ func _on_quit_pressed() -> void:
 	
 func _process(float):
 	pause_menu()
+
+func _on_tuturiel_button_pressed() -> void:
+	tutoriel.show()

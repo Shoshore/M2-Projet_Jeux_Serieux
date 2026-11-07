@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dtse2n38biuul"]
 
 [ext_resource type="Script" uid="uid://brmj1iqaeo0hx" path="res://scripts/menu/pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="PackedScene" uid="uid://bhup30t0xuv5m" path="res://Scenes/tuto_pause_menu.tscn" id="2_k0w1u"]
 
 [node name="PauseMenu" type="Control" unique_id=749739424]
 process_mode = 3
@@ -12,14 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hdmo1")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=53055101]
-layout_mode = 1
-anchors_preset = 15
+[node name="ColorRect" type="ColorRect" parent="." unique_id=824480960]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 2
+color = Color(0, 0.57254905, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1199393770]
 layout_mode = 1
@@ -45,12 +44,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Reprendre"
 
-[node name="Sauvegarder" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1667040338]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1990178584]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
-text = "Sauvegarder
-"
+text = "Tutoriel"
 
 [node name="Quitter" type="Button" parent="PanelContainer/VBoxContainer" unique_id=297944280]
 layout_mode = 2
@@ -58,6 +56,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Quitter"
 
+[node name="Tuto" parent="." unique_id=216834116 instance=ExtResource("2_k0w1u")]
+layout_mode = 1
+offset_right = 2.0
+offset_bottom = -1.0
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Reprendre" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Sauvegarder" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_tuturiel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quitter" to="." method="_on_quit_pressed"]
