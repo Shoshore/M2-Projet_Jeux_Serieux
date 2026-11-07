@@ -43,6 +43,8 @@ var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
 
+
+
 var _cyber_security := false
 var _cyber_defense := false
 var _cyber_attack := false
@@ -146,7 +148,7 @@ func _get_mood_factor() -> float:
 	return maxf(_MOOD_MALUS_FLOOR, 1.0 - _MOOD_MALUS_PER_POINT * gap)
 
 
-func _update_funds(turn: int) -> void:
+func _update_funds(turn: int, check := false) -> int:
 	var staff := get_number_employees()
 	var payroll := _get_pay_rise(turn) * _EMPLOYER_COST * staff
 	var overhead := _OVERHEAD * staff
@@ -157,7 +159,11 @@ func _update_funds(turn: int) -> void:
 	_debt = maxf(_debt - pay_debt, 0.0)
 
 	var profit := _boost_turnover * _PROFIT * _number_developer * _get_mood_factor()
-	_funds += int(profit - payroll - overhead - pay_debt)
+	if check :
+		return int(profit - payroll - overhead - pay_debt)
+	else :
+		_funds += int(profit - payroll - overhead - pay_debt)
+		return 0 
 
 
 func _update_unit() -> void:

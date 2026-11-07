@@ -12,10 +12,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="." unique_id=47410369]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1396915650]
 layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/normal_font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynmd1")
+bbcode_enabled = true
+scroll_active = false

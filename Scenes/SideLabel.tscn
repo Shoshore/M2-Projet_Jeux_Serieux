@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://lauyg1j18mgw"]
+
+[node name="Label" type="Label" unique_id=572957578]
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1

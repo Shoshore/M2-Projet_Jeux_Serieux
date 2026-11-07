@@ -93,7 +93,7 @@ text = "[table=4]
 [cell][img width=95 height=95]res://assets/tiles/tile_grass.png[/img][/cell]
 [cell][img width=95  height=95 ]res://assets/tiles/tile_processor.png[/img][/cell]
 [cell]
-Ces hexagones sont vides.[/cell]
+Ces hexagones n'ont pas d'entreprises ou autres lieux importants sur eux, juste du décor.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false

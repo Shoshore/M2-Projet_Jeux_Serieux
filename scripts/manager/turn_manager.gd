@@ -24,7 +24,7 @@ var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 @onready var round_button: Button = $HUD/Control/End_turn_button
 @onready var tiles_info: Control = $InfoBox/Info_node
 @onready var window_info_label: Control = $HUD/Control/HBoxContainer/Window_info/Label
-@onready var ressources_label: Label = $HUD/Control/HBoxContainer/Ressources/Label
+@onready var ressources_label: RichTextLabel = $HUD/Control/HBoxContainer/Ressources/RichTextLabel
 
 func _ready() -> void:
 	add_child(map)
@@ -32,7 +32,7 @@ func _ready() -> void:
 	Global.recruitement_give_employee.connect(_give_employee)
 	selection_manager.info_reset.connect(_on_tile_clicked)
 	_map_filling(map)
-	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +" /" +str(GAME_LENGTH)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +" /" +str(GAME_LENGTH) + "\n" + "Prochaine augmentation des salaires dans " +str(6 - current_turn % company_array[0]._RAISE_EVERY) + " tours"
 	skill_tree.unlocked_skill.connect(_on_skill_unlock)
 	skill_tree.company = company_array[0]
 	_update_company_info()
@@ -67,6 +67,8 @@ func _end_check():
 			get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	else:
 		current_stitch_turn = 0
+		Notification.show_mid("Fin de tour")
+
 
 
 func _update_companies() -> void:
@@ -88,7 +90,7 @@ func _on_end_turn_button_pressed() -> void:
 	_update_companies()
 	_update_company_info()
 	_end_check()
-	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +"/"+str(GAME_LENGTH)
+	$HUD/Control/HBoxContainer/Tour_info/Label.text = "Tour " + str(current_turn) +" /" +str(GAME_LENGTH) + "\n" + "Prochaine augmentation des salaires dans " +str(6 - current_turn % company_array[0]._RAISE_EVERY) + " tours"
 	_on_tile_clicked(selection_manager.selected_tile)
 	if turn_wait_share_holder > 0:
 		turn_wait_share_holder -= 1
@@ -157,18 +159,27 @@ func _delete_unit(position: Vector2i) -> void:
 
 func _give_employee(id: int, ressource: Recruitement_building.Ressources) -> void:
 	company_array[id].set_ressources(ressource)
+	if ressource == 0 :
+		Notification.show_side("Vous avez obtenu un developpeur")
+	elif ressource == 1 :
+		Notification.show_side("Vous avez obtenu un chercheur")
+
 
 
 func _update_company_info() -> void:
 	var company: Company = company_array[0]
 
+	var profit : String = " (+"+ str(company._update_funds(current_turn,true)) +")" if company._update_funds(current_turn,true) > 0 else " ("+ str(company._update_funds(current_turn,true)) +")" 
+	var funds : String = str(company.get_funds()) if company.get_funds() > 0 else "[color=red]"+str(company.get_funds()) + "[/color]"
+	var happiness : String =  str(company.get_happiness()) if company.get_happiness() > company.get_mood_threshold() else "[color=red]"+str(company.get_happiness()) + "[/color]"
+	
 	ressources_label.text = (
-		"Argent: " + str(company.get_funds()) + "\n"
+		"Argent: " + funds + profit + "\n"
 		+ "Employés: " + str(company.get_number_employees()) + "\n"
 		+ "Developpeurs: " + str(company.get_number_developers()) + "|"
 		+ "Chercheurs: " + str(company.get_number_researchers()) + "|"
 		+ "Recruteurs: " + str(company.get_number_recruiters()) + "\n"
-		+ "Bonheur: " + str(company.get_happiness()) + "  bonheur à atteindre est : " + str(company.get_mood_threshold())
+		+ "Bonheur: " + happiness + "  bonheur à atteindre: " + str(company.get_mood_threshold())
 	)
 
 
