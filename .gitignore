@@ -19,5 +19,9 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
  
-# Markdown
-*.md
+
+
+# Export outputs
+*.exe
+# Uncomment if your project does not version PCK files as runtime dependencies.
+# *.pck
