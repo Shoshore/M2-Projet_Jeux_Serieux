@@ -137,7 +137,7 @@ layout_mode = 2
 [node name="Window_info" parent="HUD/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.5
 
 [node name="Tour_info" parent="HUD/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
 custom_minimum_size = Vector2(0, 64)
