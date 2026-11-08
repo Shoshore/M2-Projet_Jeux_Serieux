@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 [sub_resource type="Resource" id="Resource_602vq"]
 script = ExtResource("1_eb4ik")
 variable_name = &"_mood_gauge"
-value = -10.0
+value = -5.0
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
 [resource]

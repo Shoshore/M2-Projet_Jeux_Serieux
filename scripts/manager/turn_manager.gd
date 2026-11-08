@@ -70,7 +70,6 @@ func _end_check():
 		Notification.show_mid("Fin de tour")
 
 
-
 func _update_companies() -> void:
 	for key in company_array:
 		company_array.get(key).update_end_turn(current_turn)
@@ -150,7 +149,10 @@ func _on_skill_unlock(skill: Skill) -> void:
 			map.refresh_sight(map.get_tile_at(company.position.get_position()))
 			for unit in company._list_unities:
 				map.refresh_sight(map.get_tile_at(unit.movement.position.get_position()))
-
+		if effect.operation == SkillEffect.Operation.RESSOURCE:
+			for key in recrutement_building_array:
+				var build = recrutement_building_array.get(key)
+				build._max_ressource += 1
 # ------------
 # signals
 # ------------

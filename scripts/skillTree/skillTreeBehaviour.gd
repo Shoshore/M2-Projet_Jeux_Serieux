@@ -121,16 +121,16 @@ func display_boost(s: Skill) -> String:
 			text += str(effect.value)
 			text += "\n"
 		if effect.variable_name == "vision":
-			text += "Gain de portée visuelle : "
-			text += str(effect.value)
+			text += "Gain de portée visuelle : +1"
 			text += "\n"
 		if effect.variable_name == "_number_recruiter":
-			text += "Recrutement d'unité recruteur : "
-			text += str(effect.value)
+			text += "Recrutement d'unité recruteur : +1"
 			text += "\n"
 		if effect.variable_name == "_list_unities":
-			text += "Point de mouvement supplémentaire : "
-			text += str(effect.value)
+			text += "Point de mouvement supplémentaire : +1"
+			text += "\n"
+		if effect.variable_name == "_debt":
+			text += "Employé recrutable dans les université et Forum : +1 "
 			text += "\n"
 	return text
 

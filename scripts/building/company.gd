@@ -258,6 +258,8 @@ func apply_effect(effect: SkillEffect, tile : Tile = null) -> void:
 			for unit in _list_unities:
 				unit.movement._max_movement += 1
 				unit.movement._current_movement += 1
+		SkillEffect.Operation.RESSOURCE:
+			pass
 
 
 func apply_skill(skill: Skill, tile : Tile = null) -> void:
