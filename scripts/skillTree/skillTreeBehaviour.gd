@@ -209,6 +209,7 @@ func _draw() -> void:
 				continue
 			var color = colorLineUnlocked if requirement.id in unlocked else colorLineLocked
 			draw_line(buttonCenter(buttons_by_id[requirement.id]), buttonCenter(button), color, lineWidth)
+	draw_line(buttonCenter(buttons_by_id["origin"]) - Vector2(0,-10000), buttonCenter(buttons_by_id["origin"]), Color.GOLDENROD, lineWidth)
 
 # Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
@@ -292,9 +293,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		# Désaffiche la compétence
 		last_click = ""
 		undisplay_skill()
-		print("pos : ", skill_tree.position)
-		print("scale : ", skill_tree.scale)
-		print("windows size : ", get_window().size)
 
 
 func _on_reset_button_pressed() -> void:
