@@ -54,7 +54,8 @@ id = "human_relations"
 name = "Relations humaines"
 description = "Portée notamment par Elton Mayo, l'école des relations humaines place la personne au cœur de l'entreprise.
 
-Cette école s'intéresse au facteur {0} dans l'entreprise. Elle montre que la {1} ne dépend pas seulement des conditions {2}, mais aussi de la reconnaissance, de l'ambiance de travail et du sentiment d'{3} à un groupe.
+Cette école s'intéresse au facteur 
+{0} dans l'entreprise. Elle montre que la {1} ne dépend pas seulement des conditions {2}, mais aussi de la reconnaissance, de l'ambiance de travail et du sentiment d'{3} à un groupe.
 
 Vos managers sont attentifs à leurs employés : le moral de vos équipes, et leur productivité s'améliorent."
 requierment = Array[ExtResource("2_isnpa")]([ExtResource("4_1yx7e")])

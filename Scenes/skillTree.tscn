@@ -70,6 +70,34 @@ corner_radius_bottom_left = 50
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yt575"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it2oe"]
+bg_color = Color(0.08627451, 0, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an2ig"]
+bg_color = Color(0.08627451, 0, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16ip4"]
+bg_color = Color(0.08627451, 0, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2058"]
+bg_color = Color(0.08627451, 0, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh3e1"]
 content_margin_left = 15.0
 content_margin_right = 15.0
@@ -264,7 +292,7 @@ custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_it2oe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
@@ -280,7 +308,7 @@ custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_an2ig")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
@@ -415,7 +443,7 @@ custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_16ip4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")
@@ -431,7 +459,7 @@ custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_r1ajo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b2058")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qxnit")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xmcul")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_45mv8")

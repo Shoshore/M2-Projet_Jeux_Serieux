@@ -52,7 +52,8 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_qk3yr")
 id = "fayolism"
 name = "Fayolisme"
-description = "Le fayolisme est une théorie de l'{0} des entreprises. Henri {1} y divise l'activité de toute entreprise en six fonctions : techniques, commerciales, financières, de sécurité, comptables et {2}. Il résume le rôle du dirigeant en cinq verbes : prévoir, organiser, commander, coordonner et {3}.
+description = "Le fayolisme est une théorie de 
+l'{0} des entreprises. Henri {1} y divise l'activité de toute entreprise en six fonctions : techniques, commerciales, financières, de sécurité, comptables et {2}. Il résume le rôle du dirigeant en cinq verbes : prévoir, organiser, commander, coordonner et {3}.
 
 Votre direction gagne en méthode : les responsabilités sont clairement réparties et l'entreprise est mieux pilotée, même si elle laisse peu de place à l'initiative."
 requierment = Array[ExtResource("2_qk3yr")]([ExtResource("3_en13e")])

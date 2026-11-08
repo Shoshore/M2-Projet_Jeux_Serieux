@@ -46,7 +46,8 @@ Il existe plusieurs paradigmes de programmation : {0}, fonctionnel, agent ; ils 
 
 Un code mieux organisé, ce sont moins de bugs et des projets livrés plus tôt.
 
-Vos développeurs ne se contentent plus d'écrire du code : ils savent l'organiser pour qu'il reste clair, {2} et facile à faire évoluer."
+Vos développeurs ne se contentent plus d'écrire du code : ils savent l'organiser pour qu'il reste clair, 
+{2} et facile à faire évoluer."
 requierment = Array[ExtResource("2_rujd6")]([ExtResource("4_ae50q")])
 effects = Array[ExtResource("1_7h0ta")]([SubResource("Resource_qk3yr")])
 conditions = SubResource("Resource_ap0s8")

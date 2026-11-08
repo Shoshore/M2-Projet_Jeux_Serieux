@@ -55,7 +55,8 @@ id = "algo"
 name = "Algorithmique"
 description = "Trier, chercher, parcourir : derrière chaque logiciel se cachent des algorithmes.
 
-Un algorithme est une suite {0} d'instructions qui permet de résoudre un problème. L'algorithmique étudie leur conception et leur efficacité : on mesure la {1} d'un algorithme, c'est-à-dire le {2} et la {3} dont il a besoin quand la quantité de données augmente.
+Un algorithme est une suite 
+{0} d'instructions qui permet de résoudre un problème. L'algorithmique étudie leur conception et leur efficacité : on mesure la {1} d'un algorithme, c'est-à-dire le {2} et la {3} dont il a besoin quand la quantité de données augmente.
 
 Un algorithme bien choisi traite en quelques secondes ce qu'un mauvais traiterait en plusieurs heures : vos employés produisent plus, avec les mêmes machines."
 requierment = Array[ExtResource("2_txexr")]([ExtResource("3_txexr")])

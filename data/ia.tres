@@ -57,7 +57,8 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_wl1ri")
 id = "ia"
 name = "IA"
-description = "L'intelligence artificielle regroupe les techniques qui permettent à une machine d'{0} certaines capacités humaines : reconnaître des images, comprendre le {1}, prendre des décisions. Les approches modernes reposent sur l'apprentissage {2} : le programme apprend à partir d'{3} plutôt qu'à partir de règles écrites à la main.
+description = "L'intelligence artificielle regroupe les techniques qui permettent à une machine d'{0} certaines capacités humaines : reconnaître des images, comprendre le {1}, prendre des décisions. Les approches modernes reposent sur l'apprentissage {2} : le programme apprend à partir 
+d'{3} plutôt qu'à partir de règles écrites à la main.
 
 Cette technologie offre un gain de productivité énorme à votre entreprise. Mais vos employés craignent d'être remplacés, et leur moral en pâtit."
 requierment = Array[ExtResource("2_wl1ri")]([ExtResource("3_myx1x"), ExtResource("4_2b6wj"), ExtResource("5_xf5f8"), ExtResource("6_b28c2"), ExtResource("7_0j5i7"), ExtResource("9_xf5f8")])
