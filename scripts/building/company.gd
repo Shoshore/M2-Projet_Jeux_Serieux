@@ -4,7 +4,7 @@ class_name Company
 var vision: Vision_component
 
 var _number_developer := 1
-var _number_researcher := 1
+var _number_researcher := 90
 var _number_recruiter := 0
 
 const _NET_SALARY := 2350.0
@@ -31,7 +31,7 @@ const _BORROWED_AMOUNT := 20000
 const _FIRE_EMPLOY_AMOUT := 10000
 const _INTEREST := 1.2
 
-var _funds := 35000
+var _funds := 35000000000
 var _boost_turnover := 1.0
 
 var _mood_gauge := 30
