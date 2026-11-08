@@ -1,7 +1,7 @@
 class_name SkillEffect
 extends Resource
 
-enum Operation { ADD, MUL, BOOL }
+enum Operation { ADD, MUL, BOOL, PO, PM, UNIT }
 
 @export var variable_name: StringName
 @export var operation: Operation

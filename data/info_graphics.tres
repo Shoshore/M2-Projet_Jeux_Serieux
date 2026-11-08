@@ -17,6 +17,13 @@ variable_name = &"_boost_turnover"
 value = 0.1
 metadata/_custom_type_script = "uid://dqls804r0bhd7"
 
+[sub_resource type="Resource" id="Resource_bfdkv"]
+script = ExtResource("1_y10ri")
+variable_name = &"vision"
+operation = 3
+value = 1.0
+metadata/_custom_type_script = "uid://dqls804r0bhd7"
+
 [resource]
 script = ExtResource("2_ss6r0")
 id = "info_graphics"
@@ -27,6 +34,6 @@ Vos logiciels gagnent en lisibilité et en attrait : les clients les adoptent pl
 
 Deux voies s'ouvrent à vous : la 2D et la 3D."
 requierment = Array[ExtResource("2_ss6r0")]([ExtResource("3_ss6r0")])
-effects = Array[ExtResource("1_y10ri")]([SubResource("Resource_14dii")])
+effects = Array[ExtResource("1_y10ri")]([SubResource("Resource_14dii"), SubResource("Resource_bfdkv")])
 conditions = SubResource("Resource_an2ig")
 metadata/_custom_type_script = "uid://jfrest3lsltq"

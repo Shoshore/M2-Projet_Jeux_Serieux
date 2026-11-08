@@ -189,11 +189,10 @@ func get_info_text(company: Company, turn: int) -> String:
 					text += "pensez à améliorer votre cyberattaque !"
 		elif _building is Recruitement_building:
 			var ressource := ""
+			text += _building._name + "\n"
 			if _building._ressource == Recruitement_building.Ressources.DEVELOPPER:
-				text += "Site de recrutement :\n"
 				ressource = "développer"
 			else:
-				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
 			text += "Employé recrutable restant : " + str(_building._max_ressource) + "\n"

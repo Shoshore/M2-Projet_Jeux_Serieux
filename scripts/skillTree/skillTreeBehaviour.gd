@@ -120,6 +120,18 @@ func display_boost(s: Skill) -> String:
 			text += "Gain d'humeur : "
 			text += str(effect.value)
 			text += "\n"
+		if effect.variable_name == "vision":
+			text += "Gain de portée visuelle : "
+			text += str(effect.value)
+			text += "\n"
+		if effect.variable_name == "_number_recruiter":
+			text += "Recrutement d'unité recruteur : "
+			text += str(effect.value)
+			text += "\n"
+		if effect.variable_name == "_list_unities":
+			text += "Point de mouvement supplémentaire : "
+			text += str(effect.value)
+			text += "\n"
 	return text
 
 
@@ -164,9 +176,11 @@ func display_skill(skill: Skill) -> void:
 	var text_cond = display_conditions(skill)
 	var text_boost = display_boost(skill)
 	if text_cond != "Condition d'obtention : \n":
-		skill_description.text += "\n---------------------\n" + text_cond
+		skill_description.text = text_cond + "\n---------------------------\n" + skill_description.text
+	else:
+		skill_description.text = "Condition d'obtention : \n Gratuit" + "\n---------------------------\n" + skill_description.text
 	if text_boost != "Gain d'acquisition du noeud :\n":
-		skill_description.text += "\n---------------------\n" + text_boost
+		skill_description.text = text_boost + "\n---------------------------\n" + skill_description.text
 	skill_description.scroll_to_line(0)  # revient en haut pour chaque nouvelle compétence
 	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text

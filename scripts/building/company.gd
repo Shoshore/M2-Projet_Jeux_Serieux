@@ -227,7 +227,7 @@ func set_ressources(ressource: Recruitement_building.Ressources) -> void:
 
 
 # Application des compétences
-func apply_effect(effect: SkillEffect) -> void:
+func apply_effect(effect: SkillEffect, tile : Tile = null) -> void:
 	# En cas d'erreur dans le nom de la variable
 	if not effect.variable_name in self:
 		push_error("[COMPAGNY] Variable inconnue : '%s'" % effect.variable_name)
@@ -242,8 +242,18 @@ func apply_effect(effect: SkillEffect) -> void:
 			set(effect.variable_name, selected_var * effect.value)
 		SkillEffect.Operation.BOOL:
 			set(effect.variable_name, not selected_var)
+		SkillEffect.Operation.PO:
+			vision.sight_range += 1
+			for unit in _list_unities:
+				unit.vision.sight_range += 1
+		SkillEffect.Operation.UNIT:
+			create_unit(tile, Create_unit_type.RECRUITER)
+		SkillEffect.Operation.PM:
+			for unit in _list_unities:
+				unit.movement._max_movement += 1
+				unit.movement._current_movement += 1
 
 
-func apply_skill(skill: Skill) -> void:
+func apply_skill(skill: Skill, tile : Tile = null) -> void:
 	for effect in skill.effects:
-		apply_effect(effect)
+		apply_effect(effect, tile)
