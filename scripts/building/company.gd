@@ -102,22 +102,13 @@ func _fire_consequence():
 	_funds += _FIRE_EMPLOY_AMOUT
 
 
-func _find_unit_by_id(unit_id: int) -> Unit:
-	for unit in _list_unities:
-		if unit.id.get_id() == unit_id:
-			return unit
-	return null
-
-
-func _fire_unit(unit: Unit) -> void:
-	var index := _list_unities.find(unit)
-	if index == -1:
-		return
-	_list_unities.remove_at(index)
+func _fire_unit() -> void:
+	var unit := _list_unities[0]
+	_list_unities.remove_at(0)
 	Global.company_fire_employee.emit(unit.movement.position.get_position())
 
 
-func fire_employee(type: Employee_type, id_: int = -1) -> void:
+func fire_employee(type: Employee_type) -> void:
 	match type:
 		Employee_type.DEVELOPER:
 			if _number_developer > 0:
@@ -130,7 +121,7 @@ func fire_employee(type: Employee_type, id_: int = -1) -> void:
 		Employee_type.RECRUITER:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
-				_fire_unit(_find_unit_by_id(id_))
+				_fire_unit()
 				_fire_consequence()
 
 func borrowed() -> void:

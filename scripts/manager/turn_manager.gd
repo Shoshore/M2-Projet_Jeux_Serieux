@@ -193,15 +193,15 @@ func _update_company_info() -> void:
 
 
 func _on_fire_button_item_selected(index: int) -> void:
-	print(index)
 	match index:
-		3:
-			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
 		4:
-			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
+			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
 		5:
-			company_array[0].fire_employee(Company.Employee_type.RECRUITER, 0)
+			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
+		6:
+			company_array[0].fire_employee(Company.Employee_type.RECRUITER)
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
+	_update_company_info()
 
 
 func _on_share_holder_pressed() -> void:
