@@ -27,7 +27,8 @@ const _MOOD_MALUS_FLOOR := 0.6
 const _MOOD_MALUS_PER_POINT := 0.1
 
 const _REFUND := 0.1
-const _BORROWED_AMOUNT := 18000
+const _BORROWED_AMOUNT := 20000
+const _FIRE_EMPLOY_AMOUT := 10000
 const _INTEREST := 1.2
 
 var _funds := 35000
@@ -98,6 +99,7 @@ enum Employee_type {
 
 func _fire_consequence():
 	_mood_reduce += _MOOD_FIRE_CONS
+	_funds += _FIRE_EMPLOY_AMOUT
 
 
 func _find_unit_by_id(unit_id: int) -> Unit:

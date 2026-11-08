@@ -68,7 +68,8 @@ mouse_filter = 2
 
 [node name="Share_holder" type="Button" parent="InfoBox/Info_node/Info_container/Pay_share_holder" unique_id=1296701844]
 layout_mode = 2
-text = "Contracter un prêt"
+text = "Contracter un prêt
++20000 taux d'intérêt 20%"
 
 [node name="Fire_employe" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=1182287169]
 visible = false
@@ -83,11 +84,12 @@ item_count = 6
 popup/item_0/text = "Licenciement"
 popup/item_0/id = 5
 popup/item_0/separator = true
-popup/item_1/text = "Attention, licencier un employé baissera le bonheur de l'entreprise"
+popup/item_1/text = "Attention, licencier un employé baissera le bonheur de l'entrepris"
 popup/item_1/id = 4
 popup/item_1/separator = true
-popup/item_2/text = "Licencier un employé"
-popup/item_2/id = 3
+popup/item_2/text = "En contre partie vous obtiendrez de l'argent : 10000"
+popup/item_2/id = 6
+popup/item_2/separator = true
 popup/item_3/text = "Licencier un chercheur"
 popup/item_3/id = 0
 popup/item_4/text = "Licencicer un développeur"

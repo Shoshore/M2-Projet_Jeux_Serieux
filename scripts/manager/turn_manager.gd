@@ -25,6 +25,7 @@ var recrutement_building_array : Dictionary[int, Recruitement_building] = {}
 @onready var tiles_info: Control = $InfoBox/Info_node
 @onready var window_info_label: Control = $HUD/Control/HBoxContainer/Window_info/Label
 @onready var ressources_label: RichTextLabel = $HUD/Control/HBoxContainer/Ressources/RichTextLabel
+@onready var share_holder: Button = $InfoBox/Info_node/Info_container/Pay_share_holder/Share_holder
 
 func _ready() -> void:
 	add_child(map)
@@ -93,6 +94,8 @@ func _on_end_turn_button_pressed() -> void:
 	_on_tile_clicked(selection_manager.selected_tile)
 	if turn_wait_share_holder > 0:
 		turn_wait_share_holder -= 1
+	elif turn_wait_share_holder == 0:
+		share_holder.disabled = false
 
 
 func _on_tile_clicked(tile: Tile) -> void:
@@ -190,12 +193,13 @@ func _update_company_info() -> void:
 
 
 func _on_fire_button_item_selected(index: int) -> void:
+	print(index)
 	match index:
-		1:
-			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
-		2:
-			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
 		3:
+			company_array[0].fire_employee(Company.Employee_type.RESEARCHER)
+		4:
+			company_array[0].fire_employee(Company.Employee_type.DEVELOPER)
+		5:
 			company_array[0].fire_employee(Company.Employee_type.RECRUITER, 0)
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
 
@@ -208,3 +212,4 @@ func _on_share_holder_pressed() -> void:
 	player.borrowed()
 	turn_wait_share_holder = TURN_SHARE_HOLDER
 	_on_tile_clicked(map.get_tile_at(Vector2i(0, 0)))
+	share_holder.disabled = true
