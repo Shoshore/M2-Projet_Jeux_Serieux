@@ -96,6 +96,7 @@ func _on_end_turn_button_pressed() -> void:
 		turn_wait_share_holder -= 1
 	elif turn_wait_share_holder == 0:
 		share_holder.disabled = false
+	skill_tree.new_turn()
 
 
 func _on_tile_clicked(tile: Tile) -> void:

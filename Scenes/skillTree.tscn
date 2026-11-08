@@ -31,6 +31,7 @@
 [ext_resource type="Resource" uid="uid://blkht73d5bgkh" path="res://data/stuff_2.tres" id="25_fwmip"]
 [ext_resource type="Resource" uid="uid://d0dui00rngd1r" path="res://data/stuff_1.tres" id="26_6lvo8"]
 [ext_resource type="Resource" uid="uid://coqd4xyccsesm" path="res://data/confort.tres" id="27_b6ugg"]
+[ext_resource type="AudioStream" uid="uid://bi2wik1ahumfy" path="res://Audio/error_sound.mp3" id="31_14dii"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1ajo"]
 bg_color = Color(0.08627451, 0, 1, 1)
@@ -168,6 +169,7 @@ alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillTree" unique_id=1927986295]
 layout_mode = 2
 offset_transform_enabled = true
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Skills" type="HBoxContainer" parent="SkillTree/VBoxContainer" unique_id=1441648149]
@@ -182,7 +184,8 @@ alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH" unique_id=753146356]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 40
+alignment = 1
 
 [node name="TechAI" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer" unique_id=191946097]
 layout_mode = 2
@@ -210,7 +213,7 @@ theme_override_constants/separation = 100
 [node name="InfoGraphic" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=252333139]
 layout_mode = 2
 theme_override_constants/separation = 108
-alignment = 1
+alignment = 2
 
 [node name="InfoChoice" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/InfoGraphic" unique_id=1491828208]
 layout_mode = 2
@@ -266,7 +269,7 @@ skill = ExtResource("12_an2ig")
 [node name="Git" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1830961064]
 layout_mode = 2
 theme_override_constants/separation = 108
-alignment = 1
+alignment = 2
 
 [node name="Git" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Git" unique_id=1608835440]
 custom_minimum_size = Vector2(100, 100)
@@ -287,7 +290,7 @@ skill = ExtResource("3_o2uw0")
 layout_mode = 2
 offset_transform_enabled = true
 theme_override_constants/separation = 40
-alignment = 1
+alignment = 2
 
 [node name="DataScience" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/DataBase" unique_id=101437673]
 custom_minimum_size = Vector2(100, 100)
@@ -322,7 +325,7 @@ skill = ExtResource("5_14dii")
 [node name="Algo" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=2055958912]
 layout_mode = 2
 theme_override_constants/separation = 108
-alignment = 1
+alignment = 2
 
 [node name="Algorithmique" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Algo" unique_id=35660711]
 custom_minimum_size = Vector2(100, 100)
@@ -341,7 +344,7 @@ skill = ExtResource("13_6b3hv")
 
 [node name="Paradigme" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1800540302]
 layout_mode = 2
-alignment = 1
+alignment = 2
 
 [node name="Paradigme" type="Button" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Paradigme" unique_id=238190118]
 custom_minimum_size = Vector2(100, 100)
@@ -361,7 +364,7 @@ skill = ExtResource("15_14dii")
 [node name="Reseau" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills" unique_id=1241277127]
 layout_mode = 2
 theme_override_constants/separation = 108
-alignment = 1
+alignment = 2
 
 [node name="CyberChoice" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/TECH/VBoxContainer/TechSkills/Reseau" unique_id=167497165]
 layout_mode = 2
@@ -451,11 +454,12 @@ skill = ExtResource("14_nq0pk")
 [node name="HUMAN" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills" unique_id=1076610810]
 layout_mode = 2
 theme_override_constants/separation = 50
-alignment = 1
+alignment = 2
 
 [node name="CompanyManagment" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN" unique_id=10104715]
 layout_mode = 2
 theme_override_constants/separation = 30
+alignment = 2
 
 [node name="CompagyManagmentSkills" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment" unique_id=1359952800]
 layout_mode = 2
@@ -463,8 +467,8 @@ alignment = 1
 
 [node name="CompanyFayolism" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills" unique_id=1186260641]
 layout_mode = 2
+offset_transform_position = Vector2(0, -150)
 theme_override_constants/separation = 40
-alignment = 1
 
 [node name="Fayolisme" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyFayolism" unique_id=1773982530]
 custom_minimum_size = Vector2(100, 100)
@@ -486,11 +490,12 @@ alignment = 1
 
 [node name="TaylorismSeparation" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism" unique_id=1994780757]
 layout_mode = 2
-alignment = 1
+alignment = 2
 
 [node name="FordismBranch" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation" unique_id=1305589329]
 layout_mode = 2
-alignment = 1
+theme_override_constants/separation = 20
+alignment = 2
 
 [node name="AGILE" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/FordismBranch" unique_id=1980825078]
 custom_minimum_size = Vector2(100, 100)
@@ -533,7 +538,7 @@ skill = ExtResource("16_ysboq")
 
 [node name="HumanRelationsContainer" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation" unique_id=741952219]
 layout_mode = 2
-alignment = 1
+alignment = 2
 
 [node name="HumanRelations" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompagyManagmentSkills/CompanyTaylorism/TaylorismSeparation/HumanRelationsContainer" unique_id=824675377]
 custom_minimum_size = Vector2(100, 100)
@@ -567,12 +572,10 @@ skill = ExtResource("17_x8tvb")
 
 [node name="CompanyManagmentOrigin" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment" unique_id=1266264579]
 layout_mode = 2
-alignment = 1
 
 [node name="CompanyManagment" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyManagment/CompanyManagmentOrigin" unique_id=1729518424]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position = Vector2(-30, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
@@ -587,7 +590,7 @@ skill = ExtResource("21_iild1")
 [node name="CompanyConfort" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN" unique_id=1017072983]
 layout_mode = 2
 theme_override_constants/separation = 50
-alignment = 1
+alignment = 2
 
 [node name="CompanyConfortSkills" type="HBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort" unique_id=2026971301]
 layout_mode = 2
@@ -596,7 +599,7 @@ theme_override_constants/separation = 30
 [node name="HumanConfort" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills" unique_id=559886362]
 layout_mode = 2
 theme_override_constants/separation = 30
-alignment = 1
+alignment = 2
 
 [node name="TicketResto" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/HumanConfort" unique_id=1685882015]
 custom_minimum_size = Vector2(100, 100)
@@ -627,7 +630,7 @@ skill = ExtResource("23_jxqpc")
 [node name="Stuff" type="VBoxContainer" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills" unique_id=2034853632]
 layout_mode = 2
 theme_override_constants/separation = 30
-alignment = 1
+alignment = 2
 
 [node name="Stuff3" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/Stuff" unique_id=2007245085]
 custom_minimum_size = Vector2(100, 100)
@@ -718,16 +721,16 @@ grow_vertical = 0
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainerInfos" type="VBoxContainer" parent="SkillInfos" unique_id=2124954942]
+[node name="VBoxInfos" type="VBoxContainer" parent="SkillInfos" unique_id=2124954942]
 layout_mode = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="SkillInfos/VBoxContainerInfos" unique_id=1841796585]
+[node name="NamePanel" type="PanelContainer" parent="SkillInfos/VBoxInfos" unique_id=1841796585]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkillName" type="Label" parent="SkillInfos/VBoxContainerInfos/PanelContainer" unique_id=1339386443]
+[node name="SkillName" type="Label" parent="SkillInfos/VBoxInfos/NamePanel" unique_id=1339386443]
 custom_minimum_size = Vector2(300, 0)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -735,51 +738,60 @@ text = "Nom compétence"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="SkillInfos/VBoxContainerInfos" unique_id=539781116]
+[node name="DescriptionPanel" type="PanelContainer" parent="SkillInfos/VBoxInfos" unique_id=539781116]
 custom_minimum_size = Vector2(300, 460)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SkillInfos/VBoxContainerInfos/PanelContainer2" unique_id=2096181753]
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillInfos/VBoxInfos/DescriptionPanel" unique_id=2096181753]
 custom_minimum_size = Vector2(300, 460)
 layout_mode = 2
 alignment = 1
 
-[node name="SkillIcon" type="TextureRect" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=460935640]
+[node name="SkillIcon" type="TextureRect" parent="SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer" unique_id=460935640]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_4aiyl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SkillDescription" type="RichTextLabel" parent="SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer" unique_id=1912844967]
+[node name="SkillDescription" type="RichTextLabel" parent="SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer" unique_id=1912844967]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
+bbcode_enabled = true
 text = "Description compétence"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnlockButton" type="Button" parent="SkillInfos/VBoxContainerInfos" unique_id=1040100931]
+[node name="AnswerMenu" type="PopupMenu" parent="SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillDescription" unique_id=2026341721]
+
+[node name="UnlockButton" type="Button" parent="SkillInfos/VBoxInfos" unique_id=1040100931]
 layout_mode = 2
-disabled = true
 text = "Débloquer"
 
-[node name="AudioClick" type="AudioStreamPlayer2D" parent="SkillInfos/VBoxContainerInfos/UnlockButton" unique_id=1932686414]
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="SkillInfos/VBoxInfos/UnlockButton" unique_id=1932686414]
 stream = ExtResource("13_x83wx")
 volume_db = 12.0
 
-[node name="ResetButton" type="Button" parent="SkillInfos/VBoxContainerInfos" unique_id=403406394]
+[node name="ErrorSound" type="AudioStreamPlayer2D" parent="SkillInfos/VBoxInfos/UnlockButton" unique_id=593151600]
+position = Vector2(-847, -577)
+stream = ExtResource("31_14dii")
+volume_db = 6.0
+
+[node name="ResetButton" type="Button" parent="SkillInfos/VBoxInfos" unique_id=403406394]
 layout_mode = 2
 text = "Reset position"
 
-[node name="AudioClick" type="AudioStreamPlayer2D" parent="SkillInfos/VBoxContainerInfos/ResetButton" unique_id=1593415389]
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="SkillInfos/VBoxInfos/ResetButton" unique_id=1593415389]
 stream = ExtResource("13_x83wx")
 volume_db = 12.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="SkillTree/VBoxContainer/ORIGIN/ButtonOrigin" to="." method="_on_button_origin_mouse_entered"]
-[connection signal="pressed" from="SkillInfos/VBoxContainerInfos/UnlockButton" to="." method="_on_unlock_button_pressed"]
-[connection signal="pressed" from="SkillInfos/VBoxContainerInfos/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="meta_clicked" from="SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillDescription" to="." method="_on_skill_description_meta_clicked"]
+[connection signal="index_pressed" from="SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillDescription/AnswerMenu" to="." method="_on_answer_menu_index_pressed"]
+[connection signal="pressed" from="SkillInfos/VBoxInfos/UnlockButton" to="." method="_on_unlock_button_pressed"]
+[connection signal="pressed" from="SkillInfos/VBoxInfos/ResetButton" to="." method="_on_reset_button_pressed"]
