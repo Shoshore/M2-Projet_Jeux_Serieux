@@ -16,10 +16,11 @@ var colorLineUnlocked = Color.GOLDENROD
 const lock_text = "Débloquer"
 const unlock_text = "Acquis"
 const failed_text = "Mauvaise réponse, réessayez au prochain tour"
-const BLANK_COLOR := "#4a4a4a"    # trou vide
-const PENDING_COLOR := "#646464"  # réponse choisie, pas encore validée
-const BLANK_WIDTH := 8            # largeur du trou vide, en espaces
-const NBSP := " "                 # espace insécable
+const BLANK_COLOR := "#4a4a4a"    
+const PENDING_COLOR := "#646464"  
+const BLANK_WIDTH := 8
+const BLANK_CHAR := "_"
+const NBSP := " "
 
 # Boutons de l'arbre rangés par id de compétence, rempli dans _ready
 var buttons_by_id: Dictionary[String, Button] = {}
@@ -313,7 +314,8 @@ func build_description(s: Skill) -> String:
 			var answer: String = pending[s.id][i].replace(" ", NBSP)
 			part = "[url=%d][bgcolor=%s]%s[/bgcolor][/url]" % [i, PENDING_COLOR, answer]
 		else:
-			part = "[url=%d][bgcolor=%s]%s[/bgcolor][/url]" % [i, BLANK_COLOR, NBSP.repeat(BLANK_WIDTH)]
+			# Texte de la même couleur que le fond : les "_" sont invisibles mais occupent la place
+			part = "[url=%d][bgcolor=%s][color=%s]%s[/color][/bgcolor][/url]" % [i, BLANK_COLOR, BLANK_COLOR, BLANK_CHAR.repeat(BLANK_WIDTH)]
 		text = text.replace("{%d}" % i, part)
 	return text
 

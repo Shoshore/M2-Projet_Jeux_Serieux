@@ -44,9 +44,7 @@ id = "git"
 name = "GIT"
 description = "Finis les fichiers « projet_final_v2_corrige_VRAIMENT_final.zip ».
 
-Git est un logiciel de gestion de 
-{0} décentralisé. Il enregistre 
-l'{1} de toutes les modifications d'un projet, permet de revenir à une version antérieure et de travailler en parallèle sur plusieurs {2} avant de les fusionner.
+Git est un logiciel de gestion de {0} décentralisé. Il enregistre l'{1} de toutes les modifications d'un projet, permet de revenir à une version antérieure et de travailler en parallèle sur plusieurs {2} avant de les fusionner.
 
 Ce logiciel permettra à vos employés de travailler plus efficacement sur un même projet : chaque modification est enregistrée, datée et signée. Plusieurs développeurs peuvent travailler sur le même code en même temps et, par conséquent, réaliser plus de projets dans l'année ; vos équipes partagent enfin leur code sans écraser le travail des autres."
 icone = ExtResource("3_arv51")

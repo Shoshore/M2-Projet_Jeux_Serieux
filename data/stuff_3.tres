@@ -46,8 +46,7 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_63wr5")
 id = "stuff_3"
 name = "Amélioration mobilier 3"
-description = "Les études sur les bureaux en 
-{0} relèvent souvent un niveau élevé de {1} et de stress. Pour y répondre, de nombreuses entreprises adoptent l'aménagement par activités : cabines téléphoniques, salles de {2}, espaces {3}. Chacun choisit l'espace adapté à sa tâche du moment.
+description = "Les études sur les bureaux en {0} relèvent souvent un niveau élevé de {1} et de stress. Pour y répondre, de nombreuses entreprises adoptent l'aménagement par activités : cabines téléphoniques, salles de {2}, espaces {3}. Chacun choisit l'espace adapté à sa tâche du moment.
 
 Vos employés travaillent dans de meilleures conditions, et votre entreprise attire davantage de talents."
 requierment = Array[ExtResource("2_63wr5")]([ExtResource("3_63wr5")])

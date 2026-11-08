@@ -46,8 +46,7 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_4sb5r")
 id = "2d"
 name = "2D"
-description = "L'infographie 2D regroupe les techniques de création et de traitement d'images {0}. On distingue les images matricielles, composées d'une grille de 
-{1} comme une photographie, des images vectorielles, décrites par des formes {2} et agrandissables sans perte de {3}.
+description = "L'infographie 2D regroupe les techniques de création et de traitement d'images {0}. On distingue les images matricielles, composées d'une grille de  {1} comme une photographie, des images vectorielles, décrites par des formes {2} et agrandissables sans perte de {3}.
 
 Vos logiciels deviennent accessibles à des clients qui n'ont jamais tapé une commande de leur vie : votre marché s'élargit."
 requierment = Array[ExtResource("2_4sb5r")]([ExtResource("3_4sb5r")])
