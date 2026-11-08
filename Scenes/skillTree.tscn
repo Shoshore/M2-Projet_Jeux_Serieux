@@ -778,18 +778,20 @@ skill = ExtResource("3_ht7w8")
 [node name="SkillInfos" type="HBoxContainer" parent="." unique_id=1214785360]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7352431
-anchor_top = 0.12808642
-anchor_right = 0.9956597
-anchor_bottom = 1.0123457
-offset_bottom = -13.0
-grow_horizontal = 0
-grow_vertical = 0
+anchor_left = 0.6961806
+anchor_top = 0.13271604
+anchor_right = 1.0
+anchor_bottom = 0.99228394
+offset_left = -5.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxInfos" type="VBoxContainer" parent="SkillInfos" unique_id=2124954942]
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
@@ -799,7 +801,6 @@ mouse_filter = 2
 
 [node name="SkillName" type="Label" parent="SkillInfos/VBoxInfos/NamePanel" unique_id=1339386443]
 custom_minimum_size = Vector2(300, 0)
-custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 text = "Nom compétence"
 horizontal_alignment = 1
@@ -807,7 +808,6 @@ autowrap_mode = 3
 
 [node name="DescriptionPanel" type="PanelContainer" parent="SkillInfos/VBoxInfos" unique_id=539781116]
 custom_minimum_size = Vector2(300, 460)
-custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
