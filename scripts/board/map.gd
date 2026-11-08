@@ -8,6 +8,41 @@ var biome_noise_frequency: float = 0.12
 var tiles_by_coord: Dictionary = {}
 var is_board_clickable = true
 
+var universites_info : Array[String] = [
+	"Sorbonne Université",
+	"Université Paris-Saclay",
+	"Université Grenoble Alpes",
+	"Université de Bordeaux",
+	"Université de Lille",
+	"Université de Lorraine",
+	"Université de Montpellier",
+	"Université de Rennes",
+	"Université Claude Bernard Lyon 1",
+	"Université de Strasbourg",
+	"Université Toulouse III - Paul Sabatier",
+	"Université Côte d'Azur",
+	"Université de Nantes",
+	"Aix-Marseille Université",
+	"Université Paris Cité"
+]
+
+var forums_entreprises_info : Array[String] = [
+	"VivaTech",
+	"Forum Network Entreprises de Paris",
+	"Forum Horizon Chine",
+	"Forum des Entreprises de Centrale Lyon",
+	"Forum des Entreprises de l'Ensimag (Grenoble)",
+	"Forum des Entreprises de Rennes",
+	"Forum Emploi de Télécom Paris",
+	"Forum Info de Lille",
+	"Forum des Entreprises de l'ENSEEIHT (Toulouse)",
+	"Forum des Entreprises de l'INSA Lyon",
+	"Forum des Entreprises de Polytech Nice Sophia",
+	"Forum des Entreprises de l'EPITA",
+	"Forum des Entreprises de CentraleSupélec",
+	"Forum des Entreprises d'Epitech",
+	"Forum des Entreprises de l'Université de Bordeaux"
+]
 
 const NEIGHBORS: Array[Vector2i] = [
 	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1),
@@ -141,58 +176,77 @@ func create_company(position: Vector2i, id: int) -> Company:
 	refresh_sight(tile)
 	return current_compagny
 
+func random_draw(which: int) -> String:
+	var name : String
+	if which == 0:
+		name = universites_info[Random.randi_range(0, universites_info.size() - 1)]
+		universites_info.erase(name)
+	else:
+		name = forums_entreprises_info[Random.randi_range(0, forums_entreprises_info.size() - 1)]
+		forums_entreprises_info.erase(name)
+	return name
 
-func create_ressources(quantity: int, start_distance: int, safe_distance: int) -> Array[Recruitement_building]:
+func fill_candidates(candidates: Array[Tile],
+	result: Array[Recruitement_building], dist: int) -> Array[Tile]:
+	var new_candidates : Array[Tile] = []
+	for tile in candidates:
+		if !_is_far_enough(tile, result, dist):
+			continue
+		new_candidates.append(tile)
+	return new_candidates
+
+func create_ressources(quantity: int, dist_btw_build: int, ring_range: int) -> Array[Recruitement_building]:
 	var _next_site_id = 0
 	var result: Array[Recruitement_building] = []
 	var target := quantity * 2
-
-	var existing: Array[Vector2i] = []
-	for tile: Tile in tiles_by_coord.values():
-		if tile.get_building() != null or tile.get_occupant() != null:
-			existing.append(tile.position_.get_position())
-
-	var candidates: Array[Tile] = []
+	
+	var free_tile: Array[Tile] = []
+	var ring: Array[Tile] = []
 	for tile: Tile in tiles_by_coord.values():
 		if tile.get_building() != null or tile.get_occupant() != null:
 			continue
-		var pos := tile.position_.get_position()
-		if _is_far_from_all(pos, existing, safe_distance):
-			candidates.append(tile)
-	Random.shuffle(candidates)
+		if hex_distance(Vector2i.ZERO, tile.position_.get_position()) == ring_range:
+			ring.append(tile)
+		elif hex_distance(Vector2i.ZERO, tile.position_.get_position()) >= ring_range + 1:
+			free_tile.append(tile)
+	Random.shuffle(ring)
+	var build_ring = 2
+	while build_ring != 0:
+		var tile := ring[Random.randi_range(0, ring.size()-1)]
+		var build : Recruitement_building
+		if tile.get_building() != null:
+			continue
+		
+		if !_is_far_enough(tile, result, dist_btw_build):
+			continue
 
-	var min_dist := start_distance
-	while result.size() < target and min_dist >= 1:
-		for tile in candidates:
-			if result.size() >= target:
-				break
-			if tile.get_building() != null:
-				continue
+		if result.size() % 2 == 0:
+			build = University_site.new(_next_site_id, tile.position_.get_position(), random_draw(0))
+		else:
+			build = Recruitement_site.new(_next_site_id, tile.position_.get_position(), random_draw(1))
+		_next_site_id += 1
+		result.append(build)
+		tile.set_building(build)
+		tile.reload_visual()
+		build_ring -= 1
+		target -= 1
 
-			var pos := tile.position_.get_position()
-			if not _is_far_enough(pos, result, min_dist):
-				continue
-
-			var site: Building
-			if result.size() % 2 == 0:
-				site = University_site.new(_next_site_id, pos)
-			else:
-				site = Recruitement_site.new(_next_site_id, pos)
-			_next_site_id += 1
-
-			tile.set_building(site)
-			tile.reload_visual()
-			result.append(site)
-		min_dist -= 1
-
+	var candidates: Array[Tile] = fill_candidates(free_tile, result, dist_btw_build)
+	while target != 0 and candidates.size() != 0:
+		Random.shuffle(candidates)
+		var tile := candidates[Random.randi_range(0, candidates.size() - 1)]
+		var build : Recruitement_building
+		if result.size() % 2 == 0:
+			build = University_site.new(_next_site_id, tile.position_.get_position(), random_draw(0))
+		else:
+			build = Recruitement_site.new(_next_site_id, tile.position_.get_position(), random_draw(1))
+		_next_site_id += 1
+		target -= 1
+		result.append(build)
+		tile.set_building(build)
+		tile.reload_visual()
+		candidates = fill_candidates(candidates, result, dist_btw_build)
 	return result
-
-
-func _is_far_enough(pos: Vector2i, sites: Array[Recruitement_building], min_dist: int) -> bool:
-	for s in sites:
-		if hex_distance(pos, s.position.get_position()) < min_dist:
-			return false
-	return true
 
 func hex_distance(a: Vector2i, b: Vector2i) -> int:
 	var dq := a.x - b.x
@@ -200,16 +254,11 @@ func hex_distance(a: Vector2i, b: Vector2i) -> int:
 	return (absi(dq) + absi(dq + dr) + absi(dr)) / 2
 
 
-func _is_far_from_all(pos: Vector2i, others: Array[Vector2i], min_dist: int) -> bool:
-	for other in others:
-		if _distance(pos, other) < min_dist:
+func _is_far_enough(tile: Tile, sites: Array[Recruitement_building], min_dist: int) -> bool:
+	for s in sites:
+		if hex_distance(tile.position_.get_position(), s.position.get_position()) < min_dist:
 			return false
 	return true
-
-
-func _distance(a: Vector2i, b: Vector2i) -> int:
-	return maxi(absi(a.x - b.x), absi(a.y - b.y)) 
-
 # ------------------
 # movement unit
 # ------------------

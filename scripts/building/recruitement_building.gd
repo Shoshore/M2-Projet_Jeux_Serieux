@@ -6,17 +6,18 @@ enum Ressources {
 	RESEARCHER
 }
 
-
+var _name : String
 var _ressource : Ressources
 var _array_recruiter : Dictionary[Unit, int] = {} # id of unit : turn to get ressource
 var _turn_get_unit = 2
 var _max_ressource : int
 
 func _init(id_unic: int, position_: Vector2i, ressource: Ressources,
-	texture: Texture2D, max_ressource) -> void:
+	texture: Texture2D, max_ressource: int, name: String) -> void:
 	super(id_unic, position_, texture)
 	_ressource = ressource
 	_max_ressource = max_ressource
+	_name = name
 
 
 func update_end_turn(tiles: Array[Tile]) -> void:

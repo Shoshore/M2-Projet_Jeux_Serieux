@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _map_filling(map: Map) -> void:
 	company_array[0] = map.create_company(Vector2i(0, 0), 0)
-	var ressources := map.create_ressources(14, 4, 3)
+	var ressources := map.create_ressources(15, 3, 3)
 	var size := ressources.size()
 	for idx in range(size):
 		recrutement_building_array[idx] = ressources[idx]
@@ -143,9 +143,13 @@ func _go_to_skill_tree() -> void:
 
 func _on_skill_unlock(skill: Skill) -> void:
 	var company: Company = company_array[0]
-	company.apply_skill(skill)
+	company.apply_skill(skill, map.get_free_neighbor(company_array[0].position.get_position()))
 	_update_company_info()
-
+	for effect in skill.effects:
+		if effect.operation == SkillEffect.Operation.PO:
+			map.refresh_sight(map.get_tile_at(company.position.get_position()))
+			for unit in company._list_unities:
+				map.refresh_sight(map.get_tile_at(unit.movement.position.get_position()))
 
 # ------------
 # signals

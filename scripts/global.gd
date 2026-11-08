@@ -8,4 +8,3 @@ const outline_selected_width = 5.0
 var game_result := Result.new()
 signal company_fire_employee(position: Vector2i)
 signal recruitement_give_employee(id: int, ressource: Recruitement_building.Ressources)
-#Faire le système de sauvegardes entre scène 
