@@ -1,9 +1,28 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c8ovtgymqctlo"]
 
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_7h0ta"]
+[ext_resource type="Script" uid="uid://b245oiq5yuehf" path="res://scripts/skillTree/skillBlank.gd" id="1_ae50q"]
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_ap0s8"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_rujd6"]
 [ext_resource type="Resource" uid="uid://dr2inym886ca6" path="res://data/langages_prog.tres" id="4_ae50q"]
+
+[sub_resource type="Resource" id="Blank_paradigme_0"]
+script = ExtResource("1_ae50q")
+correct_answer = "objet"
+wrong_answers = Array[String](["binaire", "matriciel", "réseau"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_paradigme_1"]
+script = ExtResource("1_ae50q")
+correct_answer = "maintenir"
+wrong_answers = Array[String](["pirater", "vendre", "copier"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_paradigme_2"]
+script = ExtResource("1_ae50q")
+correct_answer = "réutilisable"
+wrong_answers = Array[String](["secret", "payant", "illisible"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
 
 [sub_resource type="Resource" id="Resource_ap0s8"]
 script = ExtResource("1_ap0s8")
@@ -23,12 +42,13 @@ id = "paradigme"
 name = "Paradigme"
 description = "Un paradigme de programmation est une manière de penser et de structurer un programme.
 
-Il existe plusieurs paradigmes de programmation : objet, fonctionnel, agent ; ils permettent à vos équipes de choisir la meilleure approche pour chaque problème et d'écrire un code plus facile à maintenir.
+Il existe plusieurs paradigmes de programmation : {0}, fonctionnel, agent ; ils permettent à vos équipes de choisir la meilleure approche pour chaque problème et d'écrire un code plus facile à {1}.
 
 Un code mieux organisé, ce sont moins de bugs et des projets livrés plus tôt.
 
-Vos développeurs ne se contentent plus d'écrire du code : ils savent l'organiser pour qu'il reste clair, réutilisable et facile à faire évoluer."
+Vos développeurs ne se contentent plus d'écrire du code : ils savent l'organiser pour qu'il reste clair, {2} et facile à faire évoluer."
 requierment = Array[ExtResource("2_rujd6")]([ExtResource("4_ae50q")])
 effects = Array[ExtResource("1_7h0ta")]([SubResource("Resource_qk3yr")])
 conditions = SubResource("Resource_ap0s8")
+blanks = Array[ExtResource("1_ae50q")]([SubResource("Blank_paradigme_0"), SubResource("Blank_paradigme_1"), SubResource("Blank_paradigme_2")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"

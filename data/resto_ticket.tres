@@ -1,9 +1,28 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://djuiuvq2edyd6"]
 
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_ddk4k"]
+[ext_resource type="Script" uid="uid://b245oiq5yuehf" path="res://scripts/skillTree/skillBlank.gd" id="1_pjlcb"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_wqb6y"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_w3yis"]
 [ext_resource type="Resource" uid="uid://cw7b5puqsti0q" path="res://data/break_room.tres" id="3_w3yis"]
+
+[sub_resource type="Resource" id="Blank_resto_ticket_0"]
+script = ExtResource("1_pjlcb")
+correct_answer = "social"
+wrong_answers = Array[String](["fiscal", "bancaire", "médical"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_resto_ticket_1"]
+script = ExtResource("1_pjlcb")
+correct_answer = "employeur"
+wrong_answers = Array[String](["État", "actionnaire", "Urssaf"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_resto_ticket_2"]
+script = ExtResource("1_pjlcb")
+correct_answer = "salarié"
+wrong_answers = Array[String](["client", "restaurateur", "banquier"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
 
 [sub_resource type="Resource" id="Resource_8g1ol"]
 script = ExtResource("1_ddk4k")
@@ -27,10 +46,11 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_w3yis")
 id = "resto_ticket"
 name = "Ticket restaurant"
-description = "Le titre-restaurant est un avantage social qui permet aux salariés de payer leur repas pendant leur journée de travail. Il est remis par l'employeur pour chaque jour travaillé, et son montant est financé à la fois par l'employeur et par le salarié.
+description = "Le titre-restaurant est un avantage {0} qui permet aux salariés de payer leur repas pendant leur journée de travail. Il est remis par l'{1} pour chaque jour travaillé, et son montant est financé à la fois par l'employeur et par le {2}.
 
 Vos employés apprécient ce petit avantage, et cela se voit sur leur humeur."
 requierment = Array[ExtResource("2_w3yis")]([ExtResource("3_w3yis")])
 effects = Array[ExtResource("1_wqb6y")]([SubResource("Resource_5vg6x"), SubResource("Resource_ddk4k")])
 conditions = SubResource("Resource_8g1ol")
+blanks = Array[ExtResource("1_pjlcb")]([SubResource("Blank_resto_ticket_0"), SubResource("Blank_resto_ticket_1"), SubResource("Blank_resto_ticket_2")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"

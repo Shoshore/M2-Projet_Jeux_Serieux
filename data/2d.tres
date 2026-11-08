@@ -2,8 +2,33 @@
 
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_5wrv1"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_fblp5"]
+[ext_resource type="Script" uid="uid://b245oiq5yuehf" path="res://scripts/skillTree/skillBlank.gd" id="1_xoo2n"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_4sb5r"]
 [ext_resource type="Resource" uid="uid://dy386mterott5" path="res://data/info_graphics.tres" id="3_4sb5r"]
+
+[sub_resource type="Resource" id="Blank_2d_0"]
+script = ExtResource("1_xoo2n")
+correct_answer = "planes"
+wrong_answers = Array[String](["en relief", "holographiques", "volumétriques"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_2d_1"]
+script = ExtResource("1_xoo2n")
+correct_answer = "pixels"
+wrong_answers = Array[String](["voxels", "polygones", "vecteurs"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_2d_2"]
+script = ExtResource("1_xoo2n")
+correct_answer = "géométriques"
+wrong_answers = Array[String](["aléatoires", "photographiques", "texturées"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_2d_3"]
+script = ExtResource("1_xoo2n")
+correct_answer = "qualité"
+wrong_answers = Array[String](["poids", "couleur", "temps"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
 
 [sub_resource type="Resource" id="Resource_cktb6"]
 script = ExtResource("1_5wrv1")
@@ -21,10 +46,11 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_4sb5r")
 id = "2d"
 name = "2D"
-description = "L'infographie 2D regroupe les techniques de création et de traitement d'images planes. On distingue les images matricielles, composées d'une grille de pixels comme une photographie, des images vectorielles, décrites par des formes géométriques et agrandissables sans perte de qualité.
+description = "L'infographie 2D regroupe les techniques de création et de traitement d'images {0}. On distingue les images matricielles, composées d'une grille de {1} comme une photographie, des images vectorielles, décrites par des formes {2} et agrandissables sans perte de {3}.
 
 Vos logiciels deviennent accessibles à des clients qui n'ont jamais tapé une commande de leur vie : votre marché s'élargit."
 requierment = Array[ExtResource("2_4sb5r")]([ExtResource("3_4sb5r")])
 effects = Array[ExtResource("1_fblp5")]([SubResource("Resource_lcoy4")])
 conditions = SubResource("Resource_cktb6")
+blanks = Array[ExtResource("1_xoo2n")]([SubResource("Blank_2d_0"), SubResource("Blank_2d_1"), SubResource("Blank_2d_2"), SubResource("Blank_2d_3")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"

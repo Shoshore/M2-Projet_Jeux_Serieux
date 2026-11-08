@@ -2,8 +2,27 @@
 
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_a7dnq"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_di5km"]
+[ext_resource type="Script" uid="uid://b245oiq5yuehf" path="res://scripts/skillTree/skillBlank.gd" id="1_j7tqr"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_3ubqu"]
 [ext_resource type="Resource" uid="uid://dbpxffe3liskf" path="res://data/reseaux.tres" id="3_3ubqu"]
+
+[sub_resource type="Resource" id="Blank_cybersecurity_0"]
+script = ExtResource("1_j7tqr")
+correct_answer = "confidentialité"
+wrong_answers = Array[String](["disponibilité", "rapidité", "publicité"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_cybersecurity_1"]
+script = ExtResource("1_j7tqr")
+correct_answer = "intégrité"
+wrong_answers = Array[String](["identité", "intégration", "interopérabilité"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_cybersecurity_2"]
+script = ExtResource("1_j7tqr")
+correct_answer = "disponibilité"
+wrong_answers = Array[String](["confidentialité", "gratuité", "rapidité"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
 
 [sub_resource type="Resource" id="Resource_446qw"]
 script = ExtResource("1_a7dnq")
@@ -30,9 +49,9 @@ name = "Cybersécurité"
 description = "La cybersécurité regroupe l'ensemble des outils, des méthodes et des bonnes pratiques qui protègent les systèmes informatiques et les données contre les attaques, les vols et les pannes. 
 
 Elle repose sur trois piliers : 
-- la confidentialité : seules les personnes autorisées accèdent aux données ;
-- l'intégrité : les données ne sont pas modifiées à leur insu ;
-- la disponibilité : les services restent accessibles.
+- la {0} : seules les personnes autorisées accèdent aux données ;
+- l'{1} : les données ne sont pas modifiées à leur insu ;
+- la {2} : les services restent accessibles.
 
 Cette compétence va permettre à votre entreprise de protéger ses données et celles de ses clients, et de gagner leur confiance.
 
@@ -40,4 +59,5 @@ Votre entreprise prend désormais la menace au sérieux et forme ses employés a
 requierment = Array[ExtResource("2_3ubqu")]([ExtResource("3_3ubqu")])
 effects = Array[ExtResource("1_di5km")]([SubResource("Resource_vkm7d"), SubResource("Resource_bfdkv")])
 conditions = SubResource("Resource_446qw")
+blanks = Array[ExtResource("1_j7tqr")]([SubResource("Blank_cybersecurity_0"), SubResource("Blank_cybersecurity_1"), SubResource("Blank_cybersecurity_2")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"
