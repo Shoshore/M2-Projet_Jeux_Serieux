@@ -15,6 +15,11 @@ var colorLineLocked = Color.WEB_GRAY
 var colorLineUnlocked = Color.GOLDENROD
 const lock_text = "Débloquer"
 const unlock_text = "Acquis"
+const failed_text = "Mauvaise réponse, réessayez au prochain tour"
+const BLANK_COLOR := "#4a4a4a"    # trou vide
+const PENDING_COLOR := "#646464"  # réponse choisie, pas encore validée
+const BLANK_WIDTH := 8            # largeur du trou vide, en espaces
+const NBSP := " "                 # espace insécable
 
 # Boutons de l'arbre rangés par id de compétence, rempli dans _ready
 var buttons_by_id: Dictionary[String, Button] = {}
@@ -31,20 +36,34 @@ const ZOOM_VALUE := 0.05
 @onready var tree_button: Button = $"../TreeButton"
 
 # Affichage des compétences
-@onready var skill_name: Label = $SkillInfos/VBoxContainerInfos/PanelContainer/SkillName
-@onready var skill_icon: TextureRect = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillIcon
-@onready var skill_description: RichTextLabel = $SkillInfos/VBoxContainerInfos/PanelContainer2/VBoxContainer/SkillDescription
-@onready var unlock_button: Button = $SkillInfos/VBoxContainerInfos/UnlockButton
-@onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxContainerInfos/UnlockButton/AudioClick
+@onready var skill_name: Label = $SkillInfos/VBoxInfos/NamePanel/SkillName
+@onready var skill_icon: TextureRect = $SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillIcon
+@onready var skill_description: RichTextLabel = $SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillDescription
+@onready var unlock_button: Button = $SkillInfos/VBoxInfos/UnlockButton
+@onready var audio_click: AudioStreamPlayer2D = $SkillInfos/VBoxInfos/UnlockButton/AudioClick
 # Audio trouvé ici : https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-click-level-up-524643/
+@onready var v_box_infos: VBoxContainer = $SkillInfos/VBoxInfos
+@onready var error_sound: AudioStreamPlayer2D = $SkillInfos/VBoxInfos/UnlockButton/ErrorSound
+@onready var name_panel: PanelContainer = $SkillInfos/VBoxInfos/NamePanel
+@onready var description_panel: PanelContainer = $SkillInfos/VBoxInfos/DescriptionPanel
 
 # Bouton qui reset la position de l'arbre
-@onready var reset_button: Button = $SkillInfos/VBoxContainerInfos/ResetButton
+@onready var reset_button: Button = $SkillInfos/VBoxInfos/ResetButton
 
+# Pour lire les valeurs de l'entreprise
 var company: Company = null
 
 # Dernier bouton sélectionné, si vide aucun bouton sélectionné
 var last_click = ""
+
+# Pour les compétences a compléter
+var solved: Dictionary[String, Array] = {}        # id -> trous trouvés (ils restent affichés)
+var pending: Dictionary[String, Dictionary] = {}  # id -> {trou: réponse choisie}
+var locked_this_turn: Array[String] = []
+var current_skill: Skill
+var current_blank := -1
+@onready var answer_menu: PopupMenu = $SkillInfos/VBoxInfos/DescriptionPanel/VBoxContainer/SkillDescription/AnswerMenu
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -120,6 +139,18 @@ func display_boost(s: Skill) -> String:
 			text += "Gain d'humeur : "
 			text += str(effect.value)
 			text += "\n"
+		if effect.variable_name == "vision":
+			text += "Gain de portée visuelle : +1"
+			text += "\n"
+		if effect.variable_name == "_number_recruiter":
+			text += "Recrutement d'unité recruteur : +1"
+			text += "\n"
+		if effect.variable_name == "_list_unities":
+			text += "Point de mouvement supplémentaire : +1"
+			text += "\n"
+		if effect.variable_name == "_debt":
+			text += "Employé recrutable dans les université et Forum : +1 "
+			text += "\n"
 	return text
 
 
@@ -134,14 +165,36 @@ func can_unlock_skill(s: Skill) -> bool :
 	# Sinon on débloque la compétence
 	return true
 
+# Vérifie si le bouton "débloquer" est cliquable
+func is_unlock_button_active(skill: Skill) -> bool:
+	if not can_unlock_skill(skill):      # déjà acquise ou prérequis manquants
+		return false
+	if not is_conditions_filled(skill):  # pas assez d'argent, d'employés…
+		return false
+	if skill.id in locked_this_turn:     # mauvaise réponse ce tour-ci
+		return false
+	if not are_all_blanks_filled(skill): # il reste des trous vides
+		return false
+	return true
+
 func unlock(s: Skill) -> void:
 	if can_unlock_skill(s):
 		if is_conditions_filled(s):
+			if not check_answers(s):
+				locked_this_turn.append(s.id)
+				s.color = Color.RED
+				display_skill(s)
+				_change_skill_infos_color(s)
+				error_sound.play()
+				return
 			unlocked.append(s.id)
 			unlocked_skill.emit(s)
 			audio_click.play()
 			unlock_button.disabled = true
 			unlock_button.text = unlock_text
+			s.color = Color.WHITE
+			display_skill(s)
+			_change_skill_infos_color(s)
 
 func buttonCenter(button: Control):
 	return button.get_global_rect().get_center() - global_position ;
@@ -156,23 +209,27 @@ func _draw() -> void:
 				continue
 			var color = colorLineUnlocked if requirement.id in unlocked else colorLineLocked
 			draw_line(buttonCenter(buttons_by_id[requirement.id]), buttonCenter(button), color, lineWidth)
+	draw_line(buttonCenter(buttons_by_id["origin"]) - Vector2(0,-10000), buttonCenter(buttons_by_id["origin"]), Color.GOLDENROD, lineWidth)
 
 # Affichage de la compétence dans la fenetre
 func display_skill(skill: Skill) -> void:
+	current_skill = skill
 	skill_name.text = skill.name
-	skill_description.text = skill.description
+	skill_description.text = build_description(skill)
 	var text_cond = display_conditions(skill)
 	var text_boost = display_boost(skill)
 	if text_cond != "Condition d'obtention : \n":
-		skill_description.text += "\n---------------------\n" + text_cond
+		skill_description.text = text_cond + "\n---------------------------\n" + skill_description.text
+	else:
+		skill_description.text = "Condition d'obtention : \n Gratuit" + "\n---------------------------\n" + skill_description.text
 	if text_boost != "Gain d'acquisition du noeud :\n":
-		skill_description.text += "\n---------------------\n" + text_boost
+		skill_description.text = text_boost + "\n---------------------------\n" + skill_description.text
 	skill_description.scroll_to_line(0)  # revient en haut pour chaque nouvelle compétence
 	if skill.id in unlocked and is_conditions_filled(skill):
 		unlock_button.text = unlock_text
 	else:
 		unlock_button.text = lock_text
-	if can_unlock_skill(skill) and is_conditions_filled(skill):
+	if is_unlock_button_active(skill):
 		unlock_button.disabled = false
 	if skill.icone:
 		skill_icon.visible = true
@@ -206,6 +263,7 @@ func _on_unlock_button_pressed() -> void:
 func _on_buttons_entered(button: Button) -> void:
 	if last_click == "":
 		display_skill(button.skill)
+		_change_skill_infos_color(button.skill)
 
 func _on_buttons_exited() -> void:
 	if last_click == "":
@@ -235,9 +293,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		# Désaffiche la compétence
 		last_click = ""
 		undisplay_skill()
-		print("pos : ", skill_tree.position)
-		print("scale : ", skill_tree.scale)
-		print("windows size : ", get_window().size)
 
 
 func _on_reset_button_pressed() -> void:
@@ -246,3 +301,69 @@ func _on_reset_button_pressed() -> void:
 	var top_bar := 64.0 # Taille de la barre du HUD
 	var free_rect := Rect2(0, top_bar, size.x, size.y - top_bar) # Espace dispo pour le skilltree
 	skill_tree.position = free_rect.get_center() - skill_tree.size / 2
+
+# Construit la description a trou
+func build_description(s: Skill) -> String:
+	var text := s.description
+	for i in s.blanks.size():
+		var part: String
+		if i in solved.get(s.id, []): # Si le joueur a eu bon à l'essai précédent
+			part = "[color=green]%s[/color]" % s.blanks[i].correct_answer
+		elif pending.get(s.id, {}).has(i):
+			var answer: String = pending[s.id][i].replace(" ", NBSP)
+			part = "[url=%d][bgcolor=%s]%s[/bgcolor][/url]" % [i, PENDING_COLOR, answer]
+		else:
+			part = "[url=%d][bgcolor=%s]%s[/bgcolor][/url]" % [i, BLANK_COLOR, NBSP.repeat(BLANK_WIDTH)]
+		text = text.replace("{%d}" % i, part)
+	return text
+
+func _on_skill_description_meta_clicked(meta) -> void:
+	if last_click == "" or current_skill.id in locked_this_turn:
+		return
+	current_blank = int(meta)
+	var blank: SkillBlank = current_skill.blanks[current_blank]
+	var choices := [blank.correct_answer] + blank.wrong_answers
+	Random.shuffle(choices)
+	answer_menu.clear()
+	for c in choices:
+		answer_menu.add_item(c)
+	answer_menu.position = Vector2i(get_global_mouse_position())
+	answer_menu.popup()
+
+func _on_answer_menu_index_pressed(index: int) -> void:
+	pending.get_or_add(current_skill.id, {})[current_blank] = answer_menu.get_item_text(index)
+	display_skill(current_skill)
+
+func check_answers(s: Skill) -> bool:
+	var found: Array = solved.get_or_add(s.id, [])
+	var answers: Dictionary = pending.get(s.id, {})
+	for i in answers:
+		if answers[i] == s.blanks[i].correct_answer and i not in found:
+			found.append(i)   # les bonnes réponses sont conservées
+	pending.erase(s.id)       # les mauvaises réponses sont effacées
+	return found.size() == s.blanks.size()
+
+# Pour que le joueur puisse réessayer de remplir les trou au prochain tour (appelé dans turn_manager)
+func new_turn() -> void:
+	locked_this_turn.clear()
+	for s in TREE.skills:
+		s.color = Color.WHITE
+	_reset_skill_infos_color()
+
+# Vérifie que tous les trous de la compétences sont rempli
+func are_all_blanks_filled(skill: Skill) -> bool:
+	var nb_found: int = solved.get(skill.id, []).size()
+	var nb_chosen: int = pending.get(skill.id, {}).size()
+	return nb_found + nb_chosen == skill.blanks.size()
+
+func _change_skill_infos_color(s: Skill) -> void:
+	name_panel.self_modulate = s.color
+	description_panel.self_modulate = s.color
+	unlock_button.modulate = s.color
+	reset_button.modulate = s.color
+
+func _reset_skill_infos_color() -> void:
+	name_panel.self_modulate = Color.WHITE
+	description_panel.self_modulate = Color.WHITE
+	unlock_button.modulate = Color.WHITE
+	reset_button.modulate = Color.WHITE

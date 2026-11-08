@@ -90,7 +90,7 @@ text = "[table=4]
 [cell][img width=95 height=95]res://assets/tiles/tile_grass.png[/img][/cell]
 [cell][img width=95  height=95 ]res://assets/tiles/tile_processor.png[/img][/cell]
 [cell]
-Ces hexagones sont vides.[/cell]
+Ces hexagones n'ont pas d'entreprises ou autres lieux importants sur eux, juste du décor.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false
@@ -110,11 +110,14 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="Retour" type="Button" parent="." unique_id=343079696]
-layout_mode = 0
-anchor_left = 0.6577123
-anchor_top = 0.8145286
-anchor_right = 0.9237435
-anchor_bottom = 0.9551777
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.59751
+anchor_top = 0.8611111
+anchor_right = 0.9305556
+anchor_bottom = 0.9782174
+offset_left = -0.33148193
+offset_bottom = 0.115112305
 text = "Retour
 "
 metadata/_edit_use_anchors_ = true
@@ -149,8 +152,9 @@ text = "[center][u]Objectif du jeu :[/u][/center]
 [cell]- Si vous avez une somme négative d'argent, vous aurez 2 tours pour repasser en positif, sinon vous aurez perdu.[/cell]
 [cell]- Vous pouvez emprunter de l'argent, avec un temps de recharge de 5 tours, mais vous devrez rembourser avec des intérêts.[/cell]
 [cell]- Les développeurs sont la ressource qui génère du profit à votre entreprise.[/cell]
-[cell]- Vous aurez un arbre de compétences à développer ; pour ce faire, les ressources nécessaires seront : les chercheurs et de l'argent.[/cell]
 [cell]- Le bonheur de vos employés n'est pas à négliger, sinon ils travailleront moins bien.[/cell]
+[cell]- Vous aurez un arbre de compétences à développer ; pour ce faire, les ressources nécessaires seront : les chercheurs et de l'argent.[/cell]
+[cell][img width=30 height=30]res://assets/tuto/blank_fill.png[/img] Vous devez remplir tous les trous de la description d'une compétence pour prétendre la débloquer.[/cell]
 [/table]"
 fit_content = true
 scroll_active = false

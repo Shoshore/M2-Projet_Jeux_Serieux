@@ -66,9 +66,7 @@ func on_tile_clicked(tile: Tile) -> void:
 				past_tile.set_occupant(null)
 				past_tile.reload_visual()
 			await Engine.get_main_loop().create_timer(0.15).timeout
-		
-		if selected_tile != null:
-			selected_tile.outline.default_color = Global.outline_default_color
-			selected_tile = null
-		info_reset.emit(null)
-	selected_unit = null
+		if dest_tile != tile:
+			Notification.show_mid("On ne passe pas au travers des batiments voyons")
+			selected_unit = null
+		info_reset.emit(selected_tile)

@@ -27,6 +27,19 @@ enum Biome {
 var biome: Biome = Biome.GRASS
 var is_visible_by_fog: bool = false
 
+var tab_description := [
+	"Profiter de la vue",
+	"Pas mal ce plateau non?",
+	"Toujours dans le positif?",
+	"Vous êtes heureux, mais votre entreprise l'est-elle?",
+	"L'important c'est de rebondir",
+	"Trop stylé l'hexagone :o ",
+	"Je me suis perdu?",
+	"J'y fus",
+	"Pas mal cette petite brise",
+	"Mais c'est génial ici"
+]
+
 
 func _ready() -> void:
 	var points := hex_vertices(Global.HEX_SIZE)
@@ -142,17 +155,9 @@ func set_occupant(unit: Unit) -> void:
 func company_info(turn: int, not_all : bool = true) -> String:
 	var text := ""
 	if not_all:
-		text = "Argent : " + str(_building._funds) + "\n"
 		text += "Boost sur les profits : " + str(_building._boost_turnover - 1) + "%\n"
-	text += "Bonheur : " + str(_building._mood_gauge) + "/" + str(_building._mood_threshold) + "\n"
-	if not_all:
-		text += "Nombre d'employés : " + str(_building.get_number_employees()) + "\n"
-		text += "Nombre de developpers : " + str(_building._number_developer) + "\n"
-	text += "Nombre de chercheurs : " + str(_building._number_researcher) + "\n"
-	text += "Nombre de recruteurs : " + str(_building._number_recruiter) + "\n"
 	var rise = _building._get_pay_rise(turn)
 	text += "Revenu net des salariés : " + str(roundi(_building._NET_SALARY * rise)) + " €\n"
-	text += "Prochaine augmentation des salaires : " + str(6 - turn % _building._RAISE_EVERY) + " tours" + "\n"
 	text += "Charge patronale par employé : " + str(roundi(_building._GROSS_SALARY * _building._EMPLOYER_CHARGES * rise)) + " €\n"
 	text += "Coût total par employé : " + str(roundi(_building._EMPLOYER_COST * rise)) + " €\n"
 	if not_all:
@@ -189,16 +194,15 @@ func get_info_text(company: Company, turn: int) -> String:
 					text += "pensez à améliorer votre cyberattaque !"
 		elif _building is Recruitement_building:
 			var ressource := ""
+			text += _building._name + "\n"
 			if _building._ressource == Recruitement_building.Ressources.DEVELOPPER:
-				text += "Site de recrutement :\n"
 				ressource = "développer"
 			else:
-				text += "Université :\n"
 				ressource = "chercheur"
 			text += "Employé recrutable : " + ressource + "\n"
 			text += "Employé recrutable restant : " + str(_building._max_ressource) + "\n"
 			text += "Durée de démarchage \n avant embauche : " + str(_building._turn_get_unit) + " tours" + "\n"
 			text += _building.text_turn_left()
 	else:
-		text = "L'hexagone est vide"
+		text = tab_description[Random.randi_range(0,tab_description.size()-1)]
 	return text

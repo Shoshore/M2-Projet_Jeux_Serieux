@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2tgprmtfh8kh" path="res://Scenes/Tour_info.tscn" id="4_xftlc"]
 [ext_resource type="AudioStream" uid="uid://dscvwlsfboihw" path="res://Audio/clic.mp3" id="7_bfdkv"]
 [ext_resource type="Script" uid="uid://gajots8yhk82" path="res://scripts/manager/input_manager.gd" id="7_xsk5a"]
+[ext_resource type="PackedScene" uid="uid://bvvqk1boq4s6g" path="res://Scenes/notification.tscn" id="10_uqn18"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u0tgg"]
 
@@ -31,21 +32,24 @@ offset_top = 0.29599762
 offset_right = -1.0
 offset_bottom = -0.2000122
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 mouse_filter = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Info_container" type="VBoxContainer" parent="InfoBox/Info_node" unique_id=471362789]
 custom_maximum_size = Vector2(245, 405)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 alignment = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Info_panel" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=523928467]
 custom_maximum_size = Vector2(245, 350)
@@ -64,7 +68,8 @@ mouse_filter = 2
 
 [node name="Share_holder" type="Button" parent="InfoBox/Info_node/Info_container/Pay_share_holder" unique_id=1296701844]
 layout_mode = 2
-text = "Contracter un prêt"
+text = "Contracter un prêt
++20000 taux d'intérêt 20%"
 
 [node name="Fire_employe" type="PanelContainer" parent="InfoBox/Info_node/Info_container" unique_id=1182287169]
 visible = false
@@ -75,15 +80,24 @@ mouse_filter = 2
 layout_mode = 2
 alignment = 1
 selected = 0
-item_count = 4
-popup/item_0/text = "Licencier un employé"
-popup/item_0/id = 3
-popup/item_1/text = "Licencier un chercheur"
-popup/item_1/id = 0
-popup/item_2/text = "Licencicer un développeur"
-popup/item_2/id = 1
-popup/item_3/text = "Licencicer un recruter"
-popup/item_3/id = 2
+item_count = 7
+popup/item_0/text = "Licenciement"
+popup/item_0/id = 5
+popup/item_0/separator = true
+popup/item_1/text = "Attention, licencier un employé baissera le bonheur de l'entreprise"
+popup/item_1/id = 4
+popup/item_1/separator = true
+popup/item_2/text = "En contre partie vous obtiendrez de l'argent : 10000"
+popup/item_2/id = 6
+popup/item_2/separator = true
+popup/item_3/text = "Aucun licenciement sélectionné"
+popup/item_3/id = 6
+popup/item_4/text = "Licencier un chercheur"
+popup/item_4/id = 0
+popup/item_5/text = "Licencicer un développeur"
+popup/item_5/id = 1
+popup/item_6/text = "Licencicer un recruter"
+popup/item_6/id = 2
 
 [node name="cameraManager" type="Node2D" parent="." unique_id=401334710]
 script = ExtResource("2_1n30v")
@@ -123,7 +137,7 @@ layout_mode = 2
 [node name="Window_info" parent="HUD/Control/HBoxContainer" unique_id=1294059647 instance=ExtResource("4_anah5")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.5
 
 [node name="Tour_info" parent="HUD/Control/HBoxContainer" unique_id=1257898175 instance=ExtResource("4_xftlc")]
 custom_minimum_size = Vector2(0, 64)
@@ -173,6 +187,8 @@ process_mode = 3
 visible = false
 offset_bottom = 8.0
 mouse_filter = 2
+
+[node name="Notification" parent="." unique_id=1106323525 instance=ExtResource("10_uqn18")]
 
 [connection signal="pressed" from="InfoBox/Info_node/Info_container/Pay_share_holder/Share_holder" to="." method="_on_share_holder_pressed"]
 [connection signal="item_selected" from="InfoBox/Info_node/Info_container/Fire_employe/Fire_button" to="." method="_on_fire_button_item_selected"]

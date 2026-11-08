@@ -27,7 +27,8 @@ const _MOOD_MALUS_FLOOR := 0.6
 const _MOOD_MALUS_PER_POINT := 0.1
 
 const _REFUND := 0.1
-const _BORROWED_AMOUNT := 18000
+const _BORROWED_AMOUNT := 20000
+const _FIRE_EMPLOY_AMOUT := 10000
 const _INTEREST := 1.2
 
 var _funds := 35000
@@ -42,6 +43,8 @@ var _debt := 0.0
 var _list_unities: Array[Unit]
 
 var _next_unit_id := 0
+
+
 
 var _cyber_security := false
 var _cyber_defense := false
@@ -96,24 +99,16 @@ enum Employee_type {
 
 func _fire_consequence():
 	_mood_reduce += _MOOD_FIRE_CONS
+	_funds += _FIRE_EMPLOY_AMOUT
 
 
-func _find_unit_by_id(unit_id: int) -> Unit:
-	for unit in _list_unities:
-		if unit.id.get_id() == unit_id:
-			return unit
-	return null
-
-
-func _fire_unit(unit: Unit) -> void:
-	var index := _list_unities.find(unit)
-	if index == -1:
-		return
-	_list_unities.remove_at(index)
+func _fire_unit() -> void:
+	var unit := _list_unities[0]
+	_list_unities.remove_at(0)
 	Global.company_fire_employee.emit(unit.movement.position.get_position())
 
 
-func fire_employee(type: Employee_type, id_: int = -1) -> void:
+func fire_employee(type: Employee_type) -> void:
 	match type:
 		Employee_type.DEVELOPER:
 			if _number_developer > 0:
@@ -126,7 +121,7 @@ func fire_employee(type: Employee_type, id_: int = -1) -> void:
 		Employee_type.RECRUITER:
 			if _number_recruiter > 0:
 				_number_recruiter -= 1
-				_fire_unit(_find_unit_by_id(id_))
+				_fire_unit()
 				_fire_consequence()
 
 func borrowed() -> void:
@@ -146,7 +141,7 @@ func _get_mood_factor() -> float:
 	return maxf(_MOOD_MALUS_FLOOR, 1.0 - _MOOD_MALUS_PER_POINT * gap)
 
 
-func _update_funds(turn: int) -> void:
+func _update_funds(turn: int, check := false) -> int:
 	var staff := get_number_employees()
 	var payroll := _get_pay_rise(turn) * _EMPLOYER_COST * staff
 	var overhead := _OVERHEAD * staff
@@ -157,7 +152,11 @@ func _update_funds(turn: int) -> void:
 	_debt = maxf(_debt - pay_debt, 0.0)
 
 	var profit := _boost_turnover * _PROFIT * _number_developer * _get_mood_factor()
-	_funds += int(profit - payroll - overhead - pay_debt)
+	if check :
+		return int(profit - payroll - overhead - pay_debt)
+	else :
+		_funds += int(profit - payroll - overhead - pay_debt)
+		return 0 
 
 
 func _update_unit() -> void:
@@ -227,7 +226,7 @@ func set_ressources(ressource: Recruitement_building.Ressources) -> void:
 
 
 # Application des compétences
-func apply_effect(effect: SkillEffect) -> void:
+func apply_effect(effect: SkillEffect, tile : Tile = null) -> void:
 	# En cas d'erreur dans le nom de la variable
 	if not effect.variable_name in self:
 		push_error("[COMPAGNY] Variable inconnue : '%s'" % effect.variable_name)
@@ -242,8 +241,20 @@ func apply_effect(effect: SkillEffect) -> void:
 			set(effect.variable_name, selected_var * effect.value)
 		SkillEffect.Operation.BOOL:
 			set(effect.variable_name, not selected_var)
+		SkillEffect.Operation.PO:
+			vision.sight_range += 1
+			for unit in _list_unities:
+				unit.vision.sight_range += 1
+		SkillEffect.Operation.UNIT:
+			create_unit(tile, Create_unit_type.RECRUITER)
+		SkillEffect.Operation.PM:
+			for unit in _list_unities:
+				unit.movement._max_movement += 1
+				unit.movement._current_movement += 1
+		SkillEffect.Operation.RESSOURCE:
+			pass
 
 
-func apply_skill(skill: Skill) -> void:
+func apply_skill(skill: Skill, tile : Tile = null) -> void:
 	for effect in skill.effects:
-		apply_effect(effect)
+		apply_effect(effect, tile)

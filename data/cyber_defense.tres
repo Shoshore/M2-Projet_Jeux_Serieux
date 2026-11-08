@@ -1,9 +1,28 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bt3bff4yj7h5g"]
 
 [ext_resource type="Script" uid="uid://bgkpiothrwkdf" path="res://scripts/skillTree/conditions.gd" id="1_6amis"]
+[ext_resource type="Script" uid="uid://b245oiq5yuehf" path="res://scripts/skillTree/skillBlank.gd" id="1_22dwp"]
 [ext_resource type="Script" uid="uid://dqls804r0bhd7" path="res://scripts/skillTree/skillEffect.gd" id="1_ul5v0"]
 [ext_resource type="Script" uid="uid://jfrest3lsltq" path="res://scripts/skillTree/skill.gd" id="2_2yh0k"]
 [ext_resource type="Resource" uid="uid://cxgj4ihsfx0hc" path="res://data/cybersecurity.tres" id="3_2yh0k"]
+
+[sub_resource type="Resource" id="Blank_cyber_defense_0"]
+script = ExtResource("1_22dwp")
+correct_answer = "faille"
+wrong_answers = Array[String](["clé", "adresse", "licence"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_cyber_defense_1"]
+script = ExtResource("1_22dwp")
+correct_answer = "détecter"
+wrong_answers = Array[String](["provoquer", "ignorer", "financer"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
+
+[sub_resource type="Resource" id="Blank_cyber_defense_2"]
+script = ExtResource("1_22dwp")
+correct_answer = "sauvegardes"
+wrong_answers = Array[String](["suppressions", "publicités", "impressions"])
+metadata/_custom_type_script = "uid://b245oiq5yuehf"
 
 [sub_resource type="Resource" id="Resource_ww3np"]
 script = ExtResource("1_6amis")
@@ -27,12 +46,13 @@ metadata/_custom_type_script = "uid://dqls804r0bhd7"
 script = ExtResource("2_2yh0k")
 id = "cyber_defense"
 name = "Défense"
-description = "Dans la cybersécurité, l'attaquant n'a pas besoin de trouver qu'une seule faille ; le défenseur, lui, doit toutes les combler.
+description = "Dans la cybersécurité, l'attaquant n'a besoin de trouver qu'une seule {0} ; le défenseur, lui, doit toutes les combler.
 
-La cyberdéfense regroupe l'ensemble des moyens mis en place pour détecter, bloquer et répondre aux cyberattaques. Pare-feu, antivirus, détection d'intrusion, sauvegardes et plans de reprise d'activité forment autant de lignes de défense successives.
+La cyberdéfense regroupe l'ensemble des moyens mis en place pour {1}, bloquer et répondre aux cyberattaques. Pare-feu, antivirus, détection d'intrusion, {2} et plans de reprise d'activité forment autant de lignes de défense successives.
 
 Votre entreprise résiste mieux aux attaques de ses concurrents, et se remet plus vite lorsqu'elle est touchée."
 requierment = Array[ExtResource("2_2yh0k")]([ExtResource("3_2yh0k")])
 effects = Array[ExtResource("1_ul5v0")]([SubResource("Resource_a7dnq"), SubResource("Resource_uqn18")])
 conditions = SubResource("Resource_ww3np")
+blanks = Array[ExtResource("1_22dwp")]([SubResource("Blank_cyber_defense_0"), SubResource("Blank_cyber_defense_1"), SubResource("Blank_cyber_defense_2")])
 metadata/_custom_type_script = "uid://jfrest3lsltq"
