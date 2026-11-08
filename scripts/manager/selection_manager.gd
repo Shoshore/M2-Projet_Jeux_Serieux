@@ -45,9 +45,6 @@ func on_tile_clicked(tile: Tile) -> void:
 	var target_pos := map.path_check(from_tile.position_.get_position(), tile.position_.get_position())
 	var dest_tile: Tile = map.get_tile_at(target_pos)
 
-	if dest_tile != tile:
-		Notification.show_mid("On ne passe pas au travers de batiments voyons")
-
 	if dest_tile == from_tile:
 		selected_unit = null
 		return
@@ -69,5 +66,7 @@ func on_tile_clicked(tile: Tile) -> void:
 				past_tile.set_occupant(null)
 				past_tile.reload_visual()
 			await Engine.get_main_loop().create_timer(0.15).timeout
-		
+		if dest_tile != tile:
+			Notification.show_mid("On ne passe pas au travers des batiments voyons")
+			selected_unit = null
 		info_reset.emit(selected_tile)
