@@ -34,6 +34,8 @@
 [ext_resource type="AudioStream" uid="uid://bi2wik1ahumfy" path="res://Audio/error_sound.mp3" id="31_14dii"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1ajo"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(0.08627451, 0, 1, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -69,6 +71,8 @@ corner_radius_bottom_left = 50
 [sub_resource type="ButtonGroup" id="ButtonGroup_yt575"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh3e1"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(0, 0.50980395, 0, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -96,6 +100,41 @@ corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uk3b"]
 bg_color = Color(0, 0.3137255, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14dii"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.46666667, 0.5019608, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aiyl"]
+bg_color = Color(0.654902, 0.7019608, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.46666667, 0.5019608, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkm7d"]
+bg_color = Color(0.654902, 0.7019608, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8g1ol"]
+bg_color = Color(0.32666665, 0.35, 0, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -604,10 +643,10 @@ alignment = 2
 [node name="TicketResto" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/HumanConfort" unique_id=1685882015]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
@@ -617,10 +656,10 @@ skill = ExtResource("22_446qw")
 [node name="SalleRepos" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/HumanConfort" unique_id=1684335052]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
@@ -635,10 +674,10 @@ alignment = 2
 [node name="Stuff3" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/Stuff" unique_id=2007245085]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
@@ -648,10 +687,10 @@ skill = ExtResource("24_885uq")
 [node name="Stuff2" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/Stuff" unique_id=2069234305]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
@@ -661,10 +700,10 @@ skill = ExtResource("25_fwmip")
 [node name="Stuff1" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortSkills/Stuff" unique_id=1537661228]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
@@ -678,10 +717,10 @@ alignment = 1
 [node name="ConfortInCompany" type="Button" parent="SkillTree/VBoxContainer/Skills/HUMAN/CompanyConfort/CompanyConfortOrigin" unique_id=1817108422]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mh3e1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yt575")
-theme_override_styles/hover = SubResource("StyleBoxFlat_glgvs")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2uk3b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14dii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4aiyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vkm7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8g1ol")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_yt575")
 text = "Human"
